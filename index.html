@@ -149,6 +149,22 @@
             box-shadow: 0 4px 0 #fdba74;
         }
 
+        /* Lesson Tabs */
+        .lesson-tabs { display: flex; gap: 10px; margin-bottom: 4px; }
+        .lesson-tab {
+            flex: 1;
+            padding: 12px 8px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            background: white;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            transition: all 0.2s;
+        }
+        .lesson-tab.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary-dark); }
+
         /* Mode Selection */
         .mode-select {
             padding: 20px;
@@ -404,6 +420,10 @@
             <h2>📚 The Value of Knowledge</h2>
             <p>درس اول — زبان انگلیسی پایه یازدهم</p>
         </div>
+        <div class="lesson-tabs">
+            <button class="lesson-tab active" onclick="selectLesson(0)">📗 درس اول: ارزش دانش</button>
+            <button class="lesson-tab" onclick="selectLesson(1)">📙 درس دوم: زبان‌های جهان</button>
+        </div>
         <div class="mode-card" onclick="startEasyMode()">
             <div class="mode-icon">🟢</div>
             <div class="mode-text">
@@ -466,7 +486,7 @@
     // ============================================================
 
     // Vocabulary: word -> Persian meaning (keeps apostrophes, e.g. you're)
-    const dict = {
+    const dict1 = {
         "babak": "بابک (نام)", "saberian": "صابریان (نام خانوادگی)",
         "meysam": "میثم (نام)", "moscow": "مسکو", "irib": "صداوسیما (رسانه ملی)",
         "a": "یک", "an": "یک", "the": "(حرف تعریف)", "i": "من", "me": "من (مفعولی)",
@@ -475,7 +495,7 @@
         "who": "که", "that": "آن", "about": "درباره",
 
         "is": "است / هست", "are": "هستند", "was": "بود", "be": "بودن",
-        "do": "آیا (کمکی) / انجام دادن", "did": "آیا (کمکی)", "can": "می‌توانی / می‌توانم",
+        "do": "آیا (کمکی) / انجام دادن", "did": "آیا (کمکی)", "does": "آیا (کمکی)", "can": "می‌توانی / می‌توانم",
         "may": "می‌توانم (اجازه)", "should": "باید", "of": "از", "for": "برای",
         "to": "به / برای", "in": "در / داخل", "at": "در (مکان/سن)", "as": "به‌اندازه / به‌عنوان",
         "and": "و", "or": "یا", "but": "اما", "all": "همه", "them": "آن‌ها",
@@ -508,7 +528,7 @@
     };
 
     // Easy mode — scaffolded learning: word -> phrase -> full sentence.
-    const easySequence = [
+    const easySequence1 = [
         { type: 'word', text: 'language', meaning: 'زبان' },
         { type: 'word', text: 'know', meaning: 'می‌شناسم / می‌دانم' },
         { type: 'build', target: 'you know three languages', fa: 'تو سه زبان بلدی', bank: ['you', 'three', 'know', 'languages'] },
@@ -560,7 +580,7 @@
     ];
 
     // Reading material for Normal Mode (story paragraph + dialogue)
-    const reading = [
+    const reading1 = [
         { speaker: "__story__", text: "Babak Saberian is a translator who works for IRIB. Today, he is hosting Meysam in his office. Meysam is a high school student. He is interviewing Mr. Saberian for his school project." },
         { speaker: "Meysam", text: "Thank you Mr. Saberian for inviting me to your office." },
         { speaker: "Mr. Saberian", text: "You're welcome!" },
@@ -579,7 +599,7 @@
     ];
 
     // Listening exercises: fill in the blank (1 correct + 3 distractors)
-    const listeningData = [
+    const listeningData1 = [
         {
             audioText: "Babak Saberian is a translator who works for IRIB.",
             display: "Babak Saberian is a _____ who works for IRIB.",
@@ -625,12 +645,251 @@
     ];
 
     // ============================================================
-    // --- STATE
+    // --- LESSON 2: Languages of the World
     // ============================================================
+
+    // Vocabulary: word -> Persian meaning
+    const dict2 = {
+        "language": "زبان", "system": "سامانه / سیستم", "communication": "ارتباط",
+        "written": "نوشتاری", "spoken": "گفتاری", "forms": "شکل‌ها",
+        "uses": "استفاده می‌کند", "use": "استفاده کردن", "using": "استفاده کردن",
+        "people": "مردم", "use to": "برای", "society": "جامعه",
+        "they": "آن‌ها", "exchange": "تبادل می‌کنند", "knowledge": "دانش / شناخت",
+        "beliefs": "باورها", "wishes": "آرزوها / خواسته‌ها", "feelings": "احساسات",
+        "through": "از طریق", "vary": "متفاوت بودن / فرق داشتن", "greatly": "به مقدار زیاد",
+        "region": "منطقه / ناحیه", "from": "از", "person": "شخص / آدم",
+        "may": "ممکن است", "not": "نه", "understand": "می‌فهمد",
+        "someone": "کسی", "another": "دیگر", "country": "کشور", "continent": "قاره",
+        "so": "چنان / پس", "different": "متفاوت", "surprising": "تعجب‌آور",
+        "hear": "شنیدن", "today": "امروز", "about": "حدود / درباره",
+        "exist": "وجود داشتن", "world": "جهان", "there": "هست وجود دارد",
+        "more": "بیشتر", "than": "از", "africa": "آفریقا", "americas": "قاره‌های آمریکا",
+        "asia": "آسیا", "europe": "اروپا", "oceania": "اقیانوسیه",
+        "native": "بومی", "speakers": "گویشوران / گویندگان", "speaker": "گوینده",
+        "these": "این‌ها", "range": "در نوسان بودن / وسعت داشتن", "number": "اندازه / تعداد",
+        "large": "بزرگ", "hundreds": "صدها", "of": "از", "millions": "میلیون‌ها",
+        "very": "بسیار", "small": "کوچک", "with": "با", "fewer": "کمتر",
+        "most": "بیشترین (بر صفات)", "popular": "محبوب / پرطرفدار", "in": "در",
+        "chinese": "چینی", "one": "یک", "billion": "میلیارد", "speak": "صحبت می‌کنند",
+        "interestingly": "جالب اینکه", "english": "انگلیسی", "has": "دارد",
+        "but": "اما", "there": "وجود دارد", "learners": "زبان‌آموزان",
+        "learner": "زبان‌آموز", "all": "همه", "around": "حدود / پیرامون",
+        "learn": "می‌آموزند / یاد گرفتن", "as": "به‌عنوان", "an": "یک",
+        "international": "بین‌المللی", "fifty": "پنجاه", "percent": "درصد",
+        "languages": "زبان‌ها", "have": "دارند", "beginning": "آغاز",
+        "century": "قرن", "had": "داشتند", "between": "بین", "and": "و",
+        "make up": "تشکیل دادن", "makes up": "تشکیل می‌دهد", "nearly": "تقریباً",
+        "call": "نامیدن / می‌گوییم", "them": "آن‌ها", "endangered": "در خطر انقراض / رو به نابودی",
+        "grow": "شدن", "old": "پیر", "die": "مردن / از بین رفتن", "dies": "می‌میرد",
+        "too": "هم", "valuable": "ارزشمند", "their": "آن‌ها (ملکی)",
+        "differences": "تفاوت‌ها", "difference": "تفاوت", "every": "هر",
+        "amazing": "شگفت‌انگیز", "means": "وسیله / طریقه", "meets": "برآورده می‌کند",
+        "meet": "برآورده کردن", "needs": "نیازها", "its": "آن (ملکی)",
+        "own": "خود", "is": "است", "it": "آن", "impossible": "ناممکن",
+        "imagine": "تصور کردن", "without": "بدون", "therefore": "بنابراین",
+        "should": "باید", "we": "ما", "respect": "احترام گذاشتن",
+        "no": "هیچ", "matter": "فرق ندارد", "how": "چقدر", "many": "بسیاری",
+        "nowadays": "امروزه", "losing": "از دست دادن", "culture": "فرهنگ",
+        "disappear": "ناپدید شدن", "lot": "(a lot of) بسیاری", "australia": "استرالیا",
+        "south": "جنوبی", "america": "آمریکا", "some": "برخی", "live": "زنده / زندگی کردن",
+        "future": "آینده", "researchers": "پژوهشگران", "trying": "تلاش کردن",
+        "protect": "حفاظت کردن", "save": "نجات دادن", "lots": "(lots of) زیادی",
+        "information": "اطلاعات", "cultural": "فرهنگی", "values": "ارزش‌ها",
+        "uncountable": "جزء ناگرفتنی / نشمار",        "words": "کلمه‌ها", "food": "غذا", "does": "آیا (کمکی)",
+        "often": "غالباً / اغلب", "such": "مانند (such as)", "bag": "کیسه",
+        "slices": "برش‌ها / ورقه‌ها", "piece": "تکه", "two": "دو", "go": "می‌روند",
+        "shopping": "خرید کردن", "ask": "درخواست می‌کنند", "bottles": "بطری‌ها",
+        "water": "آب", "sugar": "شکر", "loaf": "قرص (یک عدد نان)", "bread": "نان",
+        "kilos": "کیلو", "meat": "گوشت", "coffee": "قهوه", "shop": "مغازه",
+        "order": "سفارش می‌دهند", "tea": "چای", "cake": "کیک", "glass": "لیوان",
+        "juice": "آبمیوه", "if": "اگر", "foreign": "خارجی", "wrongly": "به‌اشتباه",
+        "may not": "ممکن است نه", "well": "خوب", "when": "وقتی", "be": "بودن",
+        "careful": "مواظب / دقیق", "important": "مهم", "point": "نکته", "this": "این",
+        "mars": "مریخ (سیاره)", "mazandaran": "مازندران", "farming": "کشاورزی",
+        "best": "بهترین", "rice": "برنج", "largest": "بزرگ‌ترین",
+        "spanish": "اسپانیویی", "diego": "دیگو (نام)", "dictionary": "واژه‌نامه",
+        "prices": "قیمت‌ها", "villages": "روستاها", "village": "روستا",
+        "space": "فضا", "travelling": "سفر کردن", "scientists": "دانشمندان",
+        "wind": "باد", "power": "انرژی / قدرت", "less": "کمتر",
+        "teacher": "معلم", "tried": "تلاش کرد", "explain": "توضیح دادن",
+        "sign": "اشاره", "ability": "توانایی", "physical": "جسمی", "mental": "ذهنی",
+        "skill": "مهارت", "talk": "صحبت کردن", "makes": "می‌سازد", "him": "او (مفعولی)",
+        "animals": "حیوانات", "china": "چین",        "islamic": "اسلامی", "human": "انسان", "world's": "جهان (ملکی)", "each": "همدیگر", "other": "دیگر", "they'll": "آن‌ها (آینده)",
+        "ociania": "اقیانوسیه"
+    };
+
+    // Easy mode — scaffolded learning: word -> phrase -> full sentence.
+    const easySequence2 = [
+        { type: 'word', text: 'system', meaning: 'سامانه / سیستم' },
+        { type: 'word', text: 'communication', meaning: 'ارتباط' },
+        { type: 'build', target: 'Language is a system of communication', fa: 'زبان یک سامانه ارتباطی است', bank: ['Language', 'system', 'a', 'communication', 'is', 'of'] },
+
+        { type: 'word', text: 'communicate', meaning: 'ارتباط برقرار کردن' },
+        { type: 'build', target: 'People use language to communicate', fa: 'مردم از زبان برای ارتباط برقرار کردن استفاده می‌کنند', bank: ['use', 'People', 'to', 'communicate', 'language'] },
+
+        { type: 'word', text: 'society', meaning: 'جامعه — گروه بزرگی از مردم که با هم زندگی می‌کنند' },
+        { type: 'word', text: 'Islamic', meaning: 'اسلامی' },
+        { type: 'build', target: 'We live in an Islamic society', fa: 'ما در یک جامعه اسلامی زندگی می‌کنیم', bank: ['an', 'We', 'Islamic', 'in', 'society', 'live'] },
+
+        { type: 'word', text: 'ability', meaning: 'توانایی — قابلیت جسمی یا ذهنی برای انجام کاری' },
+        { type: 'build', target: 'the ability to talk', fa: 'تواناییِ صحبت کردن', bank: ['talk', 'ability', 'the', 'to'] },
+
+        { type: 'word', text: 'vary', meaning: 'متفاوت بودن — از هم فرق داشتن' },
+        { type: 'word', text: 'region', meaning: 'منطقه / ناحیه' },
+        { type: 'build', target: 'Languages vary from region to region', fa: 'زبان‌ها از یک منطقه به منطقه دیگر فرق می‌کنند', bank: ['from', 'vary', 'to', 'region', 'region', 'Languages'] },
+
+        { type: 'word', text: 'continent', meaning: 'قاره' },
+        { type: 'word', text: 'largest', meaning: 'بزرگ‌ترین' },
+        { type: 'build', target: 'Asia is the largest continent of the world', fa: 'آسیا بزرگ‌ترین قاره جهان است', bank: ['Asia', 'the', 'is', 'largest', 'world', 'of', 'continent', 'the'] },
+
+        { type: 'word', text: 'exist', meaning: 'وجود داشتن' },
+        { type: 'word', text: 'water', meaning: 'آب' },
+        { type: 'build', target: 'Does water really exist on Mars', fa: 'آیا واقعاً در مریخ آب وجود دارد؟', bank: ['really', 'on', 'Does', 'Mars', 'exist', 'water'] },
+
+        { type: 'word', text: 'most', meaning: 'بیشترین (ساخت صفت عالی)' },
+        { type: 'word', text: 'popular', meaning: 'محبوب / پرطرفدار' },
+        { type: 'word', text: 'rice', meaning: 'برنج' },
+        { type: 'build', target: 'Rice is the most popular food in Iran', fa: 'برنج محبوب‌ترین غذای ایران است', bank: ['popular', 'Rice', 'most', 'food', 'in', 'Iran', 'is', 'the'] },
+
+        { type: 'word', text: 'percent', meaning: 'درصد' },
+        { type: 'word', text: 'fifty', meaning: 'پنجاه' },
+        { type: 'word', text: 'make up', meaning: 'تشکیل دادن (سهم یا مقدار)' },
+        { type: 'build', target: 'fifty percent of the world’s languages', fa: 'حدود ۵۰ درصد زبان‌های جهان', bank: ['world’s', 'of', 'percent', 'the', 'fifty'] },
+
+        { type: 'word', text: 'billion', meaning: 'میلیارد' },
+        { type: 'build', target: 'More than one billion people speak Chinese', fa: 'بیش از یک میلیارد نفر چینی صحبت می‌کنند', bank: ['one', 'billion', 'Chinese', 'More', 'people', 'speak', 'than'] },
+
+        { type: 'word', text: 'call', meaning: 'نامیدن / می‌گوییم' },
+        { type: 'word', text: 'endangered', meaning: 'در خطر انقراض / رو به نابودی' },
+        { type: 'build', target: 'We call them endangered languages', fa: 'ما به آن‌ها زبان‌های رو به نابودی می‌گوییم', bank: ['call', 'We', 'languages', 'endangered', 'them'] },
+
+        { type: 'word', text: 'die', meaning: 'مردن / از بین رفتن' },
+        { type: 'build', target: 'When a language dies the knowledge and culture disappear with it', fa: 'وقتی زبانی می‌میرد، دانش و فرهنگ آن هم ناپدید می‌شود', bank: ['disappear', 'the', 'dies', 'and', 'it', 'with', 'language', 'knowledge', 'When', 'a', 'culture'] },
+
+        { type: 'word', text: 'researchers', meaning: 'پژوهشگران' },
+        { type: 'word', text: 'protect', meaning: 'حفاظت کردن' },
+        { type: 'build', target: 'Researchers are trying to protect endangered languages', fa: 'پژوهشگران تلاش می‌کنند از زبان‌های رو به نابودی حفاظت کنند', bank: ['Researchers', 'languages', 'to', 'protect', 'trying', 'are', 'endangered'] },
+
+        { type: 'word', text: 'valuable', meaning: 'ارزشمند' },
+        { type: 'word', text: 'despite', meaning: 'با وجود — به‌خصوص آنکه' },
+        { type: 'build', target: 'All languages are valuable despite their differences', fa: 'همه زبان‌ها با وجود تفاوت‌هایشان ارزشمندند', bank: ['All', 'differences', 'valuable', 'their', 'despite', 'are', 'languages'] },
+
+        { type: 'word', text: 'respect', meaning: 'احترام گذاشتن' },
+        { type: 'build', target: 'We should respect all languages', fa: 'باید به همه زبان‌ها احترام بگذاریم', bank: ['all', 'We', 'respect', 'languages', 'should'] },
+
+        { type: 'word', text: 'means', meaning: 'وسیله / طریقه' },
+        { type: 'word', text: 'amazing', meaning: 'شگفت‌انگیز' },
+        { type: 'build', target: 'an amazing means of communication', fa: 'یک وسیله ارتباطی شگفت‌انگیز', bank: ['means', 'communication', 'amazing', 'an', 'of'] },
+        { type: 'build', target: 'Every language is an amazing means of communication', fa: 'هر زبان یک وسیله ارتباطی شگفت‌انگیز است', bank: ['Every', 'language', 'is', 'an', 'amazing', 'means', 'of', 'communication'] }
+    ];
+
+    // Reading material for Normal Mode (sample sentences + main texts)
+    const reading2 = [
+        { speaker: "__story__", text: "Mazandaran is one of the best farming regions of Iran. Does water really exist on Mars? Asia is the largest continent of the world. Spanish is Diego's native language. Dictionary prices range from 5 to 15 dollars." },
+        { speaker: "__story__", text: "Rice is the most popular food in Iran. Today, less than 40 percent of people live in villages. Imagine you are traveling in space. Scientists say that by 2050, wind power can meet the needs of the world. We are living in the twenty-first century. Our teacher tried to explain the new word by means of sign language." },
+        { speaker: "__story__", text: "Language is a system of communication. It uses written and spoken forms. People use language to communicate with each other in a society. They exchange knowledge, beliefs, wishes, and feelings through it. Languages vary greatly from region to region. They are so different that a person may not understand the language of someone from another region, country or continent." },
+        { speaker: "__story__", text: "It is not surprising to hear that today about 7000 languages exist in the world. There are more than 2000 languages in Africa, 1000 in the Americas, more than 2250 in Asia, about 230 in Europe, and more than 1300 in Oceania." },
+        { speaker: "__story__", text: "Native speakers of these languages range in number from very large, with hundreds of millions of speakers, to very small, with fewer than 10 speakers. The most popular language in the world is Chinese. More than one billion people in the world speak Chinese. Interestingly, English has fewer native speakers than Chinese, but there are about one billion learners of English all around the world. They learn English as an international language." },
+        { speaker: "__story__", text: "About fifty percent of the world's languages have fewer than 5000 speakers. In the beginning of the twenty-first century, 204 languages had fewer than 10 speakers and 344 languages had between 10 and 99 speakers. The 548 languages with fewer than 99 speakers make up nearly 8 percent of the world's languages. We call them 'endangered languages'. As the speakers of such languages grow old and die, their languages will die, too." },
+        { speaker: "__story__", text: "All languages are really valuable, despite their differences. Every language is an amazing means of communication that meets the needs of its own speakers. It is impossible to imagine the world without language. Therefore, we should respect all languages, no matter how different they are and how many speakers they have." },
+        { speaker: "__story__", text: "An endangered language is a language that has very few speakers. Nowadays, many languages are losing their native speakers. When a language dies, the knowledge and culture disappear with it. A lot of endangered languages are in Australia and South America. Some of them are in Asia and Africa. The number of live languages of the world is around 7000, and many of them may not exist in the future. Many researchers are now trying to protect endangered languages. This can save lots of information and cultural values of people all around the world." },
+        { speaker: "__story__", text: "There are many uncountable words for food in English. Native speakers often use words such as 'a bag of', 'two slices of', or 'a piece of' with uncountable nouns. This usually happens when they go shopping. They may ask for two bottles of water, a bag of sugar, a loaf of bread, or two kilos of meat. In a coffee shop, they may order a cup of tea, a piece of cake, or a glass of juice. If a foreign learner uses uncountable words wrongly, English speakers may not understand them well. So when you learn English, be very careful about this important point." }
+    ];
+
+    // Listening exercises: fill in the blank (1 correct + 3 distractors)
+    const listeningData2 = [
+        {
+            audioText: "Language is a system of communication.",
+            display: "Language is a _____ of communication.",
+            missing: "system",
+            options: ["system", "sound", "lesson", "game"]
+        },
+        {
+            audioText: "Mazandaran is one of the best farming regions of Iran.",
+            display: "Mazandaran is one of the best _____ regions of Iran.",
+            missing: "farming",
+            options: ["farming", "shopping", "dancing", "cooling"]
+        },
+        {
+            audioText: "Today about 7000 languages exist in the world.",
+            display: "Today about _____ languages exist in the world.",
+            missing: "7000",
+            options: ["7000", "700", "1700", "7070"]
+        },
+        {
+            audioText: "The most popular language in the world is Chinese.",
+            display: "The most popular language in the world is _____.",
+            missing: "Chinese",
+            options: ["Chinese", "English", "Spanish", "Arabic"]
+        },
+        {
+            audioText: "Interestingly, English has fewer native speakers than Chinese.",
+            display: "English has fewer _____ speakers than Chinese.",
+            missing: "native",
+            options: ["native", "foreign", "modern", "popular"]
+        },
+        {
+            audioText: "The 548 languages with fewer than 99 speakers make up nearly 8 percent of the world's languages.",
+            display: "The 548 languages with fewer than 99 speakers make up nearly 8 _____ of the world's languages.",
+            missing: "percent",
+            options: ["percent", "number", "dozens", "houses"]
+        },
+        {
+            audioText: "When a language dies, the knowledge and culture disappear with it.",
+            display: "When a language dies, the knowledge and culture _____ with it.",
+            missing: "disappear",
+            options: ["disappear", "arrive", "grow", "remain"]
+        },
+        {
+            audioText: "Many researchers are now trying to protect endangered languages.",
+            display: "Many researchers are now trying to _____ endangered languages.",
+            missing: "protect",
+            options: ["protect", "forget", "delete", "translate"]
+        },
+        {
+            audioText: "Scientists say that by 2050, wind power can meet the needs of the world.",
+            display: "Scientists say that by 2050, wind _____ can meet the needs of the world.",
+            missing: "power",
+            options: ["power", "water", "petrol", "paper"]
+        },
+        {
+            audioText: "They may ask for two bottles of water, a bag of sugar, or a loaf of bread.",
+            display: "They may ask for two bottles of water, a bag of sugar, or a loaf of _____.",
+            missing: "bread",
+            options: ["bread", "rice", "milk", "cake"]
+        }
+    ];
+
+    // ============================================================
+    // --- LESSON REGISTRY + STATE
+    // ============================================================
+    const LESSONS = [
+        { id: 'lesson1', faTitle: 'درس اول: ارزش دانش', dict: dict1, easySequence: easySequence1, reading: reading1, listeningData: listeningData1 },
+        { id: 'lesson2', faTitle: 'درس دوم: زبان‌های جهان', dict: dict2, easySequence: easySequence2, reading: reading2, listeningData: listeningData2 }
+    ];
+
     let currentEasyStep = 0;
     let currentListeningIdx = 0;
-    let flashcards = JSON.parse(localStorage.getItem('lesson1_flashcards')) || [];
+    let flashcards = [];
     let currentCardIdx = 0;
+    let lesson = LESSONS[0];
+
+    function LT() { return lesson; }
+
+    function loadFlashcards() {
+        flashcards = JSON.parse(localStorage.getItem(lesson.id + '_flashcards')) || [];
+        updateFCBadge();
+    }
+
+    function selectLesson(i) {
+        if (window.speechSynthesis && window.speechSynthesis.cancel) window.speechSynthesis.cancel();
+        lesson = LESSONS[i];
+        loadFlashcards();
+        document.querySelectorAll('.lesson-tab').forEach((t, idx) => t.classList.toggle('active', i === idx));
+        document.querySelector('.header h1').innerText = lesson.faTitle;
+        document.title = lesson.faTitle;
+        try { localStorage.setItem('selectedLesson', lesson.id); } catch (e) { /* ignore */ }
+    }
 
     // ============================================================
     // --- AUDIO & TTS  (speak(text, repeat = 2, rate = 0.65))
@@ -701,7 +960,9 @@
     // --- EASY MODE
     // ============================================================
     function startEasyMode() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
         currentEasyStep = 0;
+        loadFlashcards();
         showScreen('easyScreen');
         renderEasyStep();
     }
@@ -709,7 +970,7 @@
     function renderEasyStep() {
         const container = document.getElementById('easyContent');
         const nextBtn = document.getElementById('easyNextBtn');
-        const step = easySequence[currentEasyStep];
+        const step = LT().easySequence[currentEasyStep];
         nextBtn.classList.add('hidden');
 
         if (!step) {
@@ -763,7 +1024,7 @@
                 saveBtn.innerText = '➕ افزودن به فلش‌کارت';
                 saveBtn.onclick = () => {
                     flashcards.push({ word: step.text, meaning: step.meaning });
-                    localStorage.setItem('lesson1_flashcards', JSON.stringify(flashcards));
+                    localStorage.setItem(lesson.id + '_flashcards', JSON.stringify(flashcards));
                     updateFCBadge();
                     playSound('correct');
                     ttsBtn.disabled = true;
@@ -863,7 +1124,7 @@
     }
 
     function updateBuildState() {
-        const step = easySequence[currentEasyStep];
+        const step = LT().easySequence[currentEasyStep];
         if (!step || step.type !== 'build') return;
 
         const container = document.getElementById('easyContent');
@@ -908,7 +1169,7 @@
         const container = document.getElementById('normalContent');
         container.innerHTML = '<p style="text-align:center; color:#666; margin-bottom:20px; font-size:0.9rem;">روی کلمه کلیک کن تا معنی آن را ببینی و صدایش را بشنوی.</p>';
 
-        reading.forEach(item => {
+        LT().reading.forEach(item => {
             const line = document.createElement('div');
             line.className = 'dialog-line' + (item.speaker === '__story__' ? ' story' : '');
 
@@ -953,7 +1214,7 @@
     }
 
     function normWord(tok) {
-        return tok.toLowerCase().replace(/[^a-z']/g, '');
+        return tok.toLowerCase().replace(/’/g, "'").replace(/[^a-z']/g, '');
     }
 
     function showWordMeaning(element, tok) {
@@ -961,7 +1222,7 @@
         element.classList.add('active');
 
         const clean = normWord(tok);
-        const meaning = dict[clean] || dict[clean.replace(/'/g, '')] || '(در واژه‌نامه نیست)';
+        const meaning = LT().dict[clean] || LT().dict[clean.replace(/'/g, '')] || '(در واژه‌نامه نیست)';
         playSound('correct');
         speak(clean);
 
@@ -992,7 +1253,7 @@
         const container = document.getElementById('listeningContent');
         container.innerHTML = '';
 
-        if (currentListeningIdx >= listeningData.length) {
+        if (currentListeningIdx >= LT().listeningData.length) {
             container.innerHTML = `
                 <div class="finish-box">
                     <h2>🎧 عالی بود!</h2>
@@ -1002,14 +1263,14 @@
             return;
         }
 
-        const data = listeningData[currentListeningIdx];
+        const data = LT().listeningData[currentListeningIdx];
 
         const box = document.createElement('div');
         box.className = 'listening-box';
 
         const counter = document.createElement('p');
         counter.style.color = '#666';
-        counter.innerText = `سوال ${currentListeningIdx + 1} از ${listeningData.length} — گوش کن و کلمه درست را انتخاب کن:`;
+        counter.innerText = `سوال ${currentListeningIdx + 1} از ${LT().listeningData.length} — گوش کن و کلمه درست را انتخاب کن:`;
         box.appendChild(counter);
 
         const icon = document.createElement('div');
@@ -1077,6 +1338,7 @@
     function openFlashcards() {
         window.speechSynthesis && window.speechSynthesis.cancel();
         currentCardIdx = 0;
+        loadFlashcards();
         showScreen('flashcardScreen');
         renderFlashcard();
     }
@@ -1168,7 +1430,8 @@
     }
 
     // Init
-    updateFCBadge();
+    const savedLessonId = localStorage.getItem('selectedLesson');
+    selectLesson(savedLessonId === 'lesson2' ? 1 : 0);
 </script>
 
 </body>
