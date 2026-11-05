@@ -1,14 +1,27 @@
-# English Lesson 1 — The Value of Knowledge (Grade 11)
+# Vision 2 — Lesson 1: "Languages of the World" (Grade 11 Book Companion)
 
-A mobile-first, fully interactive Single Page Application (SPA) for English language learning, built with plain HTML, CSS and Vanilla JavaScript (no frameworks).
+A mobile-first, fully interactive Single Page Application (SPA) that acts as a companion to **Vision 2, Lesson 1**. Built with plain HTML, CSS and Vanilla JavaScript (no frameworks). The app currently focuses on understanding the *meaning* of words and sentences; grammar teaching and pronunciation drills are placeholders for later.
 
-## Features
+## Structure — the app is the book's Table of Contents
 
-- **🏠 Main Menu (RTL Persian UI, 4 modes)** — Easy, Normal (Reading), Listening, and Flashcards (badge shows saved-word count).
-- **🟢 Easy Mode** — Scaffolded learning: learn each new word (auto TTS), then build phrases and full sentences from a shuffled word bank with tap *and* drag-and-drop, instant per-word validation (green = correct position, red + shake + buzz = wrong), and a 💡 Hint button that reads the full sentence.
-- **🔵 Normal Mode (Reading)** — The story + dialogue, every word tappable with a floating Persian tooltip and spoken pronunciation, plus a TTS button for each paragraph.
-- **🎧 Listening Mode** — Fill-in-the-blank questions generated from the reading text with 4 multiple-choice options, auto audio playback and instant audio feedback.
-- **🗂️ Flashcard Review** — 3D flipping cards for words saved to `localStorage`.
+The main menu shows section cards mapped to the book's pages:
+
+| Section | Book pages |
+|---|---|
+| 📖 Warm-up & Vocabulary | Pages 5–7 |
+| 💬 Conversation 1: Mr. Saberian | Page 4 |
+| 📑 Reading: Endangered Languages | Pages 9–10 |
+| 💬 Conversation 2: Shopping | Page 18 |
+| 🗂️ Flashcard Review | saved-words badge |
+
+Grammar and pronunciation appear only as "به‌زودی" (coming soon) placeholders for now.
+
+Each section opens a sub-menu with three modes:
+
+- **🔵 Normal Mode (Read)** — the text exactly as in the book; every word is a tappable `<span>` showing a floating Persian tooltip (from the book's Word Banks) and speaking the word at 0.65× speed; a 🔊 button reads each paragraph (twice, 0.65×).
+- **🟢 Easy Mode (Practice)** — scaffolded learning: learn each new word once (auto TTS, add to flashcards), then build phrases → full sentences from a shuffled word bank with tap *and* drag-and-drop, instant per-word validation (green = right position, red + shake + buzz = wrong) and a 💡 Hint button that reads the target sentence. No word is taught twice.
+- **🎧 Listening Mode** — fill-in-the-blank questions from the section text with 4 options, auto audio playback and instant green/red feedback.
+- **🗂️ Flashcards** — one shared 3D-flip review deck for all saved words.
 
 ## Audio / TTS
 
@@ -18,17 +31,12 @@ Uses the browser's native `window.speechSynthesis` API. The global helper:
 speak(text, repeat = 2, rate = 0.65)
 ```
 
-Every word, phrase and sentence automatically plays **twice at 0.65× speed**. Speaker buttons (🔊) appear next to every English word and sentence.
+Every word, phrase and sentence automatically plays **twice at 0.65× speed**, with 🔊 icons next to every English word and sentence.
 
 ## Run it
 
 Just open `index.html` in any modern browser (Chrome/Edge recommended for TTS voices) — no build step or server required.
 
-## Adding more lessons
+## Adding more sections
 
-The content is parsed into three plain JavaScript structures at the top of the `script` block:
-
-- `dict` — vocabulary word → Persian meaning
-- `easySequence` — scaffolded word → phrase → full-sentence steps
-- `reading` — story + dialogue lines
-- `listeningData` — fill-in-the-blank items (audio text, display text, correct answer, 4 options)
+Content lives in the `SECTIONS` array: each entry holds the section's `reading` lines, `easySequence` steps and `listeningData` items, parsed from the corresponding book pages. A merged `DICT` object serves tooltips across the whole book.

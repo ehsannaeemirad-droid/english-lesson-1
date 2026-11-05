@@ -149,21 +149,24 @@
             box-shadow: 0 4px 0 #fdba74;
         }
 
-        /* Lesson Tabs */
-        .lesson-tabs { display: flex; gap: 10px; margin-bottom: 4px; }
-        .lesson-tab {
-            flex: 1;
-            padding: 12px 8px;
-            border-radius: 12px;
-            border: 2px solid var(--border);
-            background: white;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.9rem;
+        /* Book TOC */
+        .toc-page-badge {
+            margin-inline-start: auto;
+            background: #f1f5f9;
             color: var(--text-light);
-            transition: all 0.2s;
+            border: 2px solid var(--border);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
         }
-        .lesson-tab.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary-dark); }
+        .future-card { opacity: 0.55; cursor: default; }
+        .future-card:hover { border-color: var(--border); }
+        .future-card:active { transform: none; }
+        .section-page-title { text-align: center; padding: 6px 0 2px; }
+        .section-page-title h2 { margin: 0; font-size: 1.3rem; font-weight: 900; color: var(--primary-dark); }
+        .section-page-title p { margin: 4px 0 14px; color: var(--text-light); font-size: 0.85rem; }
 
         /* Mode Selection */
         .mode-select {
@@ -408,44 +411,19 @@
     <!-- Header -->
     <div class="header">
         <button class="home-btn" onclick="goHome()">🏠</button>
-        <h1>درس اول: ارزش دانش</h1>
+        <h1>Vision 2 · درس اول</h1>
         <button class="flashcard-btn" onclick="openFlashcards()">
             🗂️ <span class="badge" id="fcCount">0</span>
         </button>
     </div>
 
-    <!-- MAIN MENU -->
+    <!-- MAIN MENU (Table of Contents) -->
     <div id="menuScreen" class="screen active mode-select">
         <div class="app-title">
-            <h2>📚 The Value of Knowledge</h2>
-            <p>درس اول — زبان انگلیسی پایه یازدهم</p>
+            <h2>Vision 2 — درس اول: زبان‌های جهان</h2>
+            <p>همراه کتاب: تمرین معنی واژه‌ها و جمله‌ها</p>
         </div>
-        <div class="lesson-tabs">
-            <button class="lesson-tab active" onclick="selectLesson(0)">📗 درس اول: ارزش دانش</button>
-            <button class="lesson-tab" onclick="selectLesson(1)">📙 درس دوم: زبان‌های جهان</button>
-            <button class="lesson-tab" onclick="selectLesson(2)">📕 درس سوم: زندگی روزمره</button>
-        </div>
-        <div class="mode-card" onclick="startEasyMode()">
-            <div class="mode-icon">🟢</div>
-            <div class="mode-text">
-                <h2>حالت آسان</h2>
-                <p>کلمه به کلمه یاد بگیر، عبارت بساز و جمله کامل را کنار هم بچین.</p>
-            </div>
-        </div>
-        <div class="mode-card" onclick="startNormalMode()">
-            <div class="mode-icon">🔵</div>
-            <div class="mode-text">
-                <h2>حالت عادی</h2>
-                <p>متن مکالمه و داستان را کامل بخوان. با کلیک روی هر کلمه معنی آن را ببین.</p>
-            </div>
-        </div>
-        <div class="mode-card" onclick="startListeningMode()">
-            <div class="mode-icon">🎧</div>
-            <div class="mode-text">
-                <h2>تمرین شنیداری</h2>
-                <p>به جمله گوش کن و جای خالی را با گزینه درست پر کن.</p>
-            </div>
-        </div>
+        <div id="tocList"></div>
         <div class="mode-card" onclick="openFlashcards()">
             <div class="mode-icon">🗂️</div>
             <div class="mode-text">
@@ -454,6 +432,27 @@
             </div>
             <span class="badge" id="fcCountMenu">0</span>
         </div>
+        <div class="mode-card future-card">
+            <div class="mode-icon">🔤</div>
+            <div class="mode-text">
+                <h2>گرامر — به‌زودی</h2>
+                <p>بخش گرامر بعداً اضافه می‌شود.</p>
+            </div>
+            <span class="toc-page-badge">به‌زودی</span>
+        </div>
+        <div class="mode-card future-card">
+            <div class="mode-icon">🎙️</div>
+            <div class="mode-text">
+                <h2>تلفظ — به‌زودی</h2>
+                <p>بخش تلفظ و آوانگاری بعداً اضافه می‌شود.</p>
+            </div>
+            <span class="toc-page-badge">به‌زودی</span>
+        </div>
+    </div>
+
+    <!-- SECTION SUB-MENU -->
+    <div id="sectionScreen" class="screen mode-select">
+        <div id="sectionMenuContent"></div>
     </div>
 
     <!-- EASY MODE SCREEN -->
@@ -1061,35 +1060,447 @@
     ];
 
     // ============================================================
-    // --- LESSON REGISTRY + STATE
+    // --- BOOK STRUCTURE (Vision 2 - Lesson 1), mapped to pages
     // ============================================================
-    const LESSONS = [
-        { id: 'lesson1', faTitle: 'درس اول: ارزش دانش', dict: dict1, easySequence: easySequence1, reading: reading1, listeningData: listeningData1 },
-        { id: 'lesson2', faTitle: 'درس دوم: زبان‌های جهان', dict: dict2, easySequence: easySequence2, reading: reading2, listeningData: listeningData2 },
-        { id: 'lesson3', faTitle: 'درس سوم: زندگی روزمره', dict: dict3, easySequence: easySequence3, reading: reading3, listeningData: listeningData3 }
+
+    // Additional vocabulary (Conversation 2 & Word Bank extras)
+    const dictExtra = {
+        "help": "کمک دادن", "birthday": "تولد", "candles": "شمع‌ها", "candle": "شمع",
+        "need": "لازم داشتن / نیاز داشتن", "many": "چند / چقدر (تعداد)",
+        "much": "چقدر (مقدار / قیمت)", "tomans": "تومان (واحد پول)",
+        "those": "آن‌ها (دور)", "these": "این‌ها (نزدیک)", "um": "اوم (مکث فکر کردن)",
+        "over there": "آنجا", "over": "در آن سمت", "find": "پیدا کردن",
+        "different": "متفاوت / گوناگون", "shopkeeper": "فروشنده", "customer": "مشتری",
+        "i'll": "من (...) خواهم کرد", "here": "اینجا", "here you are": "بفرمایید",
+        "think": "فکر می‌کنم", "take": "برمی‌دارم / می‌خرم",
+        "population": "جمعیت", "explain": "توضیح دادن", "less": "کمتر",
+        "villages": "روستاها", "range": "در نوسان بودن / از ... تا ...",
+        "sign": "اشاره", "sign language": "زبان اشاره",
+        "space": "فضا", "imagine": "تصور کن", "twenty-first": "قرن بیست‌ویکوم",
+        "meet": "برآورده کردن", "meet the needs": "برآورده کردن نیازها",
+        "makes up": "تشکیل می‌دهد", "make up": "تشکیل دادن",
+        "ability": "توانایی — قابلیت جسمی یا ذهنی برای انجام کاری",
+        "society": "جامعه — گروه بزرگی از مردم که با هم زندگی می‌کنند",
+        "vary": "متفاوت بودن — از هم فرق داشتن",
+        "despite": "با وجود — بدون توجه به",
+        "exchange": "تبادل کردن", "beliefs": "باورها",
+        "largest": "بزرگ‌ترین", "rice": "برنج", "native": "بومی",
+        "native language": "زبان بومی", "wind": "باد", "power": "انرژی / قدرت",
+        "farming": "کشاورزی", "water": "آب", "mars": "مریخ (سیاره)",
+        "dictionary prices": "قیمت واژه‌نامه‌ها"
+    };
+
+    // One merged word bank for tooltips across the whole book
+    const DICT = Object.assign({}, dict1, dict2, dict3, dictExtra);
+
+    // --- SECTION: Warm-up & Vocabulary (Pages 5-7)
+    const warmupReading = [
+        { speaker: "__story__", text: "Mazandaran is one of the best farming regions of Iran. Does water really exist on Mars? Asia is the largest continent of the world. Spanish is Diego's native language. Dictionary prices range from 5 to 15 dollars." },
+        { speaker: "__story__", text: "Rice is the most popular food in Iran. Today, less than 40 percent of people live in villages. Imagine you are traveling in space. Scientists say that by 2050, wind power can meet the needs of the world. We are living in the twenty-first century. Our teacher tried to explain the new word by means of sign language." },
+        { speaker: "__story__", text: "society: a large group of people who live together. We live in an Islamic society." },
+        { speaker: "__story__", text: "ability: the physical or mental power or skill to do something. Human's ability to talk makes him different from animals." },
+        { speaker: "__story__", text: "vary: to be different from each other. In some cities, prices vary from shop to shop." },
+        { speaker: "__story__", text: "make up: to form a thing, amount or number. China makes up 18 percent of the world's population." },
+        { speaker: "__story__", text: "despite: without taking any notice of. I enjoy the weekend, despite the bad weather." }
     ];
 
+    const warmupSequence = [
+        { type: 'word', text: 'vary', meaning: 'متفاوت بودن' },
+        { type: 'word', text: 'region', meaning: 'منطقه / ناحیه' },
+        { type: 'build', target: 'Languages vary from region to region', fa: 'زبان‌ها از یک منطقه به منطقه دیگر فرق می‌کنند', bank: ['from', 'vary', 'to', 'region', 'region', 'Languages'] },
+
+        { type: 'word', text: 'largest', meaning: 'بزرگ‌ترین' },
+        { type: 'word', text: 'continent', meaning: 'قاره' },
+        { type: 'build', target: 'Asia is the largest continent of the world', fa: 'آسیا بزرگ‌ترین قاره جهان است', bank: ['Asia', 'the', 'is', 'largest', 'world', 'of', 'continent', 'the'] },
+
+        { type: 'word', text: 'popular', meaning: 'محبوب / پرطرفدار' },
+        { type: 'word', text: 'rice', meaning: 'برنج' },
+        { type: 'build', target: 'Rice is the most popular food in Iran', fa: 'برنج محبوب‌ترین غذای ایران است', bank: ['popular', 'Rice', 'most', 'food', 'in', 'Iran', 'is', 'the'] },
+
+        { type: 'build', target: 'Does water really exist on Mars', fa: 'آیا واقعاً در مریخ آب وجود دارد؟', bank: ['really', 'on', 'Does', 'Mars', 'exist', 'water'] },
+
+        { type: 'word', text: 'native', meaning: 'بومی' },
+        { type: 'build', target: "Spanish is Diego's native language", fa: 'اسپانیایی زبان بومی دیگو است', bank: ["Diego's", 'is', 'Spanish', 'language', 'native'] },
+
+        { type: 'word', text: 'range', meaning: 'در نوسان بودن / از ... تا ...' },
+        { type: 'build', target: 'Dictionary prices range from 5 to 15 dollars', fa: 'قیمت واژه‌نامه‌ها از ۵ تا ۱۵ دلار نوسان دارد', bank: ['Dictionary', '5', '15', 'from', 'prices', 'dollars', 'to', 'range'] },
+
+        { type: 'word', text: 'villages', meaning: 'روستاها' },
+        { type: 'word', text: 'less', meaning: 'کمتر' },
+        { type: 'word', text: 'percent', meaning: 'درصد' },
+        { type: 'build', target: 'Today less than 40 percent of people live in villages', fa: 'امروز کمتر از ۴۰ درصد مردم در روستاها زندگی می‌کنند', bank: ['Today', 'less', 'than', 'villages', '40', 'live', 'percent', 'people', 'in', 'of'] },
+
+        { type: 'word', text: 'wind', meaning: 'باد' },
+        { type: 'word', text: 'power', meaning: 'انرژی / قدرت' },
+        { type: 'word', text: 'meet', meaning: 'برآورده کردن' },
+        { type: 'build', target: 'Scientists say that by 2050 wind power can meet the needs of the world', fa: 'دانشمندان می‌گویند تا سال ۲۰۵۰ انرژی باد نیازهای جهان را برآورده می‌کند', bank: ['the', 'Scientists', 'world', 'needs', 'can', '2050', 'wind', 'that', 'by', 'say', 'meet', 'of', 'power', 'the'] },
+
+        { type: 'word', text: 'society', meaning: 'جامعه — گروه بزرگی از مردم که با هم زندگی می‌کنند' },
+        { type: 'build', target: 'We live in an Islamic society', fa: 'ما در یک جامعه اسلامی زندگی می‌کنیم', bank: ['an', 'We', 'Islamic', 'in', 'society', 'live'] },
+
+        { type: 'word', text: 'ability', meaning: 'توانایی — قابلیت جسمی یا ذهنی برای انجام کاری' },
+        { type: 'build', target: 'the ability to talk', fa: 'تواناییِ صحبت کردن', bank: ['talk', 'ability', 'the', 'to'] },
+
+        { type: 'word', text: 'make up', meaning: 'تشکیل دادن (سهم یا مقدار)' },
+        { type: 'word', text: 'population', meaning: 'جمعیت' },
+        { type: 'build', target: "China makes up 18 percent of the world's population", fa: 'چین حدود ۱۸ درصد جمعیت جهان را تشکیل می‌دهد', bank: ["world's", 'China', '18', 'percent', 'of', 'makes', 'up', 'the', 'population'] },
+
+        { type: 'word', text: 'despite', meaning: 'با وجود — بدون توجه به' },
+        { type: 'build', target: 'I enjoy the weekend despite the bad weather', fa: 'من آخر هفته را با وجود هوای بد لذت‌بخش می‌دانم', bank: ['bad', 'the', 'despite', 'weekend', 'enjoy', 'the', 'I', 'weather'] },
+
+        { type: 'word', text: 'explain', meaning: 'توضیح دادن' },
+        { type: 'build', target: 'Our teacher tried to explain the new word by means of sign language', fa: 'معلممان تلاش کرد کلمه جدید را با زبان اشاره توضیح دهد', bank: ['explain', 'means', 'Our', 'of', 'language', 'new', 'to', 'sign', 'teacher', 'word', 'the', 'by', 'tried'] }
+    ];
+
+    const warmupListening = [
+        {
+            audioText: "Mazandaran is one of the best farming regions of Iran.",
+            display: "Mazandaran is one of the best _____ regions of Iran.",
+            missing: "farming",
+            options: ["farming", "shopping", "dancing", "cooling"]
+        },
+        {
+            audioText: "Does water really exist on Mars?",
+            display: "Does water really exist on _____?",
+            missing: "Mars",
+            options: ["Mars", "the Moon", "Venus", "Jupiter"]
+        },
+        {
+            audioText: "Asia is the largest continent of the world.",
+            display: "Asia is the _____ continent of the world.",
+            missing: "largest",
+            options: ["largest", "smallest", "richest", "coldest"]
+        },
+        {
+            audioText: "Rice is the most popular food in Iran.",
+            display: "Rice is the most _____ food in Iran.",
+            missing: "popular",
+            options: ["popular", "expensive", "strange", "ancient"]
+        },
+        {
+            audioText: "Today, less than 40 percent of people live in villages.",
+            display: "Today, less than 40 percent of people live in _____.",
+            missing: "villages",
+            options: ["villages", "cities", "towers", "hotels"]
+        },
+        {
+            audioText: "Scientists say that by 2050, wind power can meet the needs of the world.",
+            display: "By 2050, wind power can meet the needs of the _____.",
+            missing: "world",
+            options: ["world", "country", "village", "moon"]
+        },
+        {
+            audioText: "China makes up 18 percent of the world's population.",
+            display: "China makes up 18 percent of the world's _____.",
+            missing: "population",
+            options: ["population", "students", "countries", "cities"]
+        },
+        {
+            audioText: "I enjoy the weekend, despite the bad weather.",
+            display: "I enjoy the weekend, _____ the bad weather.",
+            missing: "despite",
+            options: ["despite", "because", "during", "for"]
+        }
+    ];
+
+    // --- SECTION: Conversation 1 — Mr. Saberian (Page 4)
+    const conv1Listening = [
+        {
+            audioText: "I began learning English at school when I was thirteen.",
+            display: "I began learning English at school when I was _____.",
+            missing: "thirteen",
+            options: ["thirteen", "thirty", "three", "fifteen"]
+        },
+        {
+            audioText: "Then I began learning French in a language institute.",
+            display: "Then I began learning French in a language _____.",
+            missing: "institute",
+            options: ["institute", "office", "university", "street"]
+        },
+        {
+            audioText: "Can you use all of them fluently?",
+            display: "Can you use all of them _____?",
+            missing: "fluently",
+            options: ["fluently", "slowly", "badly", "early"]
+        },
+        {
+            audioText: "My experience says interest and hard work are really more important than age.",
+            display: "Interest and hard work are really more important than _____.",
+            missing: "age",
+            options: ["age", "money", "language", "work"]
+        },
+        {
+            audioText: "I know all of them well, but I use English more.",
+            display: "I know all of them well, but I use English _____.",
+            missing: "more",
+            options: ["more", "less", "never", "little"]
+        },
+        {
+            audioText: "To be honest, my favorite language is absolutely my mother tongue!",
+            display: "My favorite language is absolutely my mother _____.",
+            missing: "tongue",
+            options: ["tongue", "mouth", "country", "name"]
+        }
+    ];
+
+    // --- SECTION: Reading — Endangered Languages (Pages 9-10)
+    const readingMain = reading2.slice(2);
+
+    const readingSequence = [
+        { type: 'word', text: 'system', meaning: 'سامانه / سیستم' },
+        { type: 'word', text: 'communication', meaning: 'ارتباط' },
+        { type: 'build', target: 'Language is a system of communication', fa: 'زبان یک سامانه ارتباطی است', bank: ['Language', 'system', 'a', 'communication', 'is', 'of'] },
+
+        { type: 'word', text: 'communicate', meaning: 'ارتباط برقرار کردن' },
+        { type: 'build', target: 'People use language to communicate', fa: 'مردم از زبان برای ارتباط برقرار کردن استفاده می‌کنند', bank: ['use', 'People', 'to', 'communicate', 'language'] },
+
+        { type: 'word', text: 'exchange', meaning: 'تبادل کردن' },
+        { type: 'build', target: 'People exchange knowledge and beliefs through language', fa: 'مردم دانش و باورها را از طریق زبان تبادل می‌کنند', bank: ['through', 'People', 'language', 'beliefs', 'and', 'exchange', 'knowledge'] },
+
+        { type: 'word', text: 'exist', meaning: 'وجود داشتن' },
+        { type: 'build', target: 'Today about 7000 languages exist in the world', fa: 'امروز حدود ۷۰۰۰ زبان در جهان وجود دارد', bank: ['the', '7000', 'world', 'languages', 'about', 'Today', 'exist', 'in'] },
+
+        { type: 'word', text: 'billion', meaning: 'میلیارد' },
+        { type: 'build', target: 'More than one billion people speak Chinese', fa: 'بیش از یک میلیارد نفر چینی صحبت می‌کنند', bank: ['one', 'billion', 'Chinese', 'More', 'people', 'speak', 'than'] },
+
+        { type: 'word', text: 'learners', meaning: 'زبان‌آموزان' },
+        { type: 'build', target: 'English has about one billion learners', fa: 'انگلیسی حدود یک میلیارد زبان‌آموز دارد', bank: ['about', 'English', 'has', 'learners', 'one', 'billion'] },
+
+        { type: 'word', text: 'fifty', meaning: 'پنجاه' },
+        { type: 'build', target: "fifty percent of the world's languages", fa: 'حدود ۵۰ درصد زبان‌های جهان', bank: ["world's", 'of', 'percent', 'the', 'fifty'] },
+
+        { type: 'word', text: 'call', meaning: 'نامیدن / می‌گوییم' },
+        { type: 'word', text: 'endangered', meaning: 'در خطر انقراض / رو به نابودی' },
+        { type: 'build', target: 'We call them endangered languages', fa: 'ما به آن‌ها زبان‌های رو به نابودی می‌گوییم', bank: ['call', 'We', 'languages', 'endangered', 'them'] },
+
+        { type: 'word', text: 'die', meaning: 'مردن / از بین رفتن' },
+        { type: 'build', target: 'When a language dies the knowledge and culture disappear with it', fa: 'وقتی زبانی می‌میرد، دانش و فرهنگ آن هم ناپدید می‌شود', bank: ['disappear', 'the', 'dies', 'and', 'it', 'with', 'language', 'knowledge', 'When', 'a', 'culture'] },
+
+        { type: 'word', text: 'researchers', meaning: 'پژوهشگران' },
+        { type: 'word', text: 'protect', meaning: 'حفاظت کردن' },
+        { type: 'build', target: 'Researchers are trying to protect endangered languages', fa: 'پژوهشگران تلاش می‌کنند از زبان‌های رو به نابودی حفاظت کنند', bank: ['Researchers', 'languages', 'to', 'protect', 'trying', 'are', 'endangered'] },
+
+        { type: 'word', text: 'valuable', meaning: 'ارزشمند' },
+        { type: 'word', text: 'respect', meaning: 'احترام گذاشتن' },
+        { type: 'build', target: 'We should respect all languages', fa: 'باید به همه زبان‌ها احترام بگذاریم', bank: ['all', 'We', 'respect', 'languages', 'should'] },
+        { type: 'build', target: 'All languages are valuable despite their differences', fa: 'همه زبان‌ها با وجود تفاوت‌هایشان ارزشمندند', bank: ['All', 'differences', 'valuable', 'their', 'despite', 'are', 'languages'] },
+
+        { type: 'word', text: 'means', meaning: 'وسیله / طریقه' },
+        { type: 'word', text: 'amazing', meaning: 'شگفت‌انگیز' },
+        { type: 'build', target: 'an amazing means of communication', fa: 'یک وسیله ارتباطی شگفت‌انگیز', bank: ['means', 'communication', 'amazing', 'an', 'of'] },
+        { type: 'build', target: 'Every language is an amazing means of communication', fa: 'هر زبان یک وسیله ارتباطی شگفت‌انگیز است', bank: ['Every', 'language', 'is', 'an', 'amazing', 'means', 'of', 'communication'] }
+    ];
+
+    const readingListening = [
+        listeningData2[0],
+        ...listeningData2.slice(2, 8),
+        {
+            audioText: "Every language is an amazing means of communication.",
+            display: "Every language is an _____ means of communication.",
+            missing: "amazing",
+            options: ["amazing", "official", "ancient", "foreign"]
+        }
+    ];
+
+    // --- SECTION: Conversation 2 — Shopping (Page 18)
+    const conv2Reading = [
+        { speaker: "Shopkeeper", text: "May I help you?" },
+        { speaker: "Customer", text: "Yes, please. I'm looking for some birthday candles." },
+        { speaker: "Shopkeeper", text: "How many candles do you need?" },
+        { speaker: "Customer", text: "I need 12 birthday candles." },
+        { speaker: "Shopkeeper", text: "You can find different types of candles over there." },
+        { speaker: "Customer", text: "Um... How much are those?" },
+        { speaker: "Shopkeeper", text: "They are 20000 Tomans." },
+        { speaker: "Customer", text: "What about these?" },
+        { speaker: "Shopkeeper", text: "These are 10000 Tomans." },
+        { speaker: "Customer", text: "I think I'll take these." },
+        { speaker: "Shopkeeper", text: "Here you are." },
+        { speaker: "Customer", text: "Thank you." }
+    ];
+
+    const conv2Sequence = [
+        { type: 'word', text: 'need', meaning: 'لازم داشتن / نیاز داشتن' },
+        { type: 'word', text: 'candles', meaning: 'شمع‌ها' },
+        { type: 'build', target: 'I am looking for birthday candles', fa: 'دنبال شمع کیک هستم', bank: ['looking', 'birthday', 'for', 'I', 'candles', 'am'] },
+
+        { type: 'word', text: 'many', meaning: 'چند / چقدر (تعداد)' },
+        { type: 'build', target: 'How many candles do you need', fa: 'چند شمع لازم داری؟', bank: ['How', 'you', 'need', 'candles', 'do', 'many'] },
+        { type: 'build', target: 'I need 12 birthday candles', fa: 'من به ۱۲ شمع کیک نیاز دارم', bank: ['12', 'need', 'birthday', 'candles', 'I'] },
+
+        { type: 'word', text: 'much', meaning: 'چقدر (مقدار / قیمت)' },
+        { type: 'build', target: 'How much are those', fa: 'قیمت آن‌ها چند است؟', bank: ['How', 'those', 'are', 'much'] },
+
+        { type: 'word', text: 'Tomans', meaning: 'تومان (واحد پول)' },
+        { type: 'build', target: 'They are 20000 Tomans', fa: 'آن‌ها ۲۰ هزار تومان است', bank: ['They', 'Tomans', 'are', '20000'] },
+
+        { type: 'word', text: 'think', meaning: 'فکر می‌کنم' },
+        { type: 'word', text: 'take', meaning: 'برمی‌دارم / می‌خرم' },
+        { type: 'build', target: "I think I'll take these", fa: 'فکر می‌کنم همین‌ها را برمی‌دارم', bank: ['these', "I'll", 'I', 'take', 'think'] },
+
+        { type: 'word', text: 'find', meaning: 'پیدا کردن' },
+        { type: 'build', target: 'You can find different types of candles over there', fa: 'انواع مختلف شمع را آن‌جا پیدا می‌کنی', bank: ['You', 'can', 'different', 'types', 'candles', 'over', 'find', 'of', 'there'] }
+    ];
+
+    const conv2Listening = [
+        {
+            audioText: "Yes, please. I'm looking for some birthday candles.",
+            display: "I'm looking for some _____ candles.",
+            missing: "birthday",
+            options: ["birthday", "paper", "red", "long"]
+        },
+        {
+            audioText: "How many candles do you need?",
+            display: "How _____ candles do you need?",
+            missing: "many",
+            options: ["many", "much", "old", "fast"]
+        },
+        {
+            audioText: "I need 12 birthday candles.",
+            display: "I need _____ birthday candles.",
+            missing: "12",
+            options: ["12", "20", "10", "2"]
+        },
+        {
+            audioText: "How much are those?",
+            display: "How _____ are those?",
+            missing: "much",
+            options: ["much", "many", "long", "tall"]
+        },
+        {
+            audioText: "You can find different types of candles over there.",
+            display: "You can find different types of _____ over there.",
+            missing: "candles",
+            options: ["candles", "books", "apples", "cars"]
+        },
+        {
+            audioText: "I think I'll take these.",
+            display: "I think I'll take _____.",
+            missing: "these",
+            options: ["these", "those", "there", "them"]
+        }
+    ];
+
+    // --- SECTIONS: the Table of Contents of the book
+    const SECTIONS = [
+        {
+            id: 'warmup', icon: '📖', faTitle: 'گرم‌کردن و واژگان', pages: 'صص ۵ تا ۷',
+            faDesc: 'جملات نمونه و واژگان کلیدی درس',
+            reading: warmupReading, easySequence: warmupSequence, listeningData: warmupListening
+        },
+        {
+            id: 'conv1', icon: '💬', faTitle: 'مکالمه ۱: آقای صابریان', pages: 'صفحه ۴',
+            faDesc: 'مصاحبه با مترجم صداوسیما برای پروژه مدرسه',
+            reading: reading1, easySequence: easySequence1, listeningData: conv1Listening
+        },
+        {
+            id: 'reading', icon: '📑', faTitle: 'مطالعه: زبان‌های در خطر انقراض', pages: 'صص ۹ و ۱۰',
+            faDesc: 'متن زبان‌های جهان و زبان‌های رو به نابودی',
+            reading: readingMain, easySequence: readingSequence, listeningData: readingListening
+        },
+        {
+            id: 'conv2', icon: '💬', faTitle: 'مکالمه ۲: خرید و قیمت‌ها', pages: 'صفحه ۱۸',
+            faDesc: 'خرید در فروشگاه و پرسیدن قیمت و تعداد',
+            reading: conv2Reading, easySequence: conv2Sequence, listeningData: conv2Listening
+        }
+    ];
+
+    // ============================================================
+    // --- STATE
+    // ============================================================
     let currentEasyStep = 0;
     let currentListeningIdx = 0;
-    let flashcards = [];
     let currentCardIdx = 0;
-    let lesson = LESSONS[0];
+    let curSection = 0;
+    let lesson = SECTIONS[0];
+    let flashcards = [];
 
     function LT() { return lesson; }
 
     function loadFlashcards() {
-        flashcards = JSON.parse(localStorage.getItem(lesson.id + '_flashcards')) || [];
+        flashcards = JSON.parse(localStorage.getItem('companion_flashcards')) || migrateFlashcards();
         updateFCBadge();
     }
 
-    function selectLesson(i) {
+    function migrateFlashcards() {
+        const merged = [];
+        ['companion_flashcards', 'lesson1_flashcards', 'lesson2_flashcards', 'lesson3_flashcards'].forEach(k => {
+            try {
+                const arr = JSON.parse(localStorage.getItem(k)) || [];
+                arr.forEach(f => {
+                    if (f && f.word && !merged.some(m => m.word.toLowerCase() === f.word.toLowerCase())) merged.push(f);
+                });
+            } catch (e) { /* ignore */ }
+        });
+        try { localStorage.removeItem('lesson1_flashcards'); } catch (e) { /* ignore */ }
+        try { localStorage.removeItem('lesson2_flashcards'); } catch (e) { /* ignore */ }
+        try { localStorage.removeItem('lesson3_flashcards'); } catch (e) { /* ignore */ }
+        try { localStorage.removeItem('selectedLesson'); } catch (e) { /* ignore */ }
+        try { localStorage.setItem('companion_flashcards', JSON.stringify(merged)); } catch (e) { /* ignore */ }
+        return merged;
+    }
+
+    function openSection(i) {
         if (window.speechSynthesis && window.speechSynthesis.cancel) window.speechSynthesis.cancel();
-        lesson = LESSONS[i];
-        loadFlashcards();
-        document.querySelectorAll('.lesson-tab').forEach((t, idx) => t.classList.toggle('active', i === idx));
-        document.querySelector('.header h1').innerText = lesson.faTitle;
-        document.title = lesson.faTitle;
-        try { localStorage.setItem('selectedLesson', lesson.id); } catch (e) { /* ignore */ }
+        curSection = i;
+        lesson = SECTIONS[i];
+        renderSectionMenu();
+        showScreen('sectionScreen');
+    }
+
+    function renderSectionMenu() {
+        const c = document.getElementById('sectionMenuContent');
+        c.innerHTML = '';
+
+        const head = document.createElement('div');
+        head.className = 'section-page-title';
+        const h = document.createElement('h2');
+        h.innerText = `${lesson.icon} ${lesson.faTitle}`;
+        const p = document.createElement('p');
+        p.innerText = lesson.pages + ' — ' + lesson.faDesc;
+        head.appendChild(h);
+        head.appendChild(p);
+        c.appendChild(head);
+
+        const modes = [
+            { icon: '🔵', title: 'حالت عادی (خواندن)', desc: 'متن را با معنی تپ‌پذیرِ هر واژه بخوان.', fn: startNormalMode },
+            { icon: '🟢', title: 'حالت آسان (تمرین)', desc: 'کلمه به کلمه یاد بگیر و جمله بساز.', fn: startEasyMode },
+            { icon: '🎧', title: 'تمرین شنیداری', desc: 'به جمله گوش کن و جای خالی را پر کن.', fn: startListeningMode }
+        ];
+        modes.forEach(m => {
+            const card = document.createElement('div');
+            card.className = 'mode-card';
+            card.onclick = m.fn;
+            const ic = document.createElement('div');
+            ic.className = 'mode-icon';
+            ic.innerText = m.icon;
+            const tx = document.createElement('div');
+            tx.className = 'mode-text';
+            const th = document.createElement('h2');
+            th.innerText = m.title;
+            const tp = document.createElement('p');
+            tp.innerText = m.desc;
+            tx.appendChild(th); tx.appendChild(tp);
+            card.appendChild(ic); card.appendChild(tx);
+            c.appendChild(card);
+        });
+    }
+
+    function renderToc() {
+        const list = document.getElementById('tocList');
+        list.innerHTML = '';
+        SECTIONS.forEach((s, i) => {
+            const card = document.createElement('div');
+            card.className = 'mode-card';
+            card.onclick = () => openSection(i);
+            card.innerHTML = `
+                <div class="mode-icon">${s.icon}</div>
+                <div class="mode-text">
+                    <h2>${s.faTitle}</h2>
+                    <p>${s.faDesc}</p>
+                </div>
+                <span class="toc-page-badge">${s.pages}</span>`;
+            list.appendChild(card);
+        });
     }
 
     // ============================================================
@@ -1225,7 +1636,7 @@
                 saveBtn.innerText = '➕ افزودن به فلش‌کارت';
                 saveBtn.onclick = () => {
                     flashcards.push({ word: step.text, meaning: step.meaning });
-                    localStorage.setItem(lesson.id + '_flashcards', JSON.stringify(flashcards));
+                    localStorage.setItem('companion_flashcards', JSON.stringify(flashcards));
                     updateFCBadge();
                     playSound('correct');
                     ttsBtn.disabled = true;
@@ -1423,7 +1834,7 @@
         element.classList.add('active');
 
         const clean = normWord(tok);
-        const meaning = LT().dict[clean] || LT().dict[clean.replace(/'/g, '')] || '(در واژه‌نامه نیست)';
+        const meaning = DICT[clean] || DICT[clean.replace(/'/g, '')] || '(در واژه‌نامه نیست)';
         playSound('correct');
         speak(clean);
 
@@ -1631,9 +2042,8 @@
     }
 
     // Init
-    const savedLessonId = localStorage.getItem('selectedLesson');
-    const savedIdx = LESSONS.findIndex(l => l.id === savedLessonId);
-    selectLesson(savedIdx >= 0 ? savedIdx : 0);
+    loadFlashcards();
+    renderToc();
 </script>
 
 </body>
