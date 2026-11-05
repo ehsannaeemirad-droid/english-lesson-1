@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>درس اول: ارزش دانش</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap');
+
+        :root {
+            --primary: #58cc02;
+            --primary-dark: #46a302;
+            --primary-light: #e8f5e9;
+            --bg: #f7f9fc;
+            --card: #ffffff;
+            --text: #3c3c3c;
+            --text-light: #666;
+            --border: #e5e5e5;
+            --blue: #1cb0f6;
+            --blue-dark: #1899d6;
+            --danger: #ff4b4b;
+            --danger-light: #fee2e2;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            touch-action: pan-y;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header h1 { margin: 0; font-size: 1.1rem; font-weight: 900; }
+
+        .home-btn {
+            background: #f1f5f9;
+            color: #64748b;
+            border: none;
+            padding: 8px 13px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .home-btn:active { transform: scale(0.92); }
+
+        .flashcard-btn {
+            background: #fef3c7;
+            color: #d97706;
+            border: 2px solid #fcd34d;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            transition: transform 0.1s;
+        }
+        .flashcard-btn:active { transform: scale(0.95); }
+
+        .badge {
+            background: #d97706;
+            color: white;
+            border-radius: 999px;
+            min-width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 900;
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.1s;
+            width: 100%;
+            box-shadow: 0 4px 0 var(--primary-dark);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn:active { transform: translateY(4px); box-shadow: 0 0 0 var(--primary-dark); }
+
+        .btn.secondary {
+            background: white;
+            color: var(--text);
+            border: 2px solid var(--border);
+            box-shadow: 0 4px 0 var(--border);
+        }
+
+        .btn.save-btn {
+            background: var(--blue);
+            box-shadow: 0 4px 0 var(--blue-dark);
+        }
+
+        .btn.hint-btn {
+            background: #fff7ed;
+            color: #ea580c;
+            border: 2px solid #fdba74;
+            box-shadow: 0 4px 0 #fdba74;
+        }
+
+        /* Mode Selection */
+        .mode-select {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .mode-card {
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .mode-card:hover { border-color: var(--primary); }
+        .mode-card:active { transform: scale(0.98); }
+
+        .mode-icon { font-size: 2.2rem; }
+        .mode-text h2 { margin: 0 0 5px 0; font-size: 1.1rem; color: var(--primary-dark); }
+        .mode-text p { margin: 0; color: var(--text-light); font-size: 0.9rem; line-height: 1.5; }
+
+        .app-title {
+            text-align: center;
+            padding: 22px 20px 4px;
+        }
+        .app-title h2 { margin: 0; font-size: 1.4rem; font-weight: 900; color: var(--primary-dark); }
+        .app-title p { margin: 5px 0 0; color: var(--text-light); font-size: 0.85rem; }
+
+        /* Screens */
+        .screen { display: none; flex-direction: column; flex-grow: 1; padding: 20px; }
+        .screen.active { display: flex; animation: fadeIn 0.3s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Easy Mode */
+        .focus-word-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            text-align: center;
+            padding-bottom: 50px;
+        }
+
+        .focus-word {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #1a1a1a;
+            direction: ltr;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .focus-meaning {
+            font-size: 1.6rem;
+            color: var(--blue);
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        /* TTS Button */
+        .tts-btn {
+            background: #e0f2fe;
+            color: var(--blue);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tts-btn:active { transform: scale(0.9); }
+
+        /* Build UI */
+        .build-header { text-align: center; margin-bottom: 15px; }
+        .target-meaning {
+            font-size: 1.15rem;
+            color: var(--blue-dark);
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: #e0f2fe;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .build-area {
+            min-height: 130px;
+            border: 2px dashed var(--border);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-content: flex-start;
+            background: #f8fafc;
+            direction: ltr;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+
+        .build-area.drag-over { background: #e2e8f0; border-color: var(--blue); }
+        .build-area.done { border-color: var(--primary); background: var(--primary-light); }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            direction: ltr;
+            min-height: 80px;
+            padding: 10px;
+            background: white;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .word-pill {
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 3px 0 var(--border);
+            transition: all 0.1s;
+            touch-action: none;
+            direction: ltr;
+            user-select: none;
+        }
+
+        .word-pill:active { transform: translateY(3px); box-shadow: 0 0 0 var(--border); }
+        .word-pill.in-build {
+            background: #f0fdf4;
+            border-color: #86efac;
+            box-shadow: 0 3px 0 #86efac;
+        }
+
+        .word-pill.correct-pos {
+            background: #dcfce7 !important;
+            border-color: #86efac !important;
+            box-shadow: 0 3px 0 #86efac !important;
+            color: #166534;
+        }
+
+        .word-pill.wrong-position {
+            background: var(--danger-light) !important;
+            border-color: #f87171 !important;
+            color: #b91c1c !important;
+            box-shadow: 0 3px 0 #f87171 !important;
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+
+        /* Normal Mode */
+        .dialog-line { margin-bottom: 15px; padding: 15px; border-radius: 12px; background: #f8fafc; border: 1px solid var(--border); }
+        .dialog-line.story { background: #eff6ff; border-color: #bfdbfe; }
+        .speaker-row { font-weight: 900; color: var(--blue); margin-bottom: 8px; direction: ltr; text-align: left; display: flex; justify-content: space-between; align-items: center; }
+        .dialog-line.story .speaker-row span { color: var(--blue-dark); }
+        .clickable-word { display: inline-block; padding: 4px 5px; border-radius: 6px; cursor: pointer; transition: background 0.2s; direction: ltr; font-size: 1.1rem; color: #2b2b2b; }
+        .clickable-word:active { background: #e2e8f0; }
+        .clickable-word.active { background: #dcfce7; color: #166534; font-weight: 700; }
+        .para-tts { background: #e0f2fe; color: var(--blue); border: none; padding: 6px 12px; border-radius: 10px; font-size: 1rem; cursor: pointer; margin-top: 12px; font-weight: 700; }
+
+        /* Tooltip */
+        #tooltip {
+            position: fixed; background: #1a1a1a; color: white; padding: 10px 15px; border-radius: 8px; font-size: 1rem; font-weight: 700;
+            pointer-events: none; opacity: 0; transition: opacity 0.2s, transform 0.2s; transform: translate(-50%, 10px); z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            white-space: nowrap; direction: rtl;
+        }
+        #tooltip.show { opacity: 1; transform: translate(-50%, 0); }
+
+        /* Listening Mode */
+        .listening-box { text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .audio-icon { font-size: 5rem; margin-bottom: 30px; cursor: pointer; animation: pulse 2s infinite; display: inline-block; line-height: 1; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .options-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+        @media(min-width: 400px) { .options-grid { grid-template-columns: 1fr 1fr; } }
+        .option-btn { padding: 15px; font-size: 1.15rem; font-weight: 700; background: white; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 0 var(--border); direction: ltr; }
+        .option-btn:active { transform: translateY(2px); box-shadow: none; }
+        .option-btn.correct { background: #dcfce7; border-color: var(--primary); color: var(--primary-dark); }
+        .option-btn.wrong { background: var(--danger-light); border-color: var(--danger); color: var(--danger); }
+
+        /* Flashcard Mode */
+        .flashcard-container { perspective: 1000px; width: 100%; max-width: 350px; height: 250px; margin: 20px auto; cursor: pointer; }
+        .flashcard { width: 100%; height: 100%; position: relative; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flashcard.flipped { transform: rotateY(180deg); }
+        .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card-front { background: white; border: 2px solid var(--border); }
+        .card-back { background: #e0f2fe; border: 2px solid var(--blue); transform: rotateY(180deg); }
+        .card-word { font-size: 2.4rem; font-weight: 900; direction: ltr; }
+        .card-meaning { font-size: 1.5rem; font-weight: 700; color: var(--blue-dark); margin-top: 10px; }
+        .flashcard-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: center; }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+        .mt-20 { margin-top: 20px; }
+
+        .finish-box { text-align: center; margin-top: 60px; }
+        .finish-box h2 { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!-- Header -->
+    <div class="header">
+        <button class="home-btn" onclick="goHome()">🏠</button>
+        <h1>درس اول: ارزش دانش</h1>
+        <button class="flashcard-btn" onclick="openFlashcards()">
+            🗂️ <span class="badge" id="fcCount">0</span>
+        </button>
+    </div>
+
+    <!-- MAIN MENU -->
+    <div id="menuScreen" class="screen active mode-select">
+        <div class="app-title">
+            <h2>📚 The Value of Knowledge</h2>
+            <p>درس اول — زبان انگلیسی پایه یازدهم</p>
+        </div>
+        <div class="mode-card" onclick="startEasyMode()">
+            <div class="mode-icon">🟢</div>
+            <div class="mode-text">
+                <h2>حالت آسان</h2>
+                <p>کلمه به کلمه یاد بگیر، عبارت بساز و جمله کامل را کنار هم بچین.</p>
+            </div>
+        </div>
+        <div class="mode-card" onclick="startNormalMode()">
+            <div class="mode-icon">🔵</div>
+            <div class="mode-text">
+                <h2>حالت عادی</h2>
+                <p>متن مکالمه و داستان را کامل بخوان. با کلیک روی هر کلمه معنی آن را ببین.</p>
+            </div>
+        </div>
+        <div class="mode-card" onclick="startListeningMode()">
+            <div class="mode-icon">🎧</div>
+            <div class="mode-text">
+                <h2>تمرین شنیداری</h2>
+                <p>به جمله گوش کن و جای خالی را با گزینه درست پر کن.</p>
+            </div>
+        </div>
+        <div class="mode-card" onclick="openFlashcards()">
+            <div class="mode-icon">🗂️</div>
+            <div class="mode-text">
+                <h2>فلش‌کارت‌ها</h2>
+                <p>مرور کلماتی که در حالت آسان ذخیره کرده‌ای.</p>
+            </div>
+            <span class="badge" id="fcCountMenu">0</span>
+        </div>
+    </div>
+
+    <!-- EASY MODE SCREEN -->
+    <div id="easyScreen" class="screen">
+        <div id="easyContent" style="display:flex; flex-direction:column; flex-grow:1;"></div>
+        <button id="easyNextBtn" class="btn mt-20 hidden"></button>
+    </div>
+
+    <!-- NORMAL MODE SCREEN -->
+    <div id="normalScreen" class="screen">
+        <div id="normalContent"></div>
+    </div>
+
+    <!-- LISTENING MODE SCREEN -->
+    <div id="listeningScreen" class="screen">
+        <div id="listeningContent"></div>
+    </div>
+
+    <!-- FLASHCARD SCREEN -->
+    <div id="flashcardScreen" class="screen">
+        <div id="flashcardContent" style="text-align:center; display:flex; flex-direction:column; align-items:center;"></div>
+    </div>
+</div>
+
+<!-- Tooltip -->
+<div id="tooltip">معنی</div>
+
+<script>
+    // ============================================================
+    // --- DATA (parsed from the coursebook — Lesson 1: The Value of Knowledge)
+    // ============================================================
+
+    // Vocabulary: word -> Persian meaning (keeps apostrophes, e.g. you're)
+    const dict = {
+        "babak": "بابک (نام)", "saberian": "صابریان (نام خانوادگی)",
+        "meysam": "میثم (نام)", "moscow": "مسکو", "irib": "صداوسیما (رسانه ملی)",
+        "a": "یک", "an": "یک", "the": "(حرف تعریف)", "i": "من", "me": "من (مفعولی)",
+        "my": "من (ملکی)", "you": "تو / شما", "your": "تو / شما (ملکی)",
+        "he": "او (مذکر)", "him": "او (مفعولی)", "his": "او (ملکی)",
+        "who": "که", "that": "آن", "about": "درباره",
+
+        "is": "است / هست", "are": "هستند", "was": "بود", "be": "بودن",
+        "do": "آیا (کمکی) / انجام دادن", "did": "آیا (کمکی)", "can": "می‌توانی / می‌توانم",
+        "may": "می‌توانم (اجازه)", "should": "باید", "of": "از", "for": "برای",
+        "to": "به / برای", "in": "در / داخل", "at": "در (مکان/سن)", "as": "به‌اندازه / به‌عنوان",
+        "and": "و", "or": "یا", "but": "اما", "all": "همه", "them": "آن‌ها",
+        "it": "آن", "isn't": "نیست (is not)", "you're": "شما؛ You are",
+
+        "today": "امروز", "works": "کار می‌کند", "hosting": "میزبانی می‌کند",
+        "high": "(high school) دبیرستانی", "school": "مدرسه", "student": "دانش‌آموز",
+        "interviewing": "مصاحبه می‌کند", "project": "پروژه", "office": "دفتر / اتاق کار",
+        "translator": "مترجم", "languages": "زبان‌ها", "language": "زبان",
+        "thank": "تشکر می‌کنم", "thank you": "ممنونم", "mr": "آقا",
+        "inviting": "دعوت می‌کنم", "welcome": "خوش آمدی / خواهش می‌کنم",
+        "heard": "شنیدم", "know": "می‌شناسم / می‌دانم", "three": "سه", "four": "چهار",
+        "right": "درست", "well": "خب (اوه) / خوب", "actually": "در واقع",
+        "what": "چه", "really": "واقعاً / راستی؟", "besides": "علاوه بر / غیر از",
+        "mother": "مادر / مادری", "tongue": "زبانِ گفتاری", "mother tongue": "زبان مادری",
+        "persian": "فارسی", "english": "انگلیسی", "french": "فرانسوی", "russian": "روسی",
+        "interesting": "جالب", "when": "کی / وقتی", "learn": "یاد گرفتن",
+        "learned": "یاد گرفتم", "learning": "در حال یادگیری", "began": "شروع کرد",
+        "then": "سپس", "institute": "آموزشگاه / مؤسسه", "fifteen": "پانزده",
+        "thirteen": "سیزده", "university": "دانشگاه", "use": "استفاده کردن",
+        "using": "استفاده کردن", "fluently": "روان و به‌صورت آسان",
+        "more": "بیشتر / مهم‌تر", "ok": "باشه / خوب", "think": "فکر می‌کنم",
+        "start": "شروع شدن", "early": "زود", "possible": "ممکن",
+        "experience": "تجربه", "says": "می‌گوید", "hard": "سخت", "work": "کار / تلاش",
+        "hard work": "کار سخت / تلاش زیاد", "interest": "علاقه", "really important": "بسیار مهم",
+        "important": "مهم", "than": "از (در مقایسه)", "age": "سن",
+        "hmm": "هوم (فکر کردن)", "'s": "(نشانه اشاره/ملکیت)", "point": "نکته",
+        "favorite": "مورد علاقه", "honest": "صادق / راستگو", "enjoy": "لذت بردن",
+        "absolutely": "کاملاً / قطعاً"
+    };
+
+    // Easy mode — scaffolded learning: word -> phrase -> full sentence.
+    const easySequence = [
+        { type: 'word', text: 'language', meaning: 'زبان' },
+        { type: 'word', text: 'know', meaning: 'می‌شناسم / می‌دانم' },
+        { type: 'build', target: 'you know three languages', fa: 'تو سه زبان بلدی', bank: ['you', 'three', 'know', 'languages'] },
+
+        { type: 'word', text: 'heard', meaning: 'شنیدم' },
+        { type: 'build', target: 'I heard you know three languages', fa: 'شنیدم تو سه زبان بلدی', bank: ['you', 'three', 'I', 'heard', 'know', 'languages'] },
+
+        { type: 'word', text: 'actually', meaning: 'در واقع' },
+        { type: 'word', text: 'four', meaning: 'چهار' },
+        { type: 'build', target: 'Actually I know four languages', fa: 'در واقع من چهار زبان بلدم', bank: ['Actually', 'I', 'four', 'languages', 'know'] },
+
+        { type: 'word', text: 'mother', meaning: 'مادر / مادری' },
+        { type: 'word', text: 'tongue', meaning: 'زبانِ گفتاری' },
+        { type: 'build', target: 'my mother tongue', fa: 'زبان مادری من', bank: ['my', 'tongue', 'mother'] },
+        { type: 'word', text: 'besides', meaning: 'علاوه بر / غیر از' },
+        { type: 'build', target: 'Besides my mother tongue Persian', fa: 'علاوه بر زبان مادری‌ام، فارسی', bank: ['Persian', 'mother', 'tongue', 'Besides', 'my'] },
+
+        { type: 'word', text: 'French', meaning: 'فرانسوی' },
+        { type: 'word', text: 'Russian', meaning: 'روسی' },
+        { type: 'build', target: 'I know English French and Russian well', fa: 'من انگلیسی، فرانسوی و روسی را خوب می‌دانم', bank: ['Russian', 'French', 'I', 'English', 'well', 'and', 'know'] },
+
+        { type: 'word', text: 'began', meaning: 'شروع کرد' },
+        { type: 'build', target: 'I began learning English', fa: 'من شروع به یادگیری انگلیسی کردم', bank: ['learning', 'I', 'English', 'began'] },
+        { type: 'word', text: 'thirteen', meaning: 'سیزده' },
+        { type: 'build', target: 'I began learning English at school when I was thirteen', fa: 'در حالی که سیزده سالم بود، در مدرسه شروع به یادگیری انگلیسی کردم', bank: ['I', 'when', 'thirteen', 'school', 'English', 'at', 'began', 'was', 'learning'] },
+
+        { type: 'build', target: 'Then I began learning French in a language institute', fa: 'سپس در آموزشگاه زبان شروع به یادگیری فرانسوی کردم', bank: ['I', 'Then', 'in', 'a', 'language', 'began', 'learning', 'institute', 'French'] },
+
+        { type: 'word', text: 'fluently', meaning: 'روان و به‌صورت آسان' },
+        { type: 'build', target: 'Can you use all of them fluently', fa: 'آیا می‌توانی همه‌شان را روان به کار ببری؟', bank: ['Can', 'you', 'them', 'all', 'fluently', 'of', 'use'] },
+
+        { type: 'word', text: 'honest', meaning: 'صادق / راستگو' },
+        { type: 'build', target: 'To be honest I enjoy using them all', fa: 'راستش را بخواهید از استفاده از همه‌شان لذت می‌برم', bank: ['all', 'be', 'honest', 'enjoy', 'I', 'To', 'them', 'using'] },
+
+        { type: 'word', text: 'interest', meaning: 'علاقه' },
+        { type: 'word', text: 'hard', meaning: 'سخت' },
+        { type: 'word', text: 'work', meaning: 'کار / تلاش' },
+        { type: 'build', target: 'hard work', fa: 'کار سخت / تلاش زیاد', bank: ['work', 'hard'] },
+        { type: 'word', text: 'important', meaning: 'مهم' },
+        { type: 'word', text: 'than', meaning: 'از (در مقایسه)' },
+        { type: 'word', text: 'age', meaning: 'سن' },
+        { type: 'build', target: 'more important than age', fa: 'مهم‌تر از سن', bank: ['age', 'important', 'more', 'than'] },
+        { type: 'word', text: 'really', meaning: 'واقعاً' },
+        { type: 'build', target: 'Interest and hard work are really more important than age', fa: 'علاقه و کار سخت واقعاً مهم‌تر از سن هستند', bank: ['Interest', 'really', 'age', 'hard', 'work', 'and', 'are', 'more', 'important', 'than'] },
+
+        { type: 'word', text: 'favorite', meaning: 'مورد علاقه' },
+        { type: 'word', text: 'absolutely', meaning: 'کاملاً / قطعاً' },
+        { type: 'build', target: 'My favorite language is absolutely my mother tongue', fa: 'زبان مورد علاقه‌ام قطعاً زبان مادری‌ام است', bank: ['mother', 'favorite', 'is', 'absolutely', 'my', 'language', 'tongue', 'My'] },
+    ];
+
+    // Reading material for Normal Mode (story paragraph + dialogue)
+    const reading = [
+        { speaker: "__story__", text: "Babak Saberian is a translator who works for IRIB. Today, he is hosting Meysam in his office. Meysam is a high school student. He is interviewing Mr. Saberian for his school project." },
+        { speaker: "Meysam", text: "Thank you Mr. Saberian for inviting me to your office." },
+        { speaker: "Mr. Saberian", text: "You're welcome!" },
+        { speaker: "Meysam", text: "I heard you know three languages. Is that right?" },
+        { speaker: "Mr. Saberian", text: "Well, actually four languages." },
+        { speaker: "Meysam", text: "Four! Really?! What languages do you know?" },
+        { speaker: "Mr. Saberian", text: "Besides my mother tongue, Persian, I know English, French and Russian well." },
+        { speaker: "Meysam", text: "Interesting! And when did you learn them?" },
+        { speaker: "Mr. Saberian", text: "I began learning English at school when I was thirteen. Then I began learning French in a language institute when I was fifteen. And I learned Russian when I was a university student in Moscow." },
+        { speaker: "Meysam", text: "Can you use all of them fluently?" },
+        { speaker: "Mr. Saberian", text: "I know all of them well, but I use English more." },
+        { speaker: "Meysam", text: "OK. Do you think language learning should start as early as possible?" },
+        { speaker: "Mr. Saberian", text: "My experience says interest and hard work are really more important than age." },
+        { speaker: "Meysam", text: "Hmm... that's an important point. May I know what your favorite language is? English, French, or Russian?" },
+        { speaker: "Mr. Saberian", text: "To be honest, I enjoy using them all, but my favorite language is absolutely my mother tongue!" }
+    ];
+
+    // Listening exercises: fill in the blank (1 correct + 3 distractors)
+    const listeningData = [
+        {
+            audioText: "Babak Saberian is a translator who works for IRIB.",
+            display: "Babak Saberian is a _____ who works for IRIB.",
+            missing: "translator",
+            options: ["translator", "teacher", "doctor", "driver"]
+        },
+        {
+            audioText: "Meysam is a high school student.",
+            display: "Meysam is a high school _____.",
+            missing: "student",
+            options: ["student", "teacher", "scientist", "translator"]
+        },
+        {
+            audioText: "He is interviewing Mr. Saberian for his school project.",
+            display: "He is _____ Mr. Saberian for his school project.",
+            missing: "interviewing",
+            options: ["interviewing", "inviting", "learning", "visiting"]
+        },
+        {
+            audioText: "I know English, French and Russian well.",
+            display: "I know English, French and Russian _____.",
+            missing: "well",
+            options: ["well", "little", "never", "slowly"]
+        },
+        {
+            audioText: "I began learning English at school when I was thirteen.",
+            display: "I began learning English at school when I was _____.",
+            missing: "thirteen",
+            options: ["thirteen", "thirty", "three", "fifteen"]
+        },
+        {
+            audioText: "My experience says interest and hard work are really more important than age.",
+            display: "Interest and hard work are really more important than _____.",
+            missing: "age",
+            options: ["age", "money", "language", "work"]
+        },
+        {
+            audioText: "My favorite language is absolutely my mother tongue!",
+            display: "My favorite language is absolutely my mother _____.",
+            missing: "tongue",
+            options: ["tongue", "mouth", "country", "name"]
+        }
+    ];
+
+    // ============================================================
+    // --- STATE
+    // ============================================================
+    let currentEasyStep = 0;
+    let currentListeningIdx = 0;
+    let flashcards = JSON.parse(localStorage.getItem('lesson1_flashcards')) || [];
+    let currentCardIdx = 0;
+
+    // ============================================================
+    // --- AUDIO & TTS  (speak(text, repeat = 2, rate = 0.65))
+    // ============================================================
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
+    function playSound(type) {
+        if (!audioCtx) audioCtx = new AudioCtx();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain); gain.connect(audioCtx.destination);
+
+        if (type === 'correct') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+        } else {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+        }
+    }
+
+    // Global TTS: plays `repeat` times (default 2) at `rate` (default 0.65).
+    function speak(text, repeat = 2, rate = 0.65) {
+        if (!text || !('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        let count = 0;
+        function play() {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = rate;
+            utterance.onend = () => {
+                count++;
+                if (count < repeat) setTimeout(play, 400);
+            };
+            window.speechSynthesis.speak(utterance);
+        }
+        play();
+    }
+
+    // ============================================================
+    // --- NAVIGATION
+    // ============================================================
+    function showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+    }
+
+    function goHome() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        showScreen('menuScreen');
+        updateFCBadge();
+    }
+
+    function updateFCBadge() {
+        document.getElementById('fcCount').innerText = flashcards.length;
+        document.getElementById('fcCountMenu').innerText = flashcards.length;
+    }
+
+    // ============================================================
+    // --- EASY MODE
+    // ============================================================
+    function startEasyMode() {
+        currentEasyStep = 0;
+        showScreen('easyScreen');
+        renderEasyStep();
+    }
+
+    function renderEasyStep() {
+        const container = document.getElementById('easyContent');
+        const nextBtn = document.getElementById('easyNextBtn');
+        const step = easySequence[currentEasyStep];
+        nextBtn.classList.add('hidden');
+
+        if (!step) {
+            container.innerHTML = `<div class="finish-box"><h2>🎉 عالی بود!</h2><p>تمام کلمات و جملات این مکالمه را یاد گرفتی.</p></div>`;
+            nextBtn.classList.remove('hidden');
+            nextBtn.innerText = "🏠 بازگشت به منو";
+            nextBtn.onclick = goHome;
+            return;
+        }
+
+        if (step.type === 'word') {
+            nextBtn.classList.remove('hidden');
+            nextBtn.innerText = "یاد گرفتم، ادامه";
+            nextBtn.onclick = nextEasyStep;
+
+            // Build with DOM nodes (avoids quote-escaping issues)
+            container.innerHTML = '';
+            const wrapper = document.createElement('div');
+            wrapper.className = 'focus-word-container';
+
+            const wordRow = document.createElement('div');
+            wordRow.className = 'focus-word';
+
+            const ttsBtn = document.createElement('button');
+            ttsBtn.className = 'tts-btn';
+            ttsBtn.innerText = '🔊';
+            ttsBtn.onclick = () => speak(step.text);
+            wordRow.appendChild(ttsBtn);
+
+            const wordSpan = document.createElement('span');
+            wordSpan.innerText = step.text;
+            wordRow.appendChild(wordSpan);
+
+            const meaningDiv = document.createElement('div');
+            meaningDiv.className = 'focus-meaning';
+            meaningDiv.innerText = step.meaning;
+
+            const isSaved = flashcards.some(f => f.word.toLowerCase() === step.text.toLowerCase());
+            const actionRow = document.createElement('div');
+            actionRow.className = 'action-row';
+            actionRow.style.justifyContent = 'center';
+
+            const saveBtn = document.createElement('button');
+            saveBtn.style.padding = '12px';
+            if (isSaved) {
+                saveBtn.className = 'btn secondary';
+                saveBtn.disabled = true;
+                saveBtn.innerText = '✅ ذخیره شد';
+            } else {
+                saveBtn.className = 'btn save-btn';
+                saveBtn.innerText = '➕ افزودن به فلش‌کارت';
+                saveBtn.onclick = () => {
+                    flashcards.push({ word: step.text, meaning: step.meaning });
+                    localStorage.setItem('lesson1_flashcards', JSON.stringify(flashcards));
+                    updateFCBadge();
+                    playSound('correct');
+                    ttsBtn.disabled = true;
+                    saveBtn.disabled = true;
+                    saveBtn.className = 'btn secondary';
+                    saveBtn.innerText = '✅ ذخیره شد';
+                };
+            }
+            actionRow.appendChild(saveBtn);
+
+            wrapper.appendChild(wordRow);
+            wrapper.appendChild(meaningDiv);
+            wrapper.appendChild(actionRow);
+            container.appendChild(wrapper);
+
+            // Auto-play the word twice at 0.65 speed on entry
+            setTimeout(() => speak(step.text), 300);
+        }
+        else if (step.type === 'build') {
+            renderBuildUI(step);
+        }
+    }
+
+    function nextEasyStep() {
+        currentEasyStep++;
+        renderEasyStep();
+    }
+
+    function renderBuildUI(step) {
+        const container = document.getElementById('easyContent');
+        const nextBtn = document.getElementById('easyNextBtn');
+
+        container.innerHTML = `
+            <div class="build-header">
+                <div class="target-meaning">${step.fa}</div>
+                <p style="color:#666; font-size:0.9rem; margin-bottom: 15px;">کلمات را به ترتیب بچین:</p>
+            </div>
+            <div style="display:flex; gap:10px; margin-bottom: 10px;">
+                <button class="btn hint-btn" style="padding: 10px; font-size: 1rem;">💡 راهنما (Hint)</button>
+            </div>
+            <div class="build-area" id="buildArea"></div>
+            <div class="word-bank" id="wordBank"></div>
+        `;
+
+        const hintBtn = container.querySelector('.hint-btn');
+        hintBtn.onclick = () => speak(step.target);
+
+        const buildArea = document.getElementById('buildArea');
+        const wordBank = document.getElementById('wordBank');
+
+        buildArea.addEventListener('dragover', ev => { ev.preventDefault(); buildArea.classList.add('drag-over'); });
+        buildArea.addEventListener('dragleave', () => buildArea.classList.remove('drag-over'));
+        buildArea.addEventListener('drop', ev => {
+            ev.preventDefault();
+            buildArea.classList.remove('drag-over');
+            const id = ev.dataTransfer.getData('text/plain');
+            const dragged = document.getElementById(id);
+            if (dragged && dragged.parentElement !== buildArea) {
+                dragged.classList.add('in-build');
+                buildArea.appendChild(dragged);
+                updateBuildState();
+            }
+        });
+
+        // Shuffle bank words
+        const shuffled = [...step.bank].sort(() => Math.random() - 0.5);
+        shuffled.forEach((word, i) => {
+            const pill = document.createElement('div');
+            pill.className = 'word-pill';
+            pill.draggable = true;
+            pill.textContent = word;
+            pill.id = 'pill-' + i;
+            pill.dataset.word = word;
+
+            pill.addEventListener('click', () => tapWord(pill, buildArea, wordBank));
+            pill.addEventListener('dragstart', ev => {
+                ev.dataTransfer.setData('text/plain', pill.id);
+                pill.style.opacity = '0.5';
+            });
+            pill.addEventListener('dragend', () => { pill.style.opacity = '1'; });
+
+            wordBank.appendChild(pill);
+        });
+
+        nextBtn.classList.add('hidden');
+    }
+
+    function tapWord(pill, buildArea, wordBank) {
+        if (pill.parentElement === wordBank) {
+            pill.classList.add('in-build');
+            buildArea.appendChild(pill);
+        } else {
+            pill.classList.remove('in-build', 'correct-pos', 'wrong-position');
+            wordBank.appendChild(pill);
+        }
+        updateBuildState();
+    }
+
+    function updateBuildState() {
+        const step = easySequence[currentEasyStep];
+        if (!step || step.type !== 'build') return;
+
+        const container = document.getElementById('easyContent');
+        const buildArea = document.getElementById('buildArea');
+        const wordBank = document.getElementById('wordBank');
+        const nextBtn = document.getElementById('easyNextBtn');
+        const targetWords = step.target.split(' ');
+
+        const placed = Array.from(buildArea.children);
+        let builtCorrectly = placed.length === targetWords.length;
+
+        placed.forEach((el, index) => {
+            const word = el.dataset.word;
+            if (word === targetWords[index]) {
+                el.classList.add('correct-pos');
+                el.classList.remove('wrong-position');
+            } else {
+                el.classList.remove('correct-pos');
+                el.classList.add('wrong-position');
+                builtCorrectly = false;
+            }
+        });
+
+        if (builtCorrectly) {
+            playSound('correct');
+            nextBtn.classList.remove('hidden');
+            nextBtn.innerText = 'عالی بود! ادامه ➡️';
+            nextBtn.onclick = nextEasyStep;
+            buildArea.classList.add('done');
+            buildArea.style.pointerEvents = 'none';
+            wordBank.style.pointerEvents = 'none';
+            window.speechSynthesis && window.speechSynthesis.cancel();
+            speak(step.target);
+        }
+    }
+
+    // ============================================================
+    // --- NORMAL MODE (Reading)
+    // ============================================================
+    function startNormalMode() {
+        showScreen('normalScreen');
+        const container = document.getElementById('normalContent');
+        container.innerHTML = '<p style="text-align:center; color:#666; margin-bottom:20px; font-size:0.9rem;">روی کلمه کلیک کن تا معنی آن را ببینی و صدایش را بشنوی.</p>';
+
+        reading.forEach(item => {
+            const line = document.createElement('div');
+            line.className = 'dialog-line' + (item.speaker === '__story__' ? ' story' : '');
+
+            const speakerRow = document.createElement('div');
+            speakerRow.className = 'speaker-row';
+
+            const nameSpan = document.createElement('span');
+            nameSpan.innerText = item.speaker === '__story__' ? '📖 داستان' : item.speaker + ':';
+            speakerRow.appendChild(nameSpan);
+
+            const lineTts = document.createElement('button');
+            lineTts.className = 'tts-btn';
+            lineTts.style.width = '35px';
+            lineTts.style.height = '35px';
+            lineTts.style.fontSize = '1rem';
+            lineTts.innerText = '🔊';
+            lineTts.onclick = () => speak(item.text);
+            speakerRow.appendChild(lineTts);
+            line.appendChild(speakerRow);
+
+            const textDiv = document.createElement('div');
+            item.text.split(' ').forEach(tok => {
+                const span = document.createElement('span');
+                span.className = 'clickable-word';
+                span.innerText = tok;
+                span.onclick = () => showWordMeaning(span, tok);
+                textDiv.appendChild(span);
+                textDiv.appendChild(document.createTextNode(' '));
+            });
+            line.appendChild(textDiv);
+
+            // Paragraph TTS button at the end of each paragraph
+            const paraTts = document.createElement('button');
+            paraTts.className = 'para-tts';
+            paraTts.innerText = '🔊 خواندن کل پاراگراف';
+            paraTts.onclick = () => speak(item.text);
+            line.appendChild(paraTts);
+
+            container.appendChild(line);
+        });
+        container.scrollTop = 0;
+    }
+
+    function normWord(tok) {
+        return tok.toLowerCase().replace(/[^a-z']/g, '');
+    }
+
+    function showWordMeaning(element, tok) {
+        document.querySelectorAll('.clickable-word.active').forEach(el => el.classList.remove('active'));
+        element.classList.add('active');
+
+        const clean = normWord(tok);
+        const meaning = dict[clean] || dict[clean.replace(/'/g, '')] || '(در واژه‌نامه نیست)';
+        playSound('correct');
+        speak(clean);
+
+        const tooltip = document.getElementById('tooltip');
+        tooltip.innerText = tok + ' = ' + meaning;
+        const rect = element.getBoundingClientRect();
+        const tooltipW = tooltip.offsetWidth || 120;
+        let left = rect.left + rect.width / 2;
+        left = Math.max(tooltipW / 2 + 8, Math.min(left, window.innerWidth - tooltipW / 2 - 8));
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = Math.max(4, rect.top - 46) + 'px';
+        tooltip.classList.add('show');
+
+        clearTimeout(window.tooltipTimeout);
+        window.tooltipTimeout = setTimeout(() => tooltip.classList.remove('show'), 2500);
+    }
+
+    // ============================================================
+    // --- LISTENING MODE
+    // ============================================================
+    function startListeningMode() {
+        currentListeningIdx = 0;
+        showScreen('listeningScreen');
+        renderListening();
+    }
+
+    function renderListening() {
+        const container = document.getElementById('listeningContent');
+        container.innerHTML = '';
+
+        if (currentListeningIdx >= listeningData.length) {
+            container.innerHTML = `
+                <div class="finish-box">
+                    <h2>🎧 عالی بود!</h2>
+                    <p>تمرین شنیداری تمام شد.</p>
+                    <button class="btn mt-20" style="max-width:280px;" onclick="goHome()">🏠 بازگشت به منو</button>
+                </div>`;
+            return;
+        }
+
+        const data = listeningData[currentListeningIdx];
+
+        const box = document.createElement('div');
+        box.className = 'listening-box';
+
+        const counter = document.createElement('p');
+        counter.style.color = '#666';
+        counter.innerText = `سوال ${currentListeningIdx + 1} از ${listeningData.length} — گوش کن و کلمه درست را انتخاب کن:`;
+        box.appendChild(counter);
+
+        const icon = document.createElement('div');
+        icon.className = 'audio-icon';
+        icon.innerText = '🔊';
+        icon.onclick = () => speak(data.audioText);
+        box.appendChild(icon);
+
+        const display = document.createElement('h2');
+        display.style.cssText = 'font-size:1.35rem; direction:ltr; letter-spacing:0.5px; margin-bottom:20px; font-weight:900;';
+        display.innerText = data.display;
+        box.appendChild(display);
+
+        const grid = document.createElement('div');
+        grid.className = 'options-grid';
+        const shuffled = [...data.options].sort(() => Math.random() - 0.5);
+        shuffled.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkListening(btn, opt, data, grid);
+            grid.appendChild(btn);
+        });
+        box.appendChild(grid);
+
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'btn mt-20 hidden';
+        nextBtn.innerText = 'سوال بعدی ➡️';
+        nextBtn.onclick = nextListening;
+        box.appendChild(nextBtn);
+
+        container.appendChild(box);
+        setTimeout(() => speak(data.audioText), 400);
+    }
+
+    function checkListening(btn, selected, data, grid) {
+        Array.from(grid.children).forEach(b => {
+            b.disabled = true;
+            if (b.innerText === data.missing) b.classList.add('correct');
+        });
+
+        if (selected === data.missing) {
+            btn.classList.add('correct');
+            playSound('correct');
+        } else {
+            btn.classList.add('wrong');
+            playSound('wrong');
+        }
+
+        // Instant audio feedback: the full correct sentence
+        speak(data.audioText);
+
+        const nextBtn = grid.parentElement.querySelector('.btn');
+        nextBtn && nextBtn.classList.remove('hidden');
+    }
+
+    function nextListening() {
+        currentListeningIdx++;
+        renderListening();
+    }
+
+    // ============================================================
+    // --- FLASHCARD MODE
+    // ============================================================
+    function openFlashcards() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        currentCardIdx = 0;
+        showScreen('flashcardScreen');
+        renderFlashcard();
+    }
+
+    function renderFlashcard() {
+        const container = document.getElementById('flashcardContent');
+        container.innerHTML = '';
+
+        if (flashcards.length === 0) {
+            container.innerHTML = `
+                <h2 style="color:#666; margin-top:60px; font-size:1.1rem; line-height:2;">
+                    🗂️ هنوز هیچ فلش‌کارتی ذخیره نشده است.<br>
+                    از حالت آسان کلمات را اضافه کن.
+                </h2>`;
+            return;
+        }
+
+        if (currentCardIdx >= flashcards.length) {
+            container.innerHTML = `
+                <h2 style="color:var(--primary); margin-top:60px;">🎉 مرور تمام شد!</h2>
+                <button class="btn mt-20" style="max-width:280px;" onclick="openFlashcards()">🔄 مرور مجدد</button>
+                <button class="btn secondary mt-20" style="max-width:280px;" onclick="goHome()">🏠 بازگشت به منو</button>`;
+            return;
+        }
+
+        const card = flashcards[currentCardIdx];
+
+        const counter = document.createElement('div');
+        counter.style.cssText = 'width:100%; text-align:right; color:#666; font-size:0.9rem;';
+        counter.innerText = `کارت ${currentCardIdx + 1} از ${flashcards.length}`;
+        container.appendChild(counter);
+
+        const cardWrap = document.createElement('div');
+        cardWrap.className = 'flashcard-container';
+        const flip = document.createElement('div');
+        flip.className = 'flashcard';
+        flip.id = 'fcCard';
+
+        const front = document.createElement('div');
+        front.className = 'card-face card-front';
+        const wordDiv = document.createElement('div');
+        wordDiv.className = 'card-word';
+        wordDiv.innerText = card.word;
+        const tts = document.createElement('button');
+        tts.className = 'tts-btn mt-20';
+        tts.innerText = '🔊';
+        tts.onclick = e => { e.stopPropagation(); speak(card.word); };
+        const hint = document.createElement('p');
+        hint.style.cssText = 'color:#888; font-size:0.8rem; margin-top:20px;';
+        hint.innerText = 'برای دیدن معنی کلیک کن';
+        front.appendChild(wordDiv);
+        front.appendChild(tts);
+        front.appendChild(hint);
+
+        const back = document.createElement('div');
+        back.className = 'card-face card-back';
+        const meanDiv = document.createElement('div');
+        meanDiv.className = 'card-meaning';
+        meanDiv.innerText = card.meaning;
+        back.appendChild(meanDiv);
+
+        flip.appendChild(front);
+        flip.appendChild(back);
+        cardWrap.appendChild(flip);
+        container.appendChild(cardWrap);
+
+        cardWrap.onclick = () => {
+            flip.classList.toggle('flipped');
+            playSound('correct');
+        };
+
+        const actions = document.createElement('div');
+        actions.className = 'flashcard-actions';
+        const nextB = document.createElement('button');
+        nextB.className = 'btn secondary';
+        nextB.style.maxWidth = '200px';
+        nextB.innerText = 'بعدی ➡️';
+        nextB.onclick = nextCard;
+        actions.appendChild(nextB);
+        container.appendChild(actions);
+
+        // Auto-play the English word twice at 0.65 speed
+        setTimeout(() => speak(card.word), 300);
+    }
+
+    function nextCard() {
+        currentCardIdx++;
+        renderFlashcard();
+    }
+
+    // Init
+    updateFCBadge();
+</script>
+
+</body>
+</html>
