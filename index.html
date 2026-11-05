@@ -423,6 +423,7 @@
         <div class="lesson-tabs">
             <button class="lesson-tab active" onclick="selectLesson(0)">📗 درس اول: ارزش دانش</button>
             <button class="lesson-tab" onclick="selectLesson(1)">📙 درس دوم: زبان‌های جهان</button>
+            <button class="lesson-tab" onclick="selectLesson(2)">📕 درس سوم: زندگی روزمره</button>
         </div>
         <div class="mode-card" onclick="startEasyMode()">
             <div class="mode-icon">🟢</div>
@@ -861,11 +862,211 @@
     ];
 
     // ============================================================
+    // --- LESSON 3: everyday sentences + the sugar story
+    // ============================================================
+
+    const dict3 = {
+        "a": "یک", "an": "یک", "the": "(حرف تعریف)", "of": "از", "to": "به / برای",
+        "for": "برای", "in": "در", "on": "در / روزِ", "at": "در", "and": "و",
+        "i": "من", "me": "من (مفعولی)", "my": "من (ملکی)", "he": "او (مذکر)",
+        "him": "او (مفعولی)", "his": "او (ملکی)", "our": "ما (ملکی)",
+        "we": "ما", "their": "آن‌ها (ملکی)", "they": "آن‌ها", "is": "است",
+        "was": "بود", "were": "بودند", "have": "دارند", "had": "داشت",
+        "there": "وجود دارد", "can": "می‌تواند / می‌توانم", "must": "باید (اجبار)",
+        "will": "خواهد (آینده)", "did": "آیا (کمکی)", "didn't": "نکردم (did not)",
+        "not": "نه", "what": "چه", "four": "چهار", "thing": "چیز",
+
+        "boy": "پسر", "runs": "می‌دود", "fast": "سریع", "mina": "مینا (نام)",
+        "speaks": "صحبت می‌کند", "speak": "صحبت کردن", "english": "انگلیسی",
+        "respect": "احترام گذاشتن", "neighbors": "همسایه‌ها", "shadi": "شادی (نام)",
+        "working": "در حال کار", "work": "کار کردن", "home": "خانه",
+        "ali": "علی (نام)", "smart": "باهوش / زیرک", "student": "دانش‌آموز",
+        "exam": "آزمون / امتحان", "next": "بعدی", "week": "هفته",
+        "zahra": "زهرا (نام)", "studies": "مطالعه می‌کند / می‌خواند", "school": "مدرسه",
+        "yesterday": "دیروز", "saw": "دیدم", "see": "دیدن", "teacher": "معلم",
+        "street": "خیابان", "usually": "معمولاً", "visit": "سر زدن / دیدار کردن",
+        "grandmother": "مادر بزرگ", "fridays": "جمعه‌ها", "friday": "جمعه",
+        "brother": "برادر", "french": "فرانسوی", "fluently": "روان و به‌طور مایان",
+        "weekends": "آخر هفته‌ها", "weekend": "آخر هفته", "read": "می‌خوانم / خواندن",
+        "storybooks": "کتاب‌های داستان", "storybook": "کتاب داستان",
+        "get": "گرفتن / به دست آوردن", "good": "خوب", "grades": "نمره‌ها",
+        "grade": "نمره / پایه", "last": "آخر / گذشته", "night": "شب",
+        "mother": "مادر", "made": "درست کرد", "make": "درست کردن",
+        "cookies": "بیسکویت / کوکی‌ها", "cookie": "کوکی",
+        "friends": "دوستان", "friend": "دوست", "take": "گرفتن / گرفتن",
+        "photographs": "عکس‌ها", "animals": "حیوانات", "animal": "حیوان",
+        "math": "ریاضی", "class": "کلاس", "wednesdays": "چهارشنبه‌ها",
+
+        "only": "تنها / فقط", "still": "هنوز", "looking": "در حال جست‌وجو",
+        "look": "جست‌وجو کردن / نگاه کردن", "looking for": "جست‌وجو کردن",
+        "bag": "کیسه / بسته", "sugar": "شکر", "types": "نوع‌ها", "type": "نوع",
+        "picked": "انتخاب کرد", "explanations": "توضیح‌ها", "explanation": "توضیح",
+        "honestly": "صادقانه / راستش", "differences": "تفاوت‌ها",
+        "understand": "فهمیدن / درک کردن", "young": "جوان", "man": "مرد",
+        "came": "آمد", "come": "آمدن", "asked": "پرسید", "ask": "پرسیدن",
+        "wanted": "می‌خواست", "want": "خواستن", "told": "گفتم", "tell": "گفتن",
+        "needed": "لازم داشتم", "need": "لازم داشتن", "some": "مقداری / چند",
+        "breakfast": "صبحانه", "gave": "داد", "give": "دادن",
+        "information": "اطلاعات", "again": "دوباره", "took": "گرفتم",
+        "pictures": "عکس‌ها / تصاویر", "sat": "نشستم", "somewhere": "جایی",
+        "checked": "بررسی کرد", "check": "بررسی کردن", "mobile": "موبایل",
+        "dictionary": "واژه‌نامه", "understood": "فهمیدم", "buy": "خریدن"
+    };
+
+    const easySequence3 = [
+        { type: 'word', text: 'fast', meaning: 'سریع' },
+        { type: 'build', target: 'The boy runs fast', fa: 'پسر سریع می‌دود', bank: ['boy', 'fast', 'runs', 'The'] },
+
+        { type: 'word', text: 'speaks', meaning: 'صحبت می‌کند' },
+        { type: 'build', target: 'Mina speaks English', fa: 'مینا انگلیسی صحبت می‌کند', bank: ['Mina', 'speaks', 'English'] },
+
+        { type: 'word', text: 'must', meaning: 'باید (اجبار)' },
+        { type: 'build', target: 'We must respect our neighbors', fa: 'باید به همسایه‌هایمان احترام بگذاریم', bank: ['We', 'must', 'respect', 'our', 'neighbors'] },
+
+        { type: 'word', text: 'home', meaning: 'خانه' },
+        { type: 'build', target: 'Shadi is working at home', fa: 'شادی در خانه در حال کار است', bank: ['Shadi', 'is', 'working', 'at', 'home'] },
+
+        { type: 'word', text: 'smart', meaning: 'باهوش / زیرک' },
+        { type: 'build', target: 'Ali is a smart student', fa: 'علی دانش‌آموز باهوشی است', bank: ['Ali', 'is', 'a', 'smart', 'student'] },
+
+        { type: 'word', text: 'will', meaning: 'خواهد (زمان آینده)' },
+        { type: 'word', text: 'exam', meaning: 'آزمون / امتحان' },
+        { type: 'build', target: 'Ali will have an exam next week', fa: 'علی هفته آینده امتحان دارد', bank: ['Ali', 'will', 'have', 'an', 'exam', 'next', 'week'] },
+
+        { type: 'word', text: 'studies', meaning: 'مطالعه می‌کند / می‌خواند' },
+        { type: 'build', target: 'Zahra studies English at school', fa: 'زهرا در مدرسه انگلیسی می‌خواند', bank: ['Zahra', 'studies', 'English', 'at', 'school'] },
+
+        { type: 'word', text: 'saw', meaning: 'دیدم' },
+        { type: 'build', target: 'Yesterday I saw my teacher in the street', fa: 'دیروز معلمم را در خیابان دیدم', bank: ['Yesterday', 'I', 'saw', 'my', 'teacher', 'in', 'the', 'street'] },
+
+        { type: 'word', text: 'usually', meaning: 'معمولاً' },
+        { type: 'build', target: 'We usually visit our grandmother on Fridays', fa: 'معمولاً روزهای جمعه به مادر بزرگمان سر می‌زنیم', bank: ['We', 'usually', 'visit', 'our', 'grandmother', 'on', 'Fridays'] },
+
+        { type: 'word', text: 'brother', meaning: 'برادر' },
+        { type: 'build', target: 'My brother can speak French fluently', fa: 'برادرم می‌تواند فرانسوی را روان صحبت کند', bank: ['My', 'brother', 'can', 'speak', 'French', 'fluently'] },
+
+        { type: 'word', text: 'weekends', meaning: 'آخر هفته‌ها' },
+        { type: 'build', target: 'On weekends I read storybooks', fa: 'آخر هفته‌ها کتاب داستان می‌خوانم', bank: ['On', 'weekends', 'I', 'read', 'storybooks'] },
+
+        { type: 'word', text: 'grades', meaning: 'نمره‌ها' },
+        { type: 'build', target: 'I usually get good grades', fa: 'معمولاً نمره‌های خوبی می‌گیرم', bank: ['I', 'usually', 'get', 'good', 'grades'] },
+
+        { type: 'word', text: 'night', meaning: 'شب' },
+        { type: 'word', text: 'mother', meaning: 'مادر' },
+        { type: 'word', text: 'cookies', meaning: 'بیسکویت / کوکی‌ها' },
+        { type: 'build', target: 'Last night my mother made cookies', fa: 'دیشب مادرم کوکی درست کرد', bank: ['Last', 'night', 'my', 'mother', 'made', 'cookies'] },
+
+        { type: 'word', text: 'friends', meaning: 'دوستان' },
+        { type: 'word', text: 'photographs', meaning: 'عکس‌ها / عکس گرفتن' },
+        { type: 'build', target: 'My friends take photographs of animals', fa: 'دوستانم از حیوانات عکس می‌گیرند', bank: ['My', 'friends', 'take', 'photographs', 'of', 'animals'] },
+
+        { type: 'word', text: 'math', meaning: 'ریاضی' },
+        { type: 'build', target: 'I have a math class on Wednesdays', fa: 'چهارشنبه‌ها کلاس ریاضی دارم', bank: ['I', 'have', 'a', 'math', 'class', 'on', 'Wednesdays'] },
+
+        { type: 'word', text: 'bag', meaning: 'کیسه / بسته' },
+        { type: 'word', text: 'sugar', meaning: 'شکر' },
+        { type: 'build', target: 'a bag of sugar', fa: 'یک بسته شکر', bank: ['bag', 'a', 'sugar', 'of'] },
+        { type: 'word', text: 'types', meaning: 'نوع‌ها' },
+        { type: 'build', target: 'There were four types of sugar', fa: 'چهار نوع شکر وجود داشت', bank: ['There', 'four', 'types', 'of', 'sugar', 'were'] },
+
+        { type: 'word', text: 'explanations', meaning: 'توضیح‌ها' },
+        { type: 'word', text: 'honestly', meaning: 'صادقانه / راستش' },
+        { type: 'word', text: 'differences', meaning: 'تفاوت‌ها' },
+        { type: 'build', target: "I didn't understand their differences", fa: 'تفاوت‌هایشان را متوجه نشدم', bank: ["didn't", 'their', 'I', 'differences', 'understand'] },
+
+        { type: 'word', text: 'only', meaning: 'تنها / فقط' },
+        { type: 'word', text: 'still', meaning: 'هنوز' },
+        { type: 'word', text: 'looking', meaning: 'در حال جست‌وجو' },
+        { type: 'word', text: 'thing', meaning: 'چیز' },
+        { type: 'build', target: 'The only thing I was still looking for was a bag of sugar', fa: 'تنها چیزی که هنوز دنبالش می‌گشتم یک بسته شکر بود', bank: ['The', 'only', 'thing', 'I', 'was', 'still', 'looking', 'for', 'was', 'a', 'bag', 'of', 'sugar'] },
+
+        { type: 'word', text: 'needed', meaning: 'لازم داشتم' },
+        { type: 'word', text: 'buy', meaning: 'خریدن' },
+        { type: 'build', target: 'what type of sugar I needed to buy', fa: 'چه نوع شکری لازم داشتم تا بخرم', bank: ['what', 'type', 'of', 'sugar', 'I', 'needed', 'to', 'buy'] },
+
+        { type: 'word', text: 'understood', meaning: 'فهمیدم' },
+        { type: 'build', target: 'At last I understood what type of sugar I needed to buy', fa: 'سرانجام فهمیدم چه نوع شکری باید می‌خریدم', bank: ['At', 'last', 'I', 'understood', 'what', 'type', 'of', 'sugar', 'I', 'needed', 'to', 'buy'] }
+    ];
+
+    const reading3 = [
+        { speaker: "__story__", text: "The boy runs fast. Mina speaks English. We must respect our neighbors. Shadi is working at home. Ali is a smart student." },
+        { speaker: "__story__", text: "Ali will have an exam next week. Zahra studies English at school. Yesterday, I saw my teacher in the street. We usually visit our grandmother on Fridays. My brother can speak French fluently." },
+        { speaker: "__story__", text: "On weekends, I read storybooks. I usually get good grades. Last night, my mother made cookies. My friends take photographs of animals. I have a math class on Wednesdays." },
+        { speaker: "__story__", text: "The only thing I was still looking for was a bag of sugar. There were four types of sugar. I picked the bags and read the explanations. Honestly, I didn't understand their differences." },
+        { speaker: "__story__", text: "A young man came to me and asked what I wanted. I told him I needed some sugar for breakfast. He gave me some information. Again, I didn't understand the differences." },
+        { speaker: "__story__", text: "I took pictures of the explanations, sat somewhere, and checked the explanations in my mobile dictionary. At last, I understood what type of sugar I needed to buy!" }
+    ];
+
+    const listeningData3 = [
+        {
+            audioText: "The only thing I was still looking for was a bag of sugar.",
+            display: "The only thing I was still looking for was a bag of _____.",
+            missing: "sugar",
+            options: ["sugar", "bread", "meat", "cookies"]
+        },
+        {
+            audioText: "There were four types of sugar.",
+            display: "There were four _____ of sugar.",
+            missing: "types",
+            options: ["types", "bags", "shops", "pages"]
+        },
+        {
+            audioText: "Honestly, I didn't understand their differences.",
+            display: "I didn't understand their _____.",
+            missing: "differences",
+            options: ["differences", "prices", "shapes", "names"]
+        },
+        {
+            audioText: "Yesterday, I saw my teacher in the street.",
+            display: "Yesterday, I saw my teacher in the _____.",
+            missing: "street",
+            options: ["street", "school", "shop", "park"]
+        },
+        {
+            audioText: "My brother can speak French fluently.",
+            display: "My brother can speak French _____.",
+            missing: "fluently",
+            options: ["fluently", "slowly", "badly", "early"]
+        },
+        {
+            audioText: "My friends take photographs of animals.",
+            display: "My friends take _____ of animals.",
+            missing: "photographs",
+            options: ["photographs", "decisions", "exercises", "information"]
+        },
+        {
+            audioText: "I took pictures of the explanations.",
+            display: "I took pictures of the _____.",
+            missing: "explanations",
+            options: ["explanations", "sentences", "bags", "shops"]
+        },
+        {
+            audioText: "I have a math class on Wednesdays.",
+            display: "I have a math class on _____.",
+            missing: "Wednesdays",
+            options: ["Wednesdays", "Mondays", "weekends", "Fridays"]
+        },
+        {
+            audioText: "I checked the explanations in my mobile dictionary.",
+            display: "I checked the explanations in my _____ dictionary.",
+            missing: "mobile",
+            options: ["mobile", "new", "English", "old"]
+        },
+        {
+            audioText: "The boy runs fast.",
+            display: "The boy runs _____.",
+            missing: "fast",
+            options: ["fast", "slow", "well", "high"]
+        }
+    ];
+
+    // ============================================================
     // --- LESSON REGISTRY + STATE
     // ============================================================
     const LESSONS = [
         { id: 'lesson1', faTitle: 'درس اول: ارزش دانش', dict: dict1, easySequence: easySequence1, reading: reading1, listeningData: listeningData1 },
-        { id: 'lesson2', faTitle: 'درس دوم: زبان‌های جهان', dict: dict2, easySequence: easySequence2, reading: reading2, listeningData: listeningData2 }
+        { id: 'lesson2', faTitle: 'درس دوم: زبان‌های جهان', dict: dict2, easySequence: easySequence2, reading: reading2, listeningData: listeningData2 },
+        { id: 'lesson3', faTitle: 'درس سوم: زندگی روزمره', dict: dict3, easySequence: easySequence3, reading: reading3, listeningData: listeningData3 }
     ];
 
     let currentEasyStep = 0;
@@ -1431,7 +1632,8 @@
 
     // Init
     const savedLessonId = localStorage.getItem('selectedLesson');
-    selectLesson(savedLessonId === 'lesson2' ? 1 : 0);
+    const savedIdx = LESSONS.findIndex(l => l.id === savedLessonId);
+    selectLesson(savedIdx >= 0 ? savedIdx : 0);
 </script>
 
 </body>
