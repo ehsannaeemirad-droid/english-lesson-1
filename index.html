@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <title>درس اول: ارزش دانش</title>
+    <title>Vision 2 · Lesson 1</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap');
 
@@ -366,6 +366,7 @@
         .clickable-word:active { background: #e2e8f0; }
         .clickable-word.active { background: #dcfce7; color: #166534; font-weight: 700; }
         .para-tts { background: #e0f2fe; color: var(--blue); border: none; padding: 6px 12px; border-radius: 10px; font-size: 1rem; cursor: pointer; margin-top: 12px; font-weight: 700; }
+        .para-fa { direction: rtl; text-align: right; margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: #f1f5f9; border-right: 4px solid var(--blue); color: #334155; font-size: 0.95rem; line-height: 2; }
 
         /* Tooltip */
         #tooltip {
@@ -411,7 +412,7 @@
     <!-- Header -->
     <div class="header">
         <button class="home-btn" onclick="goHome()">🏠</button>
-        <h1>Vision 2 · درس اول</h1>
+        <h1>Vision 2 · Lesson 1</h1>
         <button class="flashcard-btn" onclick="openFlashcards()">
             🗂️ <span class="badge" id="fcCount">0</span>
         </button>
@@ -420,7 +421,7 @@
     <!-- MAIN MENU (Table of Contents) -->
     <div id="menuScreen" class="screen active mode-select">
         <div class="app-title">
-            <h2>Vision 2 — درس اول: زبان‌های جهان</h2>
+            <h2>Vision 2 — Lesson 1: Understanding People</h2>
             <p>همراه کتاب: تمرین معنی واژه‌ها و جمله‌ها</p>
         </div>
         <div id="tocList"></div>
@@ -464,11 +465,6 @@
     <!-- NORMAL MODE SCREEN -->
     <div id="normalScreen" class="screen">
         <div id="normalContent"></div>
-    </div>
-
-    <!-- LISTENING MODE SCREEN -->
-    <div id="listeningScreen" class="screen">
-        <div id="listeningContent"></div>
     </div>
 
     <!-- FLASHCARD SCREEN -->
@@ -581,21 +577,21 @@
 
     // Reading material for Normal Mode (story paragraph + dialogue)
     const reading1 = [
-        { speaker: "__story__", text: "Babak Saberian is a translator who works for IRIB. Today, he is hosting Meysam in his office. Meysam is a high school student. He is interviewing Mr. Saberian for his school project." },
-        { speaker: "Meysam", text: "Thank you Mr. Saberian for inviting me to your office." },
-        { speaker: "Mr. Saberian", text: "You're welcome!" },
-        { speaker: "Meysam", text: "I heard you know three languages. Is that right?" },
-        { speaker: "Mr. Saberian", text: "Well, actually four languages." },
-        { speaker: "Meysam", text: "Four! Really?! What languages do you know?" },
-        { speaker: "Mr. Saberian", text: "Besides my mother tongue, Persian, I know English, French and Russian well." },
-        { speaker: "Meysam", text: "Interesting! And when did you learn them?" },
-        { speaker: "Mr. Saberian", text: "I began learning English at school when I was thirteen. Then I began learning French in a language institute when I was fifteen. And I learned Russian when I was a university student in Moscow." },
-        { speaker: "Meysam", text: "Can you use all of them fluently?" },
-        { speaker: "Mr. Saberian", text: "I know all of them well, but I use English more." },
-        { speaker: "Meysam", text: "OK. Do you think language learning should start as early as possible?" },
-        { speaker: "Mr. Saberian", text: "My experience says interest and hard work are really more important than age." },
-        { speaker: "Meysam", text: "Hmm... that's an important point. May I know what your favorite language is? English, French, or Russian?" },
-        { speaker: "Mr. Saberian", text: "To be honest, I enjoy using them all, but my favorite language is absolutely my mother tongue!" }
+        { speaker: "__story__", text: "Babak Saberian is a translator who works for IRIB. Today, he is hosting Meysam in his office. Meysam is a high school student. He is interviewing Mr. Saberian for his school project.", fa: "بابک صابریان مترجمی است که برای صداوسیما کار می‌کند. امروز او میثم را در دفترش مهمان کرده است. میثم دانش‌آموز دبیرستانی است و برای پروژه مدرسه‌اش با آقای صابریان مصاحبه می‌کند." },
+        { speaker: "Meysam", text: "Thank you Mr. Saberian for inviting me to your office.", fa: "آقای صابریان، از اینکه من را به دفترتان دعوت کردید، ممنونم." },
+        { speaker: "Mr. Saberian", text: "You're welcome!", fa: "خواهش می‌کنم!" },
+        { speaker: "Meysam", text: "I heard you know three languages. Is that right?", fa: "شنیدم شما سه زبان بلدید. درست است؟" },
+        { speaker: "Mr. Saberian", text: "Well, actually four languages.", fa: "خب، در واقع چهار زبان." },
+        { speaker: "Meysam", text: "Four! Really?! What languages do you know?", fa: "چهار! واقعاً؟ چه زبان‌هایی بلدید؟" },
+        { speaker: "Mr. Saberian", text: "Besides my mother tongue, Persian, I know English, French and Russian well.", fa: "علاوه بر زبان مادری‌ام یعنی فارسی، انگلیسی، فرانسوی و روسی را خوب بلدم." },
+        { speaker: "Meysam", text: "Interesting! And when did you learn them?", fa: "جالبه! و آن‌ها را کِی یاد گرفتید؟" },
+        { speaker: "Mr. Saberian", text: "I began learning English at school when I was thirteen. Then I began learning French in a language institute when I was fifteen. And I learned Russian when I was a university student in Moscow.", fa: "یادگیری انگلیسی را در مدرسه شروع کردم، آن موقع سیزده‌ساله بودم. سپس پانزده‌ساله بودم که یادگیری فرانسوی را در یک آموزشگاه زبان شروع کردم. و روسی را وقتی دانشجوی دانشگاه در مسکو بودم یاد گرفتم." },
+        { speaker: "Meysam", text: "Can you use all of them fluently?", fa: "می‌توانید همه آن‌ها را روان استفاده کنید؟" },
+        { speaker: "Mr. Saberian", text: "I know all of them well, but I use English more.", fa: "همه‌شان را خوب می‌دانم، اما انگلیسی را بیشتر استفاده می‌کنم." },
+        { speaker: "Meysam", text: "OK. Do you think language learning should start as early as possible?", fa: "خب. به نظر شما یادگیری زبان باید هرچه زودتر شروع شود؟" },
+        { speaker: "Mr. Saberian", text: "My experience says interest and hard work are really more important than age.", fa: "تجربه من می‌گوید علاقه و تلاش زیاد واقعاً مهم‌تر از سن هستند." },
+        { speaker: "Meysam", text: "Hmm... that's an important point. May I know what your favorite language is? English, French, or Russian?", fa: "هوم... نکته مهمی است. ممکن است بدانم زبان مورد علاقهٔ شما کدام است؟ انگلیسی، فرانسوی یا روسی؟" },
+        { speaker: "Mr. Saberian", text: "To be honest, I enjoy using them all, but my favorite language is absolutely my mother tongue!", fa: "راستش را بخواهید، از استفاده از همهٔ آن‌ها لذت می‌برم، اما زبان مورد علاقهٔ من قطعاً زبان مادری‌ام است!" }
     ];
 
     // Listening exercises: fill in the blank (1 correct + 3 distractors)
@@ -785,15 +781,15 @@
 
     // Reading material for Normal Mode (sample sentences + main texts)
     const reading2 = [
-        { speaker: "__story__", text: "Mazandaran is one of the best farming regions of Iran. Does water really exist on Mars? Asia is the largest continent of the world. Spanish is Diego's native language. Dictionary prices range from 5 to 15 dollars." },
-        { speaker: "__story__", text: "Rice is the most popular food in Iran. Today, less than 40 percent of people live in villages. Imagine you are traveling in space. Scientists say that by 2050, wind power can meet the needs of the world. We are living in the twenty-first century. Our teacher tried to explain the new word by means of sign language." },
-        { speaker: "__story__", text: "Language is a system of communication. It uses written and spoken forms. People use language to communicate with each other in a society. They exchange knowledge, beliefs, wishes, and feelings through it. Languages vary greatly from region to region. They are so different that a person may not understand the language of someone from another region, country or continent." },
-        { speaker: "__story__", text: "It is not surprising to hear that today about 7000 languages exist in the world. There are more than 2000 languages in Africa, 1000 in the Americas, more than 2250 in Asia, about 230 in Europe, and more than 1300 in Oceania." },
-        { speaker: "__story__", text: "Native speakers of these languages range in number from very large, with hundreds of millions of speakers, to very small, with fewer than 10 speakers. The most popular language in the world is Chinese. More than one billion people in the world speak Chinese. Interestingly, English has fewer native speakers than Chinese, but there are about one billion learners of English all around the world. They learn English as an international language." },
-        { speaker: "__story__", text: "About fifty percent of the world's languages have fewer than 5000 speakers. In the beginning of the twenty-first century, 204 languages had fewer than 10 speakers and 344 languages had between 10 and 99 speakers. The 548 languages with fewer than 99 speakers make up nearly 8 percent of the world's languages. We call them 'endangered languages'. As the speakers of such languages grow old and die, their languages will die, too." },
-        { speaker: "__story__", text: "All languages are really valuable, despite their differences. Every language is an amazing means of communication that meets the needs of its own speakers. It is impossible to imagine the world without language. Therefore, we should respect all languages, no matter how different they are and how many speakers they have." },
-        { speaker: "__story__", text: "An endangered language is a language that has very few speakers. Nowadays, many languages are losing their native speakers. When a language dies, the knowledge and culture disappear with it. A lot of endangered languages are in Australia and South America. Some of them are in Asia and Africa. The number of live languages of the world is around 7000, and many of them may not exist in the future. Many researchers are now trying to protect endangered languages. This can save lots of information and cultural values of people all around the world." },
-        { speaker: "__story__", text: "There are many uncountable words for food in English. Native speakers often use words such as 'a bag of', 'two slices of', or 'a piece of' with uncountable nouns. This usually happens when they go shopping. They may ask for two bottles of water, a bag of sugar, a loaf of bread, or two kilos of meat. In a coffee shop, they may order a cup of tea, a piece of cake, or a glass of juice. If a foreign learner uses uncountable words wrongly, English speakers may not understand them well. So when you learn English, be very careful about this important point." }
+        { speaker: "__story__", text: "Mazandaran is one of the best farming regions of Iran. Does water really exist on Mars? Asia is the largest continent of the world. Spanish is Diego's native language. Dictionary prices range from 5 to 15 dollars.", fa: "مازندران یکی از بهترین مناطق کشاورزی ایران است. آیا واقعاً در مریخ آب وجود دارد؟ آسیا بزرگ‌ترین قارهٔ جهان است. اسپانیایی زبان مادری دیگو است. قیمت واژه‌نامه‌ها از ۵ تا ۱۵ دلار در نوسان است." },
+        { speaker: "__story__", text: "Rice is the most popular food in Iran. Today, less than 40 percent of people live in villages. Imagine you are traveling in space. Scientists say that by 2050, wind power can meet the needs of the world. We are living in the twenty-first century. Our teacher tried to explain the new word by means of sign language.", fa: "برنج محبوب‌ترین غذای ایران است. امروز کمتر از ۴۰ درصد مردم در روستاها زندگی می‌کنند. تصور کنید در فضا سفر می‌کنید. دانشمندان می‌گویند تا سال ۲۰۵۰ انرژی باد می‌تواند نیازهای جهان را برآورده کند. ما در قرن بیست‌ویکم زندگی می‌کنیم. معلم ما تلاش کرد کلمهٔ جدید را با زبان اشاره توضیح دهد." },
+        { speaker: "__story__", text: "Language is a system of communication. It uses written and spoken forms. People use language to communicate with each other in a society. They exchange knowledge, beliefs, wishes, and feelings through it. Languages vary greatly from region to region. They are so different that a person may not understand the language of someone from another region, country or continent.", fa: "زبان یک سامانهٔ ارتباطی است و شکل‌های نوشتاری و گفتاری دارد. مردم در یک جامعه از زبان برای ارتباط با یکدیگر استفاده می‌کنند و از طریق آن دانش، باورها، آرزوها و احساسات را تبادل می‌کنند. زبان‌ها از منطقه‌ای به منطقهٔ دیگر بسیار متفاوت‌اند؛ آن‌قدر متفاوت که ممکن است یک نفر زبان کسی از منطقه، کشور یا قارهٔ دیگر را متوجه نشود." },
+        { speaker: "__story__", text: "It is not surprising to hear that today about 7000 languages exist in the world. There are more than 2000 languages in Africa, 1000 in the Americas, more than 2250 in Asia, about 230 in Europe, and more than 1300 in Oceania.", fa: "تعجب‌آور نیست اگر بشنوید که امروز حدود ۷۰۰۰ زبان در جهان وجود دارد: بیش از ۲۰۰۰ زبان در آفریقا، ۱۰۰۰ زبان در قاره‌های آمریکا، بیش از ۲۲۵۰ زبان در آسیا، حدود ۲۳۰ زبان در اروپا و بیش از ۱۳۰۰ زبان در اقیانوسیه." },
+        { speaker: "__story__", text: "Native speakers of these languages range in number from very large, with hundreds of millions of speakers, to very small, with fewer than 10 speakers. The most popular language in the world is Chinese. More than one billion people in the world speak Chinese. Interestingly, English has fewer native speakers than Chinese, but there are about one billion learners of English all around the world. They learn English as an international language.", fa: "تعداد گویشوران بومی این زبان‌ها از بسیار زیاد — با صدها میلیون گویشور — تا بسیار کم — با کمتر از ۱۰ گویشور — در نوسان است. محبوب‌ترین زبان جهان چینی است و بیش از یک میلیارد نفر در جهان چینی صحبت می‌کنند. جالب است که انگلیسی گویشوران بومی کمتری از چینی دارد، اما حدود یک میلیارد نفر در سراسر جهان انگلیسی را به‌عنوان زبان بین‌المللی یاد می‌گیرند." },
+        { speaker: "__story__", text: "About fifty percent of the world's languages have fewer than 5000 speakers. In the beginning of the twenty-first century, 204 languages had fewer than 10 speakers and 344 languages had between 10 and 99 speakers. The 548 languages with fewer than 99 speakers make up nearly 8 percent of the world's languages. We call them 'endangered languages'. As the speakers of such languages grow old and die, their languages will die, too.", fa: "حدود پنجاه درصد زبان‌های جهان کمتر از ۵۰۰۰ گویشور دارند. در آغاز قرن بیست‌ویکم، ۲۰۴ زبان کمتر از ۱۰ گویشور و ۳۴۴ زبان بین ۱۰ تا ۹۹ گویشور داشتند. این ۵۴۸ زبانِ کمتر از ۹۹ گویشور تقریباً ۸ درصد زبان‌های جهان را تشکیل می‌دهند. ما به آن‌ها «زبان‌های در خطر انقراض» می‌گوییم. هرچه گویشوران چنین زبان‌هایی پیرتر شوند و بمیرند، زبان‌هایشان هم می‌میرد." },
+        { speaker: "__story__", text: "All languages are really valuable, despite their differences. Every language is an amazing means of communication that meets the needs of its own speakers. It is impossible to imagine the world without language. Therefore, we should respect all languages, no matter how different they are and how many speakers they have.", fa: "همهٔ زبان‌ها با وجود تفاوت‌هایشان واقعاً ارزشمندند. هر زبان یک وسیلهٔ ارتباطی شگفت‌انگیز است که نیازهای گویشوران خودش را برآورده می‌کند. تصور جهان بدون زبان ناممکن است؛ پس باید به همهٔ زبان‌ها احترام بگذاریم، مهم نیست چقدر متفاوت‌اند و چه تعداد گویشور دارند." },
+        { speaker: "__story__", text: "An endangered language is a language that has very few speakers. Nowadays, many languages are losing their native speakers. When a language dies, the knowledge and culture disappear with it. A lot of endangered languages are in Australia and South America. Some of them are in Asia and Africa. The number of live languages of the world is around 7000, and many of them may not exist in the future. Many researchers are now trying to protect endangered languages. This can save lots of information and cultural values of people all around the world.", fa: "زبان در خطر انقراض زبانی است که گویشوران بسیار کمی دارد. امروزه بسیاری از زبان‌ها گویشوران بومی خود را از دست می‌دهند. وقتی زبانی می‌میرد، دانش و فرهنگش هم با آن ناپدید می‌شود. بسیاری از زبان‌های در خطر انقراض در استرالیا و آمریکای جنوبی و برخی در آسیا و آفریقا هستند. تعداد زبان‌های زندهٔ جهان حدود ۷۰۰۰ است و ممکن است بسیاری از آن‌ها در آینده وجود نداشته باشند. امروز بسیاری از پژوهشگران تلاش می‌کنند از زبان‌های در خطر انقراض حفاظت کنند؛ این کار می‌تواند اطلاعات و ارزش‌های فرهنگی بسیاری از مردم سراسر جهان را نجات دهد." },
+        { speaker: "__story__", text: "There are many uncountable words for food in English. Native speakers often use words such as 'a bag of', 'two slices of', or 'a piece of' with uncountable nouns. This usually happens when they go shopping. They may ask for two bottles of water, a bag of sugar, a loaf of bread, or two kilos of meat. In a coffee shop, they may order a cup of tea, a piece of cake, or a glass of juice. If a foreign learner uses uncountable words wrongly, English speakers may not understand them well. So when you learn English, be very careful about this important point.", fa: "در انگلیسی برای غذاهای غیرقابل شمارش واژه‌های زیادی وجود دارد. انگلیسی‌زبان‌ها معمولاً واژه‌هایی مثل «یک بسته از»، «دو ورقه از» یا «یک تکه از» را با اسم‌های غیرقابل شمارش به کار می‌برند. این موضوع معمولاً وقتی پیش می‌آید که به خرید می‌روند؛ ممکن است دو بطری آب، یک بسته شکر، یک قرص نان یا دو کیلو گوشت بخواهند. در کافه هم ممکن است یک فنجان چای، یک تکه کیک یا یک لیوان آب‌میوه سفارش بدهند. اگر یک زبان‌آموز خارجی این واژه‌های غیرقابل شمارش را اشتباه استفاده کند، انگلیسی‌زبان‌ها ممکن است او را خوب متوجه نشوند. پس وقتی انگلیسی یاد می‌گیرید، دربارهٔ این نکتهٔ مهم بسیار دقت کنید." }
     ];
 
     // Listening exercises: fill in the blank (1 correct + 3 distractors)
@@ -1093,15 +1089,15 @@
     // One merged word bank for tooltips across the whole book
     const DICT = Object.assign({}, dict1, dict2, dict3, dictExtra);
 
-    // --- SECTION: Warm-up & Vocabulary (Pages 5-7)
+    // --- SECTION: Warm-up & Vocabulary (Pages 21-23)
     const warmupReading = [
-        { speaker: "__story__", text: "Mazandaran is one of the best farming regions of Iran. Does water really exist on Mars? Asia is the largest continent of the world. Spanish is Diego's native language. Dictionary prices range from 5 to 15 dollars." },
-        { speaker: "__story__", text: "Rice is the most popular food in Iran. Today, less than 40 percent of people live in villages. Imagine you are traveling in space. Scientists say that by 2050, wind power can meet the needs of the world. We are living in the twenty-first century. Our teacher tried to explain the new word by means of sign language." },
-        { speaker: "__story__", text: "society: a large group of people who live together. We live in an Islamic society." },
-        { speaker: "__story__", text: "ability: the physical or mental power or skill to do something. Human's ability to talk makes him different from animals." },
-        { speaker: "__story__", text: "vary: to be different from each other. In some cities, prices vary from shop to shop." },
-        { speaker: "__story__", text: "make up: to form a thing, amount or number. China makes up 18 percent of the world's population." },
-        { speaker: "__story__", text: "despite: without taking any notice of. I enjoy the weekend, despite the bad weather." }
+        { speaker: "__story__", text: "Mazandaran is one of the best farming regions of Iran. Does water really exist on Mars? Asia is the largest continent of the world. Spanish is Diego's native language. Dictionary prices range from 5 to 15 dollars.", fa: "مازندران یکی از بهترین مناطق کشاورزی ایران است. آیا واقعاً در مریخ آب وجود دارد؟ آسیا بزرگ‌ترین قارهٔ جهان است. اسپانیایی زبان مادری دیگو است. قیمت واژه‌نامه‌ها از ۵ تا ۱۵ دلار در نوسان است." },
+        { speaker: "__story__", text: "Rice is the most popular food in Iran. Today, less than 40 percent of people live in villages. Imagine you are traveling in space. Scientists say that by 2050, wind power can meet the needs of the world. We are living in the twenty-first century. Our teacher tried to explain the new word by means of sign language.", fa: "برنج محبوب‌ترین غذای ایران است. امروز کمتر از ۴۰ درصد مردم در روستاها زندگی می‌کنند. تصور کنید در فضا سفر می‌کنید. دانشمندان می‌گویند تا سال ۲۰۵۰ انرژی باد می‌تواند نیازهای جهان را برآورده کند. ما در قرن بیست‌ویکم زندگی می‌کنیم. معلم ما تلاش کرد کلمهٔ جدید را با زبان اشاره توضیح دهد." },
+        { speaker: "__story__", text: "society: a large group of people who live together. We live in an Islamic society.", fa: "society (جامعه): گروه بزرگی از مردم که با هم زندگی می‌کنند. ما در یک جامعهٔ اسلامی زندگی می‌کنیم." },
+        { speaker: "__story__", text: "ability: the physical or mental power or skill to do something. Human's ability to talk makes him different from animals.", fa: "ability (توانایی): قدرت یا مهارت جسمی یا ذهنی برای انجام کاری. توانایی حرف زدن، انسان را از حیوانات جدا می‌کند." },
+        { speaker: "__story__", text: "vary: to be different from each other. In some cities, prices vary from shop to shop.", fa: "vary (متفاوت بودن): با هم فرق داشتن. در بعضی شهرها قیمت‌ها از فروشگاهی به فروشگاه دیگر فرق می‌کند." },
+        { speaker: "__story__", text: "make up: to form a thing, amount or number. China makes up 18 percent of the world's population.", fa: "make up (تشکیل دادن): تشکیل دادن یک چیز، مقدار یا عدد. چین ۱۸ درصد جمعیت جهان را تشکیل می‌دهد." },
+        { speaker: "__story__", text: "despite: without taking any notice of. I enjoy the weekend, despite the bad weather.", fa: "despite (با وجود): بدون توجه به. من با وجود هوای بد از آخر هفته لذت می‌برم." }
     ];
 
     const warmupSequence = [
@@ -1203,7 +1199,7 @@
         }
     ];
 
-    // --- SECTION: Conversation 1 — Mr. Saberian (Page 4)
+    // --- SECTION: Conversation 1 — Mr. Saberian (Pages 19-20)
     const conv1Listening = [
         {
             audioText: "I began learning English at school when I was thirteen.",
@@ -1243,7 +1239,7 @@
         }
     ];
 
-    // --- SECTION: Reading — Endangered Languages (Pages 9-10)
+    // --- SECTION: Reading — Languages of the World (Pages 24-27)
     const readingMain = reading2.slice(2);
 
     const readingSequence = [
@@ -1302,20 +1298,20 @@
         }
     ];
 
-    // --- SECTION: Conversation 2 — Shopping (Page 18)
+    // --- SECTION: Conversation 2 — Shopping (Page 34)
     const conv2Reading = [
-        { speaker: "Shopkeeper", text: "May I help you?" },
-        { speaker: "Customer", text: "Yes, please. I'm looking for some birthday candles." },
-        { speaker: "Shopkeeper", text: "How many candles do you need?" },
-        { speaker: "Customer", text: "I need 12 birthday candles." },
-        { speaker: "Shopkeeper", text: "You can find different types of candles over there." },
-        { speaker: "Customer", text: "Um... How much are those?" },
-        { speaker: "Shopkeeper", text: "They are 20000 Tomans." },
-        { speaker: "Customer", text: "What about these?" },
-        { speaker: "Shopkeeper", text: "These are 10000 Tomans." },
-        { speaker: "Customer", text: "I think I'll take these." },
-        { speaker: "Shopkeeper", text: "Here you are." },
-        { speaker: "Customer", text: "Thank you." }
+        { speaker: "Shopkeeper", text: "May I help you?", fa: "فروشنده: می‌توانم کمکتان کنم؟" },
+        { speaker: "Customer", text: "Yes, please. I'm looking for some birthday candles.", fa: "مشتری: بله، لطفاً. دنبال چند شمع کیک تولد هستم." },
+        { speaker: "Shopkeeper", text: "How many candles do you need?", fa: "فروشنده: چند شمع لازم دارید؟" },
+        { speaker: "Customer", text: "I need 12 birthday candles.", fa: "مشتری: من به ۱۲ شمع کیک تولد نیاز دارم." },
+        { speaker: "Shopkeeper", text: "You can find different types of candles over there.", fa: "فروشنده: انواع مختلف شمع را آن‌جا پیدا می‌کنید." },
+        { speaker: "Customer", text: "Um... How much are those?", fa: "مشتری: اوم... قیمت آن‌ها چقدر است؟" },
+        { speaker: "Shopkeeper", text: "They are 20000 Tomans.", fa: "فروشنده: آن‌ها ۲۰ هزار تومان هستند." },
+        { speaker: "Customer", text: "What about these?", fa: "مشتری: این‌ها چطور؟" },
+        { speaker: "Shopkeeper", text: "These are 10000 Tomans.", fa: "فروشنده: این‌ها ۱۰ هزار تومان هستند." },
+        { speaker: "Customer", text: "I think I'll take these.", fa: "مشتری: فکر می‌کنم همین‌ها را برمی‌دارم." },
+        { speaker: "Shopkeeper", text: "Here you are.", fa: "فروشنده: بفرمایید." },
+        { speaker: "Customer", text: "Thank you.", fa: "مشتری: متشکرم." }
     ];
 
     const conv2Sequence = [
@@ -1383,22 +1379,22 @@
     // --- SECTIONS: the Table of Contents of the book
     const SECTIONS = [
         {
-            id: 'warmup', icon: '📖', faTitle: 'گرم‌کردن و واژگان', pages: 'صص ۵ تا ۷',
+            id: 'warmup', icon: '📖', title: 'Warm-up & Vocabulary', pages: 'Pages 21-23',
             faDesc: 'جملات نمونه و واژگان کلیدی درس',
             reading: warmupReading, easySequence: warmupSequence, listeningData: warmupListening
         },
         {
-            id: 'conv1', icon: '💬', faTitle: 'مکالمه ۱: آقای صابریان', pages: 'صفحه ۴',
+            id: 'conv1', icon: '💬', title: 'Conversation 1 - Mr. Saberian', pages: 'Pages 19-20',
             faDesc: 'مصاحبه با مترجم صداوسیما برای پروژه مدرسه',
             reading: reading1, easySequence: easySequence1, listeningData: conv1Listening
         },
         {
-            id: 'reading', icon: '📑', faTitle: 'مطالعه: زبان‌های در خطر انقراض', pages: 'صص ۹ و ۱۰',
+            id: 'reading', icon: '📑', title: 'Reading - Languages of the World', pages: 'Pages 24-27',
             faDesc: 'متن زبان‌های جهان و زبان‌های رو به نابودی',
             reading: readingMain, easySequence: readingSequence, listeningData: readingListening
         },
         {
-            id: 'conv2', icon: '💬', faTitle: 'مکالمه ۲: خرید و قیمت‌ها', pages: 'صفحه ۱۸',
+            id: 'conv2', icon: '💬', title: 'Conversation 2 - Shopping', pages: 'Page 34',
             faDesc: 'خرید در فروشگاه و پرسیدن قیمت و تعداد',
             reading: conv2Reading, easySequence: conv2Sequence, listeningData: conv2Listening
         }
@@ -1408,7 +1404,6 @@
     // --- STATE
     // ============================================================
     let currentEasyStep = 0;
-    let currentListeningIdx = 0;
     let currentCardIdx = 0;
     let curSection = 0;
     let lesson = SECTIONS[0];
@@ -1454,17 +1449,16 @@
         const head = document.createElement('div');
         head.className = 'section-page-title';
         const h = document.createElement('h2');
-        h.innerText = `${lesson.icon} ${lesson.faTitle}`;
+        h.innerText = `${lesson.icon} ${lesson.title} · ${lesson.pages}`;
         const p = document.createElement('p');
-        p.innerText = lesson.pages + ' — ' + lesson.faDesc;
+        p.innerText = lesson.faDesc;
         head.appendChild(h);
         head.appendChild(p);
         c.appendChild(head);
 
         const modes = [
-            { icon: '🔵', title: 'حالت عادی (خواندن)', desc: 'متن را با معنی تپ‌پذیرِ هر واژه بخوان.', fn: startNormalMode },
-            { icon: '🟢', title: 'حالت آسان (تمرین)', desc: 'کلمه به کلمه یاد بگیر و جمله بساز.', fn: startEasyMode },
-            { icon: '🎧', title: 'تمرین شنیداری', desc: 'به جمله گوش کن و جای خالی را پر کن.', fn: startListeningMode }
+            { icon: '🔵', title: 'حالت عادی (خواندن)', desc: 'متن را با ترجمهٔ کامل و معنی تپ‌پذیرِ هر واژه بخوان.', fn: startNormalMode },
+            { icon: '🟢', title: 'حالت آسان (تمرین)', desc: 'کلمه به کلمه یاد بگیر، جمله بساز و تمرین شنیداری را انجام بده.', fn: startEasyMode }
         ];
         modes.forEach(m => {
             const card = document.createElement('div');
@@ -1495,7 +1489,7 @@
             card.innerHTML = `
                 <div class="mode-icon">${s.icon}</div>
                 <div class="mode-text">
-                    <h2>${s.faTitle}</h2>
+                    <h2>${s.title}</h2>
                     <p>${s.faDesc}</p>
                 </div>
                 <span class="toc-page-badge">${s.pages}</span>`;
@@ -1579,14 +1573,20 @@
         renderEasyStep();
     }
 
+    // The practice phase = teach/build steps, then the listening questions
+    function easySteps() {
+        const listenSteps = LT().listeningData.map(d => ({ type: 'listen', data: d }));
+        return LT().easySequence.concat(listenSteps);
+    }
+
     function renderEasyStep() {
         const container = document.getElementById('easyContent');
         const nextBtn = document.getElementById('easyNextBtn');
-        const step = LT().easySequence[currentEasyStep];
+        const step = easySteps()[currentEasyStep];
         nextBtn.classList.add('hidden');
 
         if (!step) {
-            container.innerHTML = `<div class="finish-box"><h2>🎉 عالی بود!</h2><p>تمام کلمات و جملات این مکالمه را یاد گرفتی.</p></div>`;
+            container.innerHTML = `<div class="finish-box"><h2>🎉 عالی بود!</h2><p>کلمات، جملات و تمرین شنیداری این بخش را کامل یاد گرفتی.</p></div>`;
             nextBtn.classList.remove('hidden');
             nextBtn.innerText = "🏠 بازگشت به منو";
             nextBtn.onclick = goHome;
@@ -1657,6 +1657,9 @@
         }
         else if (step.type === 'build') {
             renderBuildUI(step);
+        }
+        else if (step.type === 'listen') {
+            renderListenUI(step.data);
         }
     }
 
@@ -1773,6 +1776,74 @@
         }
     }
 
+    // Listening questions run at the end of the practice phase (no separate mode)
+    function renderListenUI(data) {
+        const container = document.getElementById('easyContent');
+        const nextBtn = document.getElementById('easyNextBtn');
+        const total = LT().listeningData.length;
+        const idx = currentEasyStep - LT().easySequence.length;
+
+        container.innerHTML = '';
+        const box = document.createElement('div');
+        box.className = 'listening-box';
+
+        const counter = document.createElement('p');
+        counter.style.color = '#666';
+        counter.innerText = `🎧 تمرین شنیداری — سوال ${idx + 1} از ${total}: گوش کن و جای خالی را پر کن.`;
+        box.appendChild(counter);
+
+        const icon = document.createElement('div');
+        icon.className = 'audio-icon';
+        icon.innerText = '🔊';
+        icon.onclick = () => speak(data.audioText);
+        box.appendChild(icon);
+
+        const display = document.createElement('h2');
+        display.style.cssText = 'font-size:1.35rem; direction:ltr; letter-spacing:0.5px; margin-bottom:20px; font-weight:900;';
+        display.innerText = data.display;
+        box.appendChild(display);
+
+        const grid = document.createElement('div');
+        grid.className = 'options-grid';
+        const shuffled = [...data.options].sort(() => Math.random() - 0.5);
+        shuffled.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkListenAnswer(btn, opt, data, grid);
+            grid.appendChild(btn);
+        });
+        box.appendChild(grid);
+
+        container.appendChild(box);
+        nextBtn.classList.add('hidden');
+        setTimeout(() => speak(data.audioText), 400);
+    }
+
+    function checkListenAnswer(btn, selected, data, grid) {
+        Array.from(grid.children).forEach(b => {
+            b.disabled = true;
+            if (b.innerText === data.missing) b.classList.add('correct');
+        });
+
+        if (selected === data.missing) {
+            btn.classList.add('correct');
+            playSound('correct');
+        } else {
+            btn.classList.add('wrong');
+            playSound('wrong');
+        }
+
+        // Instant audio feedback: the full correct sentence
+        speak(data.audioText);
+
+        const isLast = currentEasyStep >= easySteps().length - 1;
+        const nextBtn = document.getElementById('easyNextBtn');
+        nextBtn.classList.remove('hidden');
+        nextBtn.innerText = isLast ? '🎉 پایان تمرین ➡️' : 'سوال بعدی ➡️';
+        nextBtn.onclick = nextEasyStep;
+    }
+
     // ============================================================
     // --- NORMAL MODE (Reading)
     // ============================================================
@@ -1813,6 +1884,14 @@
             });
             line.appendChild(textDiv);
 
+            // Full Persian translation of the whole paragraph
+            if (item.fa) {
+                const faDiv = document.createElement('div');
+                faDiv.className = 'para-fa';
+                faDiv.innerText = item.fa;
+                line.appendChild(faDiv);
+            }
+
             // Paragraph TTS button at the end of each paragraph
             const paraTts = document.createElement('button');
             paraTts.className = 'para-tts';
@@ -1850,98 +1929,6 @@
 
         clearTimeout(window.tooltipTimeout);
         window.tooltipTimeout = setTimeout(() => tooltip.classList.remove('show'), 2500);
-    }
-
-    // ============================================================
-    // --- LISTENING MODE
-    // ============================================================
-    function startListeningMode() {
-        currentListeningIdx = 0;
-        showScreen('listeningScreen');
-        renderListening();
-    }
-
-    function renderListening() {
-        const container = document.getElementById('listeningContent');
-        container.innerHTML = '';
-
-        if (currentListeningIdx >= LT().listeningData.length) {
-            container.innerHTML = `
-                <div class="finish-box">
-                    <h2>🎧 عالی بود!</h2>
-                    <p>تمرین شنیداری تمام شد.</p>
-                    <button class="btn mt-20" style="max-width:280px;" onclick="goHome()">🏠 بازگشت به منو</button>
-                </div>`;
-            return;
-        }
-
-        const data = LT().listeningData[currentListeningIdx];
-
-        const box = document.createElement('div');
-        box.className = 'listening-box';
-
-        const counter = document.createElement('p');
-        counter.style.color = '#666';
-        counter.innerText = `سوال ${currentListeningIdx + 1} از ${LT().listeningData.length} — گوش کن و کلمه درست را انتخاب کن:`;
-        box.appendChild(counter);
-
-        const icon = document.createElement('div');
-        icon.className = 'audio-icon';
-        icon.innerText = '🔊';
-        icon.onclick = () => speak(data.audioText);
-        box.appendChild(icon);
-
-        const display = document.createElement('h2');
-        display.style.cssText = 'font-size:1.35rem; direction:ltr; letter-spacing:0.5px; margin-bottom:20px; font-weight:900;';
-        display.innerText = data.display;
-        box.appendChild(display);
-
-        const grid = document.createElement('div');
-        grid.className = 'options-grid';
-        const shuffled = [...data.options].sort(() => Math.random() - 0.5);
-        shuffled.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerText = opt;
-            btn.onclick = () => checkListening(btn, opt, data, grid);
-            grid.appendChild(btn);
-        });
-        box.appendChild(grid);
-
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'btn mt-20 hidden';
-        nextBtn.innerText = 'سوال بعدی ➡️';
-        nextBtn.onclick = nextListening;
-        box.appendChild(nextBtn);
-
-        container.appendChild(box);
-        setTimeout(() => speak(data.audioText), 400);
-    }
-
-    function checkListening(btn, selected, data, grid) {
-        Array.from(grid.children).forEach(b => {
-            b.disabled = true;
-            if (b.innerText === data.missing) b.classList.add('correct');
-        });
-
-        if (selected === data.missing) {
-            btn.classList.add('correct');
-            playSound('correct');
-        } else {
-            btn.classList.add('wrong');
-            playSound('wrong');
-        }
-
-        // Instant audio feedback: the full correct sentence
-        speak(data.audioText);
-
-        const nextBtn = grid.parentElement.querySelector('.btn');
-        nextBtn && nextBtn.classList.remove('hidden');
-    }
-
-    function nextListening() {
-        currentListeningIdx++;
-        renderListening();
     }
 
     // ============================================================
