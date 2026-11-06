@@ -1,24 +1,40 @@
-# Vision 2 — Lesson 1: "Understanding People" (Grade 11 Book Companion)
+# Vision 2 — Grade 11 English Book Companion
 
-A mobile-first, fully interactive Single Page Application (SPA) that acts as a companion to **Vision 2, Lesson 1** (کتاب انگلیسی ۲، پایه یازدهم). Built with plain HTML, CSS and Vanilla JavaScript (no frameworks).
+A mobile-first, fully interactive Single Page Application (SPA) companion to **Vision 2** (کتاب انگلیسی ۲، پایه یازدهم), built with plain HTML, CSS and Vanilla JavaScript (no frameworks).
 
-## Structure — the app is the book's Table of Contents
+## Home: the book's three lessons
 
-Sections are labelled in the book's own style (`<Section> - Page N`), using the printed page numbers of the textbook:
+The homepage lists the three lessons of the book; the student picks the lesson to study:
 
-| Section | Book pages |
-|---|---|
-| 📖 Warm-up & Vocabulary | Pages 21-23 |
-| 💬 Conversation 1 - Mr. Saberian | Pages 19-20 |
-| 📑 Reading - Languages of the World | Pages 24-27 |
-| 💬 Conversation 2 - Shopping | Page 34 |
-| 🗂️ Flashcard Review | saved-words badge |
+| Lesson | Book pages | Status |
+|---|---|---|
+| 1️⃣ Lesson 1 - Understanding People | Pages 15-47 | ✅ built |
+| 2️⃣ Lesson 2 - A Healthy Lifestyle | Pages 49-79 | به‌زودی |
+| 3️⃣ Lesson 3 - Art and Culture | Pages 81-107 | به‌زودی |
 
-Each section opens a sub-menu with two modes (the listening drill is part of practice, not a separate mode):
+## Lesson path: Duolingo-style chunks in book order
+
+Opening a lesson shows its chunks as a numbered path, ordered exactly like the textbook, each with its printed page number so the student can jump straight to the part they need:
+
+| # | Chunk | Book pages | Status |
+|---|---|---|---|
+| 1 | 🗺️ Get Ready | Pages 15-18 | به‌زودی |
+| 2 | 💬 Conversation - Mr. Saberian | Pages 19-20 | ✅ آماده |
+| 3 | 📖 New Words & Expressions | Pages 21-23 | ✅ آماده |
+| 4 | 📑 Reading - Languages of the World | Pages 24-26 | ✅ آماده |
+| 5 | 🔁 Vocabulary Development - Synonyms | Pages 27-28 | به‌زودی |
+| 6 | 🔤 Grammar - Countable & Uncountable Nouns | Pages 28-31 | به‌زودی |
+| 7 | 🛒 Listening & Speaking - Shopping | Pages 34-35 | ✅ آماده |
+| 8 | 🎙️ Pronunciation - Ten/Teen Numbers | Page 36 | به‌زودی |
+| 9 | ✍️ Writing - Simple Sentences | Pages 37-45 | به‌زودی |
+| 10 | 🏁 What You Learned | Page 47 | به‌زودی |
+
+Ready chunks open a sub-menu with two modes (listening is part of practice, not a separate mode):
 
 - **🔵 Normal Mode (Read)** — the text exactly as in the book; every word is a tappable `<span>` showing a floating Persian tooltip (from the book's Word Banks) and speaking the word at 0.65× speed. Under every paragraph the **full Persian translation** is shown, and a 🔊 button reads the whole paragraph (twice, 0.65×).
-- **🟢 Easy Mode (Practice)** — scaffolded learning: learn each new word once (auto TTS, add to flashcards), then build phrases → full sentences from a shuffled word bank with tap *and* drag-and-drop, instant per-word validation (green = right position, red + shake + buzz = wrong) and a 💡 Hint button that reads the target sentence. When the build steps finish, the **listening fill-in-the-blank questions of the section run at the end of the same flow** (4 options, auto audio, instant green/red feedback). No word is taught twice.
-- **🗂️ Flashcards** — one shared 3D-flip review deck for all saved words.
+- **🟢 Easy Mode (Practice)** — scaffolded learning: learn each new word once (auto TTS, add to flashcards), then build phrases → full sentences from a shuffled word bank with tap *and* drag-and-drop, instant per-word validation (green = right position, red + shake + buzz = wrong) and a 💡 Hint button that reads the target sentence. When the build steps finish, the **listening fill-in-the-blank questions of the chunk run at the end of the same flow** (4 options, auto audio, instant green/red feedback). No word is taught twice.
+- **↩️ Back to the path** — a button under the mode cards returns to the lesson path.
+- **🗂️ Flashcards** — one shared 3D-flip review deck for all saved words (reachable from the header and the homepage).
 
 ## Audio / TTS
 
@@ -34,6 +50,6 @@ Every word, phrase and sentence automatically plays **twice at 0.65× speed**, w
 
 Just open `index.html` in any modern browser (Chrome/Edge recommended for TTS voices) — no build step or server required.
 
-## Adding more sections
+## Adding more lessons / chunks
 
-Content lives in the `SECTIONS` array: each entry holds the section's `title`, book `pages`, `reading` lines (each with `text` and a Persian `fa` translation), `easySequence` steps and `listeningData` items, parsed from the corresponding book pages. A merged `DICT` object serves tooltips across the whole book.
+`LESSONS` holds the three lessons (flip `ready` to true once built); `SECTIONS` holds the chunks of Lesson 1 in book order, each with a `title`, printed `pages`, Persian description and a `ready` flag. A ready chunk carries `reading` lines (each with `text` and a Persian `fa` translation), `easySequence` steps and `listeningData` items. A merged `DICT` object serves tooltips across the whole book.

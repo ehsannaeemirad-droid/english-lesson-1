@@ -197,6 +197,46 @@
         .mode-text h2 { margin: 0 0 5px 0; font-size: 1.1rem; color: var(--primary-dark); }
         .mode-text p { margin: 0; color: var(--text-light); font-size: 0.9rem; line-height: 1.5; }
 
+        /* Home: lesson picker */
+        .lesson-num {
+            width: 46px; height: 46px; flex: 0 0 46px; border-radius: 50%;
+            background: var(--primary); color: white; font-weight: 900; font-size: 1.25rem;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 3px 0 var(--primary-dark);
+        }
+        .future-card .lesson-num { background: #cbd5e1; box-shadow: 0 3px 0 #94a3b8; }
+
+        /* Lesson path (Duolingo-style chunks in book order) */
+        .path-list { display: flex; flex-direction: column; gap: 12px; }
+        .path-node { display: flex; align-items: flex-start; gap: 12px; position: relative; }
+        .path-node:not(:last-child)::after {
+            content: ''; position: absolute; left: 21px; top: 52px; bottom: -16px; width: 4px;
+            border-radius: 2px; background: repeating-linear-gradient(#cbd5e1 0 6px, transparent 6px 12px);
+        }
+        .path-dot {
+            width: 46px; height: 46px; flex: 0 0 46px; border-radius: 50%; z-index: 1;
+            background: #e0f2fe; border: 3px solid var(--blue); font-size: 1.3rem;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 0 #bfdbfe;
+        }
+        .path-card {
+            flex: 1; background: white; border: 2px solid var(--border); border-radius: 15px;
+            padding: 14px 15px; cursor: pointer; transition: all 0.2s;
+        }
+        .path-card:hover { border-color: var(--primary); }
+        .path-card:active { transform: scale(0.98); }
+        .path-card h2 { margin: 0 0 4px; font-size: 1rem; color: var(--primary-dark); }
+        .path-card p { margin: 0 0 8px; color: var(--text-light); font-size: 0.85rem; line-height: 1.5; }
+        .path-meta { display: flex; align-items: center; gap: 8px; }
+        .path-status {
+            font-size: 0.72rem; font-weight: 700; border-radius: 999px; padding: 3px 9px;
+            background: #fef3c7; color: #92400e;
+        }
+        .path-status.ready { background: #dcfce7; color: #166534; }
+        .path-soon { opacity: 0.62; }
+        .path-soon .path-card { cursor: default; }
+        .path-soon .path-card:hover { border-color: var(--border); }
+        .path-soon .path-dot { background: #f1f5f9; border-color: #cbd5e1; box-shadow: 0 3px 0 #e2e8f0; }
+
         .app-title {
             text-align: center;
             padding: 22px 20px 4px;
@@ -412,19 +452,19 @@
     <!-- Header -->
     <div class="header">
         <button class="home-btn" onclick="goHome()">🏠</button>
-        <h1>Vision 2 · Lesson 1</h1>
+        <h1>Vision 2</h1>
         <button class="flashcard-btn" onclick="openFlashcards()">
             🗂️ <span class="badge" id="fcCount">0</span>
         </button>
     </div>
 
-    <!-- MAIN MENU (Table of Contents) -->
+    <!-- HOME: choose one of the three lessons -->
     <div id="menuScreen" class="screen active mode-select">
         <div class="app-title">
-            <h2>Vision 2 — Lesson 1: Understanding People</h2>
-            <p>همراه کتاب: تمرین معنی واژه‌ها و جمله‌ها</p>
+            <h2>Vision 2</h2>
+            <p>کتاب انگلیسی ۲ پایه یازدهم — یکی از سه درس را انتخاب کن</p>
         </div>
-        <div id="tocList"></div>
+        <div id="lessonList"></div>
         <div class="mode-card" onclick="openFlashcards()">
             <div class="mode-icon">🗂️</div>
             <div class="mode-text">
@@ -433,22 +473,12 @@
             </div>
             <span class="badge" id="fcCountMenu">0</span>
         </div>
-        <div class="mode-card future-card">
-            <div class="mode-icon">🔤</div>
-            <div class="mode-text">
-                <h2>گرامر — به‌زودی</h2>
-                <p>بخش گرامر بعداً اضافه می‌شود.</p>
-            </div>
-            <span class="toc-page-badge">به‌زودی</span>
-        </div>
-        <div class="mode-card future-card">
-            <div class="mode-icon">🎙️</div>
-            <div class="mode-text">
-                <h2>تلفظ — به‌زودی</h2>
-                <p>بخش تلفظ و آوانگاری بعداً اضافه می‌شود.</p>
-            </div>
-            <span class="toc-page-badge">به‌زودی</span>
-        </div>
+    </div>
+
+    <!-- LESSON PATH: the chunks of the chosen lesson, in book order -->
+    <div id="lessonScreen" class="screen mode-select">
+        <div class="section-page-title" id="lessonHead"></div>
+        <div id="pathList" class="path-list"></div>
     </div>
 
     <!-- SECTION SUB-MENU -->
@@ -1376,27 +1406,73 @@
         }
     ];
 
-    // --- SECTIONS: the Table of Contents of the book
-    const SECTIONS = [
+    // --- LESSONS: Vision 2 has three lessons; only Lesson 1 is built so far
+    const LESSONS = [
         {
-            id: 'warmup', icon: '📖', title: 'Warm-up & Vocabulary', pages: 'Pages 21-23',
-            faDesc: 'جملات نمونه و واژگان کلیدی درس',
-            reading: warmupReading, easySequence: warmupSequence, listeningData: warmupListening
+            id: 'l1', number: 1, ready: true,
+            title: 'Lesson 1 - Understanding People',
+            faTitle: 'درس ۱: درک مردم', pages: 'Pages 15-47',
+            faDesc: 'مکالمه، واژگان، ریدینگ، گرامر و شنیداری'
         },
         {
-            id: 'conv1', icon: '💬', title: 'Conversation 1 - Mr. Saberian', pages: 'Pages 19-20',
-            faDesc: 'مصاحبه با مترجم صداوسیما برای پروژه مدرسه',
+            id: 'l2', number: 2, ready: false,
+            title: 'Lesson 2 - A Healthy Lifestyle',
+            faTitle: 'درس ۲: سبک زندگی سالم', pages: 'Pages 49-79',
+            faDesc: 'به‌زودی اضافه می‌شود'
+        },
+        {
+            id: 'l3', number: 3, ready: false,
+            title: 'Lesson 3 - Art and Culture',
+            faTitle: 'درس ۳: هنر و فرهنگ', pages: 'Pages 81-107',
+            faDesc: 'به‌زودی اضافه می‌شود'
+        }
+    ];
+
+    // --- SECTIONS: the chunks of Lesson 1, in the order of the book
+    const SECTIONS = [
+        {
+            id: 'getready', icon: '🗺️', title: 'Get Ready', pages: 'Pages 15-18',
+            faDesc: 'نقشه زبان‌های جهان و فعالیت‌های آماده‌سازی درس', ready: false
+        },
+        {
+            id: 'conv1', icon: '💬', title: 'Conversation - Mr. Saberian', pages: 'Pages 19-20',
+            faDesc: 'مصاحبه با مترجم صداوسیما برای پروژه مدرسه', ready: true,
             reading: reading1, easySequence: easySequence1, listeningData: conv1Listening
         },
         {
-            id: 'reading', icon: '📑', title: 'Reading - Languages of the World', pages: 'Pages 24-27',
-            faDesc: 'متن زبان‌های جهان و زبان‌های رو به نابودی',
+            id: 'newwords', icon: '📖', title: 'New Words & Expressions', pages: 'Pages 21-23',
+            faDesc: 'جملات نمونه و واژگان کلیدی درس', ready: true,
+            reading: warmupReading, easySequence: warmupSequence, listeningData: warmupListening
+        },
+        {
+            id: 'reading', icon: '📑', title: 'Reading - Languages of the World', pages: 'Pages 24-26',
+            faDesc: 'متن زبان‌های جهان و زبان‌های در خطر انقراض', ready: true,
             reading: readingMain, easySequence: readingSequence, listeningData: readingListening
         },
         {
-            id: 'conv2', icon: '💬', title: 'Conversation 2 - Shopping', pages: 'Page 34',
-            faDesc: 'خرید در فروشگاه و پرسیدن قیمت و تعداد',
+            id: 'vocabdev', icon: '🔁', title: 'Vocabulary Development - Synonyms', pages: 'Pages 27-28',
+            faDesc: 'مترادف‌ها و گسترش دامنه واژگان', ready: false
+        },
+        {
+            id: 'grammar', icon: '🔤', title: 'Grammar - Countable & Uncountable Nouns', pages: 'Pages 28-31',
+            faDesc: 'much / many / a lot of و اسم‌های قابل شمارش و غیرقابل شمارش', ready: false
+        },
+        {
+            id: 'conv2', icon: '🛒', title: 'Listening & Speaking - Shopping', pages: 'Pages 34-35',
+            faDesc: 'خرید در فروشگاه و پرسیدن قیمت و تعداد', ready: true,
             reading: conv2Reading, easySequence: conv2Sequence, listeningData: conv2Listening
+        },
+        {
+            id: 'pron', icon: '🎙️', title: 'Pronunciation - Ten/Teen Numbers', pages: 'Page 36',
+            faDesc: 'استرس کلمات در اعداد ده‌تایی و اعداد teen', ready: false
+        },
+        {
+            id: 'writing', icon: '✍️', title: 'Writing - Simple Sentences', pages: 'Pages 37-45',
+            faDesc: 'فاعل، فعل و مفعول در جمله‌های ساده', ready: false
+        },
+        {
+            id: 'whatlearned', icon: '🏁', title: 'What You Learned', pages: 'Page 47',
+            faDesc: 'مرور پایانی درس با داستان شنیداری', ready: false
         }
     ];
 
@@ -1406,7 +1482,8 @@
     let currentEasyStep = 0;
     let currentCardIdx = 0;
     let curSection = 0;
-    let lesson = SECTIONS[0];
+    let curLesson = 0;
+    let lesson = SECTIONS.find(s => s.ready) || SECTIONS[0];
     let flashcards = [];
 
     function LT() { return lesson; }
@@ -1435,6 +1512,7 @@
     }
 
     function openSection(i) {
+        if (!SECTIONS[i] || !SECTIONS[i].ready) return;
         if (window.speechSynthesis && window.speechSynthesis.cancel) window.speechSynthesis.cancel();
         curSection = i;
         lesson = SECTIONS[i];
@@ -1477,23 +1555,85 @@
             card.appendChild(ic); card.appendChild(tx);
             c.appendChild(card);
         });
+
+        const back = document.createElement('button');
+        back.className = 'btn secondary';
+        back.innerText = '↩️ بازگشت به مسیر درس';
+        back.onclick = () => {
+            window.speechSynthesis && window.speechSynthesis.cancel();
+            renderPath();
+            showScreen('lessonScreen');
+        };
+        c.appendChild(back);
     }
 
-    function renderToc() {
-        const list = document.getElementById('tocList');
+    // ============================================================
+    // --- HOME: the three lessons of the book
+    // ============================================================
+    function renderLessons() {
+        const list = document.getElementById('lessonList');
+        list.innerHTML = '';
+        LESSONS.forEach((l, i) => {
+            const card = document.createElement('div');
+            card.className = 'mode-card lesson-card' + (l.ready ? '' : ' future-card');
+            card.innerHTML = `
+                <div class="lesson-num">${l.number}</div>
+                <div class="mode-text">
+                    <h2>${l.title}</h2>
+                    <p>${l.faTitle} — ${l.faDesc}</p>
+                </div>
+                <span class="toc-page-badge">${l.pages}</span>`;
+            if (l.ready) card.onclick = () => openLesson(i);
+            list.appendChild(card);
+        });
+    }
+
+    function openLesson(i) {
+        if (!LESSONS[i] || !LESSONS[i].ready) return;
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        curLesson = i;
+        renderPath();
+        showScreen('lessonScreen');
+    }
+
+    // ============================================================
+    // --- LESSON PATH: chunks in book-page order, each opens its page
+    // ============================================================
+    function renderPath() {
+        const l = LESSONS[curLesson];
+        const head = document.getElementById('lessonHead');
+        head.innerHTML = '';
+        const h = document.createElement('h2');
+        h.innerText = l.title;
+        const p = document.createElement('p');
+        p.innerText = `${l.faTitle} · ${l.pages} — بخش‌ها به ترتیب صفحه‌های کتاب`;
+        head.appendChild(h);
+        head.appendChild(p);
+
+        const list = document.getElementById('pathList');
         list.innerHTML = '';
         SECTIONS.forEach((s, i) => {
+            const node = document.createElement('div');
+            node.className = 'path-node' + (s.ready ? '' : ' path-soon');
+
+            const dot = document.createElement('div');
+            dot.className = 'path-dot';
+            dot.innerText = s.icon;
+
             const card = document.createElement('div');
-            card.className = 'mode-card';
-            card.onclick = () => openSection(i);
+            card.className = 'path-card';
             card.innerHTML = `
-                <div class="mode-icon">${s.icon}</div>
-                <div class="mode-text">
-                    <h2>${s.title}</h2>
-                    <p>${s.faDesc}</p>
-                </div>
-                <span class="toc-page-badge">${s.pages}</span>`;
-            list.appendChild(card);
+                <h2>${s.title}</h2>
+                <p>${s.faDesc}</p>
+                <div class="path-meta">
+                    <span class="toc-page-badge">${s.pages}</span>
+                    <span class="path-status${s.ready ? ' ready' : ''}">${s.ready ? 'آماده' : 'به‌زودی'}</span>
+                </div>`;
+            if (s.ready) card.onclick = () => openSection(i);
+
+            node.appendChild(dot);
+            node.appendChild(card);
+            list.appendChild(node);
         });
     }
 
@@ -2030,7 +2170,7 @@
 
     // Init
     loadFlashcards();
-    renderToc();
+    renderLessons();
 </script>
 
 </body>
