@@ -1231,8 +1231,73 @@
         "relationships": "روابط", "others": "دیگران", "days": "روزها", "day": "روز", "gives": "می‌دهد"
     };
 
+    // --- Lesson 3 vocabulary (art, culture and handicrafts, pages 81-107)
+    const dictL3 = {
+        "tourist": "گردشگر", "sir": "قربان / آقا", "handicraft": "صنایع دستی", "handicrafts": "صنایع دستی",
+        "range": "طیف / گستره", "hand-made": "دست‌ساز", "product": "محصول", "products": "محصولات",
+        "carpet": "فرش", "carpets": "فرش‌ها", "pottery": "سفال", "tilework": "کاشی‌کاری", "metalwork": "فلزکاری",
+        "seems": "به نظر می‌رسد", "expensive": "گران", "price": "قیمت", "depends": "بستگی دارد",
+        "depend": "بستگی داشتن", "its": "آن (ملکی)", "size": "اندازه", "instead": "به‌جایش",
+        "termeh": "ترمه", "qashqai": "قشقایی", "gabbeh": "گبه", "touching": "تأثیرگذار",
+        "dollars": "دلار", "percent": "درصد", "discount": "تخفیف", "calligraphic": "خوشنویسی",
+        "tile": "کاشی", "only": "فقط", "both": "هر دو", "pack": "بسته‌بندی کردن",
+        "shop": "مغازه", "made": "ساخته", "beautiful": "زیبا", "items": "اقلام", "item": "قلم / مورد",
+        "father's": "پدر (ملکی)", "workshop": "کارگاه", "store": "فروشگاه", "members": "اعضا",
+        "member": "عضو", "help": "کمک کردن", "business": "کسب‌وکار", "lucky": "خوش‌شانس",
+        "lovely": "دلپذیر", "appreciate": "ارزش گذاشتن / ستودن", "knowing": "دانستن", "booklet": "کتابچه",
+
+        "aunt": "خاله / عمه", "bought": "خرید (قسمت دوم buy)", "decorative": "تزئینی", "wall": "دیوار",
+        "clock": "ساعت", "vast": "پهناور", "country": "کشور", "southwest": "جنوب غربی", "asia": "آسیا",
+        "craftsmen": "صنعتگران (مرد)", "craftswomen": "صنعتگران (زن)", "hard-working": "سخت‌کوش",
+        "weaving": "بافتن", "weave": "بافتن", "rug": "گلیم", "gold": "طلا", "silver": "نقره",
+        "valuable": "ارزشمند", "metals": "فلزات", "metal": "فلز", "fingerprint": "اثر انگشت",
+        "unique": "بی‌همتا / یکتا", "animal": "حیوان", "diversity": "تنوع", "lorestan": "لرستان",
+        "amazing": "شگفت‌انگیز", "custom": "آداب و رسوم", "customs": "آداب و رسوم", "traditional": "سنتی",
+        "usual": "معمول", "area": "منطقه", "local": "محلی", "identity": "هویت", "policeman": "پلیس",
+        "searching": "جست‌وجو کردن", "man": "مرد", "reflect": "بازتاب دادن", "reflects": "بازتاب می‌دهد",
+        "poem": "شعر", "poet's": "شاعر (ملکی)", "love": "عشق / دوست داشتن", "nature": "طبیعت",
+        "humankind": "بشر", "wars": "جنگ‌ها", "society": "جامعه", "appreciates": "ارج می‌نهد", "somebody": "کسی",
+
+        "imagination": "تخیل", "skill": "مهارت", "shows": "نشان می‌دهد", "nation": "ملت", "nations": "ملت‌ها",
+        "fact": "واقعیت", "study": "مطالعه کردن / درس خواندن", "examples": "نمونه‌ها", "mean": "معنی داشتن",
+        "making": "ساختن", "using": "استفاده کردن", "hands": "دست‌ها", "own": "خودِ", "selling": "فروختن",
+        "economy": "اقتصاد", "introduce": "معرفی کردن", "produce": "تولید کردن", "sell": "فروختن",
+        "tourists": "گردشگران", "asian": "آسیایی", "income": "درآمد", "comes": "می‌آید",
+        "five-thousand-year-old": "پنج‌هزارساله", "artistic": "هنری", "works": "آثار",
+        "including": "از جمله", "painting": "نقاشی", "calligraphy": "خوشنویسی", "rugs": "گلیم‌ها",
+        "across": "در سراسر", "get": "گرفتن", "back": "برگشتن / پشت", "excellent": "عالی",
+        "souvenirs": "سوغات", "souvenir": "سوغاتی", "friends": "دوستان", "quite": "کاملاً / بسیار",
+        "famous": "مشهور", "collections": "مجموعه‌ها", "persian": "پارسی / ایرانی", "important": "مهم",
+        "museums": "موزه‌ها", "name": "نام بردن", "richest": "غنی‌ترین", "cultural": "فرهنگی",
+        "among": "در میان", "moral": "اخلاقی", "social": "اجتماعی", "values": "ارزش‌ها", "value": "ارزش",
+        "natural": "طبیعی", "beauty": "زیبایی", "producing": "تولید کردن", "wood": "چوب", "simple": "ساده",
+        "materials": "مواد", "young": "جوان", "girl": "دختر", "weaves": "می‌بافد", "silk": "ابریشم",
+        "village": "روستا", "azarbaijan": "آذربایجان", "kordestan": "کردستان", "homelands": "سرزمین‌های خود",
+
+        "if": "اگر", "rain": "باران", "rains": "باران می‌بارد", "exam": "امتحان", "exams": "امتحان‌ها",
+        "pass": "قبول شدن", "prize": "جایزه", "hurt": "آسیب زدن", "yourself": "خودت", "jump": "پریدن",
+        "river": "رودخانه", "phone": "زنگ زدن / تلفن", "become": "شدن", "successful": "موفق", "happy": "خوشحال",
+        "start": "شروع کردن", "miss": "از دست دادن", "bus": "اتوبوس", "hurry": "عجله کردن",
+        "understand": "فهمیدن", "artist": "هنرمند", "practise": "تمرین کردن", "draw": "کشیدن (نقاشی)",
+        "pictures": "تصویرها", "save": "ذخیره کردن / پس‌انداز کردن", "money": "پول", "sunny": "آفتابی",
+        "bazaar": "بازار", "open": "باز کردن", "month": "ماه", "everything": "همه‌چیز", "plans": "برنامه‌ها",
+        "doctor": "پزشک", "nurse": "پرستار", "farmer": "کشاورز", "physics": "فیزیک",
+        "condition": "شرط", "future": "آینده", "result": "نتیجه", "charity": "امور خیریه"
+    };
+
+    // Additional Lesson 3 words used inside its texts
+    const dictL3b = {
+        "iranian": "ایرانی", "handmade": "دست‌ساز", "i'd": "من می‌خواهم (I would)", "isfahan": "اصفهان",
+        "wow": "وای", "you'll": "تو خواهی (you will)", "sure": "حتماً / مطمئن", "after": "بعد از",
+        "done": "انجام‌شده (well done = آفرین)", "art": "هنر", "interested": "علاقه‌مند", "yeah": "بله (خودمانی)",
+        "goes": "می‌رود / پیش می‌رود", "june": "ژوئن (ماه ششم میلادی)", "hardworking": "سخت‌کوش",
+        "person's": "شخص (ملکی)", "show": "نشان دادن", "create": "خلق کردن", "skillful": "ماهرانه",
+        "ways": "راه‌ها", "country's": "کشور (ملکی)", "countries": "کشورها", "fivethousandyearold": "پنج‌هزارساله",
+        "etc": "و غیره", "reflecting": "بازتاب دادن (reflect)", "artworks": "آثار هنری"
+    };
+
     // One merged word bank for tooltips across the whole book
-    const DICT = Object.assign({}, dict1, dict2, dict3, dictL2, dictL2b, dictExtra);
+    const DICT = Object.assign({}, dict1, dict2, dict3, dictL2, dictL2b, dictL3, dictL3b, dictExtra);
 
     // --- SECTION: Warm-up & Vocabulary (Pages 21-23)
     const warmupReading = [
@@ -1659,10 +1724,10 @@
             faDesc: 'مکالمه، واژگان، ریدینگ، گرامر و شنیداری'
         },
         {
-            id: 'l3', number: 3, ready: false,
+            id: 'l3', number: 3, ready: true,
             title: 'Lesson 3 - Art and Culture',
             faTitle: 'درس ۳: هنر و فرهنگ', pages: 'Pages 81-107',
-            faDesc: 'به‌زودی اضافه می‌شود'
+            faDesc: 'مکالمه، واژگان، ریدینگ، گرامر و شنیداری'
         }
     ];
 
@@ -2032,8 +2097,301 @@
         }
     ];
 
+    // ============================================================
+    // --- LESSON 3 CONTENT (pages 81-107, from the coursebook PDF)
+    // ============================================================
+    const l3Conversation = [
+        { speaker: "Reza", text: "How can I help you, sir?", fa: "چطور می‌توانم کمکتان کنم، قربان؟" },
+        { speaker: "Tourist", text: "I am looking for some Iranian handicrafts.", fa: "دنبال چند صنایع دستی ایرانی می‌گردم." },
+        { speaker: "Reza", text: "Here you can find a range of Iranian hand-made products, from carpets to pottery and tilework, but we don't sell metalwork.", fa: "اینجا می‌توانید طیفی از محصولات دست‌ساز ایرانی را پیدا کنید؛ از فرش تا سفال و کاشی‌کاری، اما فلزکاری نمی‌فروشیم." },
+        { speaker: "Tourist", text: "I'd like to buy a Persian carpet, but it seems too expensive.", fa: "می‌خواهم یک فرش ایرانی بخرم، اما به نظر خیلی گران است." },
+        { speaker: "Reza", text: "The price depends on its size. Instead, you can take an Isfahan Termeh or a Qashqai Gabbeh.", fa: "قیمت به اندازهٔ آن بستگی دارد. به‌جایش می‌توانید یک ترمهٔ اصفهان یا گبهٔ قشقایی بردارید." },
+        { speaker: "Tourist", text: "Wow! How touching this Gabbeh is! How much is it?", fa: "وای! این گبه چقدر تأثیرگذار است! قیمتش چند است؟" },
+        { speaker: "Reza", text: "It is 85 dollars. If you buy more than 100 dollars, you'll get a 20 percent discount. You can take this calligraphic tile for only 30 dollars.", fa: "۸۵ دلار است. اگر بیش از ۱۰۰ دلار خرید کنید، ۲۰ درصد تخفیف می‌گیرید. این کاشی خوشنویسی را می‌توانید فقط ۳۰ دلار ببرید." },
+        { speaker: "Tourist", text: "Well, I'll take both. Please pack them for me.", fa: "خب، هر دو را می‌خرم. لطفاً آن‌ها را برایم بسته‌بندی کنید." },
+        { speaker: "Reza", text: "Yes, sure.", fa: "بله، حتماً." },
+        { speaker: "Tourist", text: "Do you work for this shop? Who has made these beautiful items?", fa: "شما در این مغازه کار می‌کنید؟ چه کسی این اقلام زیبا را ساخته است؟" },
+        { speaker: "Reza", text: "Actually, it is my father's workshop and store. I work here after school. All my family members work here to help our family business.", fa: "در واقع این کارگاه و مغازهٔ پدرم است. بعد از مدرسه اینجا کار می‌کنم. همهٔ اعضای خانواده‌ام برای کمک به کسب‌وکار خانوادگی‌مان اینجا کار می‌کنند." },
+        { speaker: "Tourist", text: "Well done! How lucky you are to work in such a lovely shop! I really appreciate the culture and art of Iran.", fa: "آفرین! چقدر خوش‌شانسی که در چنین مغازهٔ دلپذیری کار می‌کنی! من واقعاً فرهنگ و هنر ایران را می‌ستایم." },
+        { speaker: "Reza", text: "Thank you very much. If you are interested in knowing more about our products, you can check this booklet.", fa: "خیلی ممنون. اگر علاقه دارید دربارهٔ محصولات ما بیشتر بدانید، می‌توانید این کتابچه را ببینید." }
+    ];
+
+    const l3ConversationSeq = [
+        { type: 'word', text: 'handicrafts', meaning: 'صنایع دستی' },
+        { type: 'word', text: 'carpet', meaning: 'فرش' },
+        { type: 'build', target: 'I am looking for some Iranian handicrafts', fa: 'دنبال چند صنایع دستی ایرانی می‌گردم', bank: ['I', 'am', 'looking', 'for', 'some', 'Iranian', 'handicrafts'] },
+        { type: 'word', text: 'pottery', meaning: 'سفال' },
+        { type: 'build', target: "I'd like to buy a Persian carpet", fa: 'می‌خواهم یک فرش ایرانی بخرم', bank: ["I'd", 'like', 'to', 'buy', 'a', 'Persian', 'carpet'] },
+        { type: 'word', text: 'discount', meaning: 'تخفیف' },
+        { type: 'build', target: 'The price depends on its size', fa: 'قیمت به اندازهٔ آن بستگی دارد', bank: ['The', 'price', 'depends', 'on', 'its', 'size'] },
+        { type: 'word', text: 'pack', meaning: 'بسته‌بندی کردن' },
+        { type: 'build', target: 'Please pack them for me', fa: 'لطفاً آن‌ها را برای من بسته‌بندی کنید', bank: ['Please', 'pack', 'them', 'for', 'me'] },
+        { type: 'build', target: "You'll get a 20 percent discount", fa: '۲۰ درصد تخفیف می‌گیرید', bank: ["You'll", 'get', 'a', '20', 'percent', 'discount'] },
+        { type: 'build', target: 'How much is it', fa: 'قیمتش چند است', bank: ['How', 'much', 'is', 'it'] }
+    ];
+
+    const l3ConversationListening = [
+        { audioText: "I am looking for some Iranian handicrafts.", display: "I am looking for some Iranian _____.", missing: "handicrafts", options: ["handicrafts", "products", "carpets", "souvenirs"] },
+        { audioText: "I'd like to buy a Persian carpet.", display: "I'd like to buy a Persian _____.", missing: "carpet", options: ["carpet", "pottery", "clock", "booklet"] },
+        { audioText: "The price depends on its size.", display: "The price _____ on its size.", missing: "depends", options: ["depends", "looks", "works", "waits"] },
+        { audioText: "It is 85 dollars.", display: "It is _____ dollars.", missing: "85", options: ["85", "58", "45", "95"] },
+        { audioText: "Please pack them for me.", display: "Please _____ them for me.", missing: "pack", options: ["pack", "paint", "pick", "park"] },
+        { audioText: "I really appreciate the culture and art of Iran.", display: "I really _____ the culture and art of Iran.", missing: "appreciate", options: ["appreciate", "understand", "believe", "remember"] }
+    ];
+
+    const l3NewWords = [
+        { speaker: "__story__", text: "My aunt bought a decorative wall clock.", fa: "عمه‌ام یک ساعت دیواری تزئینی خرید." },
+        { speaker: "__story__", text: "Iran is a vast country in Southwest Asia.", fa: "ایران کشوری پهناور در جنوب غربی آسیاست." },
+        { speaker: "__story__", text: "Iranian craftsmen and craftswomen are hard-working people.", fa: "صنعتگران مرد و زن ایرانی مردمانی سخت‌کوش هستند." },
+        { speaker: "__story__", text: "He is weaving a rug.", fa: "او در حال بافتن یک گلیم است." },
+        { speaker: "__story__", text: "Gold and silver are valuable metals.", fa: "طلا و نقره فلزات ارزشمندی هستند." },
+        { speaker: "__story__", text: "Each person's fingerprint is unique.", fa: "اثر انگشت هر فرد یکتاست." },
+        { speaker: "__story__", text: "The animal diversity of Lorestan is amazing.", fa: "تنوع جانوری لرستان شگفت‌انگیز است." },
+        { speaker: "custom", text: "traditional or usual things that people do in an area. My uncle is interested in old local customs.", fa: "آداب و رسوم: کارهای سنتی یا معمولی که مردم یک منطقه انجام می‌دهند. عمویم به آداب و رسوم محلی قدیمی علاقه‌مند است." },
+        { speaker: "identity", text: "Who or what a thing or person is. The policeman is searching for the identity of that man.", fa: "هویت: اینکه یک چیز یا شخص چه کسی یا چه چیزی است. پلیس در جست‌وجوی هویت آن مرد است." },
+        { speaker: "reflect", text: "to show something. This poem reflects the poet's love of nature.", fa: "بازتاب دادن: نشان دادن چیزی. این شعر عشق شاعر به طبیعت را بازتاب می‌دهد." },
+        { speaker: "humankind", text: "all people. The World Wars have been really bad for humankind.", fa: "بشر: همهٔ مردم. جنگ‌های جهانی برای بشر واقعاً بد بوده‌اند." },
+        { speaker: "appreciate", text: "to value somebody or something. Each society appreciates its art and culture.", fa: "ارزش گذاشتن: ارزش قائل شدن برای کسی یا چیزی. هر جامعه هنر و فرهنگ خود را ارج می‌نهد." }
+    ];
+
+    const l3NewWordsSeq = [
+        { type: 'word', text: 'decorative', meaning: 'تزئینی' },
+        { type: 'word', text: 'vast', meaning: 'پهناور' },
+        { type: 'build', target: 'My aunt bought a decorative wall clock', fa: 'عمه‌ام یک ساعت دیواری تزئینی خرید', bank: ['My', 'aunt', 'bought', 'a', 'decorative', 'wall', 'clock'] },
+        { type: 'word', text: 'craftsman', meaning: 'صنعتگر' },
+        { type: 'build', target: 'Iran is a vast country in Southwest Asia', fa: 'ایران کشوری پهناور در جنوب غربی آسیاست', bank: ['Iran', 'is', 'a', 'vast', 'country', 'in', 'Southwest', 'Asia'] },
+        { type: 'word', text: 'valuable', meaning: 'ارزشمند' },
+        { type: 'build', target: 'He is weaving a rug', fa: 'او در حال بافتن یک گلیم است', bank: ['He', 'is', 'weaving', 'a', 'rug'] },
+        { type: 'word', text: 'unique', meaning: 'بی‌همتا' },
+        { type: 'build', target: 'Gold and silver are valuable metals', fa: 'طلا و نقره فلزات ارزشمندی هستند', bank: ['Gold', 'and', 'silver', 'are', 'valuable', 'metals'] },
+        { type: 'word', text: 'diversity', meaning: 'تنوع' },
+        { type: 'build', target: "Each person's fingerprint is unique", fa: 'اثر انگشت هر فرد یکتاست', bank: ['Each', "person's", 'fingerprint', 'is', 'unique'] },
+        { type: 'build', target: 'The animal diversity of Lorestan is amazing', fa: 'تنوع جانوری لرستان شگفت‌انگیز است', bank: ['The', 'animal', 'diversity', 'of', 'Lorestan', 'is', 'amazing'] }
+    ];
+
+    const l3NewWordsListening = [
+        { audioText: "My aunt bought a decorative wall clock.", display: "My aunt bought a decorative wall _____.", missing: "clock", options: ["clock", "carpet", "pot", "rug"] },
+        { audioText: "Iran is a vast country in Southwest Asia.", display: "Iran is a vast country in _____ Asia.", missing: "Southwest", options: ["Southwest", "Northeast", "Southeast", "North"] },
+        { audioText: "He is weaving a rug.", display: "He is _____ a rug.", missing: "weaving", options: ["weaving", "washing", "watching", "wearing"] },
+        { audioText: "Gold and silver are valuable metals.", display: "Gold and silver are valuable _____.", missing: "metals", options: ["metals", "materials", "minerals", "models"] },
+        { audioText: "Each person's fingerprint is unique.", display: "Each person's fingerprint is _____.", missing: "unique", options: ["unique", "usual", "useful", "ugly"] },
+        { audioText: "This poem reflects the poet's love of nature.", display: "This poem _____ the poet's love of nature.", missing: "reflects", options: ["reflects", "reduces", "repeats", "refuses"] }
+    ];
+
+    const l3Reading = [
+        { speaker: "__story__", text: "Art is what people create with imagination and skill. As a part of culture, it shows the way of life and identity of a nation and reflects the history of a society. In fact, the history of humankind is the history of art. If we want to know a country or a nation well, we should study its art.", fa: "هنر چیزی است که مردم با تخیل و مهارت می‌سازند. هنر به‌عنوان بخشی از فرهنگ، شیوهٔ زندگی و هویت یک ملت را نشان می‌دهد و تاریخ یک جامعه را بازتاب می‌کند. در واقع تاریخ بشر تاریخ هنر است. اگر بخواهیم کشوری یا ملتی را خوب بشناسیم، باید هنر آن را مطالعه کنیم." },
+        { speaker: "__story__", text: "Handicrafts are good examples of the art and culture of a country. By handicrafts, we mean making decorative items in a skillful way using our hands. Each country and culture has its own handicrafts.", fa: "صنایع دستی نمونه‌های خوبی از هنر و فرهنگ یک کشور هستند. منظور از صنایع دستی، ساختن اشیای تزئینی به شکلی ماهرانه با دست است. هر کشور و فرهنگی صنایع دستی خودش را دارد." },
+        { speaker: "__story__", text: "Making and selling handicrafts are good ways to help a country's economy and introduce its culture to other nations. Many people of the world produce handicrafts and sell them to tourists. In some Asian countries a part of the country's income comes from making and selling handicrafts.", fa: "ساختن و فروش صنایع دستی راه‌های خوبی برای کمک به اقتصاد کشور و معرفی فرهنگ آن به ملت‌های دیگر است. بسیاری از مردم جهان صنایع دستی تولید می‌کنند و آن را به گردشگران می‌فروشند. در برخی کشورهای آسیایی بخشی از درآمد کشور از ساختن و فروش صنایع دستی به دست می‌آید." },
+        { speaker: "__story__", text: "Iran has a five-thousand-year-old history of artistic works and handicrafts including pottery, painting, calligraphy, rugs and carpets, etc. If you travel across Iran, you'll get back home with excellent handicrafts as souvenirs for your family and friends.", fa: "ایران تاریخی پنج‌هزارساله در آثار هنری و صنایع دستی دارد؛ از جمله سفال، نقاشی، خوشنویسی، گلیم و فرش. اگر در ایران سفر کنی، با صنایع دستی عالی به‌عنوان سوغات برای خانواده و دوستانت به خانه برمی‌گردی." },
+        { speaker: "__story__", text: "Iranian art is also quite famous all around the world. There are very excellent collections of Persian art in many important museums of the world. If we want to name countries with richest art and cultural diversity, Iran is among them. Persian art is famous in the world for reflecting moral and social values of Iranian people and the natural beauty of this vast country.", fa: "هنر ایرانی در سراسر جهان نیز بسیار مشهور است. مجموعه‌های بسیار عالی از هنر پارسی در موزه‌های مهم جهان وجود دارد. اگر بخواهیم کشورهایی با غنی‌ترین هنر و تنوع فرهنگی را نام ببریم، ایران در میان آن‌هاست. هنر پارسی در جهان به دلیل بازتاب ارزش‌های اخلاقی و اجتماعی مردم ایران و زیبایی طبیعی این کشور پهناور مشهور است." },
+        { speaker: "__story__", text: "Iranian craftsmen and craftswomen are famous for producing very unique artworks from wood, metal and other simple materials around them. Many people of the world appreciate the art and skill of a young Iranian girl who weaves a beautiful silk carpet in a small village of Azarbaijan or Kordestan. When tourists buy Persian rugs or carpets, they take a part of Iranian art and culture to their homelands.", fa: "صنعتگران و هنرمندان ایرانی به تولید آثار بسیار بی‌همتا از چوب، فلز و دیگر مواد سادهٔ اطرافشان شهرت دارند. بسیاری از مردم جهان هنر و مهارت دختر جوان ایرانی را که در روستایی کوچک در آذربایجان یا کردستان فرش ابریشمی زیبایی می‌بافد، می‌ستایند. وقتی گردشگران گلیم یا فرش ایرانی می‌خرند، بخشی از هنر و فرهنگ ایران را به سرزمین خود می‌برند." }
+    ];
+
+    const l3ReadingSeq = [
+        { type: 'word', text: 'imagination', meaning: 'تخیل' },
+        { type: 'word', text: 'identity', meaning: 'هویت' },
+        { type: 'build', target: 'Art is what people create with imagination and skill', fa: 'هنر چیزی است که مردم با تخیل و مهارت می‌سازند', bank: ['Art', 'is', 'what', 'people', 'create', 'with', 'imagination', 'and', 'skill'] },
+        { type: 'word', text: 'economy', meaning: 'اقتصاد' },
+        { type: 'build', target: 'Handicrafts are good examples of the art and culture of a country', fa: 'صنایع دستی نمونه‌های خوبی از هنر و فرهنگ یک کشور هستند', bank: ['Handicrafts', 'are', 'good', 'examples', 'of', 'the', 'art', 'and', 'culture', 'of', 'a', 'country'] },
+        { type: 'word', text: 'souvenir', meaning: 'سوغات' },
+        { type: 'build', target: "You'll get back home with excellent souvenirs", fa: 'با سوغات‌های عالی به خانه برمی‌گردی', bank: ["You'll", 'get', 'back', 'home', 'with', 'excellent', 'souvenirs'] },
+        { type: 'word', text: 'diversity', meaning: 'تنوع' },
+        { type: 'build', target: 'Iranian art is famous all around the world', fa: 'هنر ایرانی در سراسر جهان مشهور است', bank: ['Iranian', 'art', 'is', 'famous', 'all', 'around', 'the', 'world'] },
+        { type: 'word', text: 'moral', meaning: 'اخلاقی' },
+        { type: 'build', target: 'Iran has a five-thousand-year-old history of artistic works', fa: 'ایران تاریخی پنج‌هزارساله از آثار هنری دارد', bank: ['Iran', 'has', 'a', 'five-thousand-year-old', 'history', 'of', 'artistic', 'works'] },
+        { type: 'word', text: 'appreciate', meaning: 'ارزش گذاشتن' },
+        { type: 'build', target: 'When tourists buy Persian carpets they take a part of Iranian art', fa: 'وقتی گردشگران فرش ایرانی می‌خرند بخشی از هنر ایران را می‌برند', bank: ['When', 'tourists', 'buy', 'Persian', 'carpets', 'they', 'take', 'a', 'part', 'of', 'Iranian', 'art'] }
+    ];
+
+    const l3ReadingListening = [
+        { audioText: "Art is what people create with imagination and skill.", display: "Art is what people create with imagination and _____.", missing: "skill", options: ["skill", "money", "water", "time"] },
+        { audioText: "Handicrafts are good examples of the art and culture of a country.", display: "Handicrafts are good examples of the art and culture of a _____.", missing: "country", options: ["country", "city", "village", "family"] },
+        { audioText: "Making and selling handicrafts help a country's economy.", display: "Making and selling handicrafts help a country's _____.", missing: "economy", options: ["economy", "energy", "history", "identity"] },
+        { audioText: "Iran has a five-thousand-year-old history of artistic works.", display: "Iran has a five-thousand-year-old _____ of artistic works.", missing: "history", options: ["history", "holiday", "hobby", "hotel"] },
+        { audioText: "Persian art is famous for reflecting moral and social values.", display: "Persian art is famous for reflecting moral and social _____.", missing: "values", options: ["values", "videos", "visits", "voices"] },
+        { audioText: "When tourists buy Persian carpets, they take a part of Iranian art to their homelands.", display: "When tourists buy Persian carpets, they take a part of Iranian _____ to their homelands.", missing: "art", options: ["art", "water", "food", "soil"] }
+    ];
+
+    const l3Speaking = [
+        { speaker: "A", text: "We want to buy a new store.", fa: "می‌خواهیم یک فروشگاه جدید بخریم." },
+        { speaker: "B", text: "Really, what for?", fa: "واقعاً، برای چه؟" },
+        { speaker: "A", text: "We want to make and sell more pottery work.", fa: "می‌خواهیم کار سفالی بیشتری بسازیم و بفروشیم." },
+        { speaker: "B", text: "I've heard people are really interested in your work.", fa: "شنیده‌ام مردم واقعاً به کار شما علاقه‌مندند." },
+        { speaker: "A", text: "Yeah, if everything goes well, we will open the new store in June.", fa: "بله، اگر همه‌چیز خوب پیش برود، در ژوئن فروشگاه جدید را باز می‌کنیم." }
+    ];
+
+    const l3SpeakingSeq = [
+        { type: 'word', text: 'condition', meaning: 'شرط' },
+        { type: 'word', text: 'future', meaning: 'آینده' },
+        { type: 'build', target: 'If everything goes well we will open the new store', fa: 'اگر همه‌چیز خوب پیش برود فروشگاه جدید را باز می‌کنیم', bank: ['If', 'everything', 'goes', 'well', 'we', 'will', 'open', 'the', 'new', 'store'] },
+        { type: 'word', text: 'pottery', meaning: 'سفال' },
+        { type: 'build', target: 'We want to make and sell more pottery work', fa: 'می‌خواهیم کار سفالی بیشتری بسازیم و بفروشیم', bank: ['We', 'want', 'to', 'make', 'and', 'sell', 'more', 'pottery', 'work'] },
+        { type: 'word', text: 'charity', meaning: 'امور خیریه' },
+        { type: 'build', target: 'If our plans work we will sell more pottery', fa: 'اگر برنامه‌هایمان جواب بدهد سفال بیشتری می‌فروشیم', bank: ['If', 'our', 'plans', 'work', 'we', 'will', 'sell', 'more', 'pottery'] },
+        { type: 'word', text: 'result', meaning: 'نتیجه' },
+        { type: 'build', target: 'I will become a doctor in the future', fa: 'من در آینده پزشک می‌شوم', bank: ['I', 'will', 'become', 'a', 'doctor', 'in', 'the', 'future'] }
+    ];
+
+    const l3SpeakingListening = [
+        { audioText: "If everything goes well, we will open the new store in June.", display: "If everything goes well, we will open the new store in _____.", missing: "June", options: ["June", "July", "May", "March"] },
+        { audioText: "We want to make and sell more pottery work.", display: "We want to make and sell more _____ work.", missing: "pottery", options: ["pottery", "paper", "metal", "wood"] },
+        { audioText: "I have heard people are really interested in your work.", display: "I have heard people are really _____ in your work.", missing: "interested", options: ["interested", "interesting", "interest", "interests"] },
+        { audioText: "If all goes well, they will open the new store.", display: "If all goes _____, they will open the new store.", missing: "well", options: ["well", "will", "wall", "wool"] },
+        { audioText: "Mohammad is going to become a doctor in the future.", display: "Mohammad is going to become a _____ in the future.", missing: "doctor", options: ["doctor", "teacher", "farmer", "driver"] },
+        { audioText: "Amir is going to study Physics.", display: "Amir is going to study _____.", missing: "Physics", options: ["Physics", "French", "History", "Art"] }
+    ];
+
+    // --- GRAMMAR L3: Conditional Type I (pages 95-97)
+    const GRAMMAR_L3_STEPS = [
+        {
+            type: 'teach', title: 'جملهٔ شرطی نوع اول',
+            body: 'جملهٔ شرطی نوع اول دربارهٔ کاری ممکن در آینده است: اگر شرطی اتفاق بیفتد، نتیجه‌اش رخ می‌دهد. ساختار: if + حال ساده، سپس will + شکل سادهٔ فعل.',
+            rule: 'If + present simple, … will + base verb',
+            examples: [
+                { en: 'If you study hard, you will pass the exams.', fa: 'اگر سخت درس بخوانی، امتحان‌ها را قبول می‌شوی.' },
+                { en: 'If my friends come, I will become happy.', fa: 'اگر دوستانم بیایند، خوشحال می‌شوم.' }
+            ]
+        },
+        { type: 'mini', q: 'If it rains, we _____ at home.', fa: 'اگر باران ببارد، خانه می‌مانیم.', options: ['will stay', 'stay', 'stayed'], answer: 'will stay', say: 'If it rains, we will stay at home.', why: 'بخش نتیجه با will + شکل سادهٔ فعل می‌آید.' },
+        { type: 'mini', q: 'If you work hard, you _____ successful.', fa: 'اگر سخت کار کنی، موفق می‌شوی.', options: ['will become', 'become', 'became'], answer: 'will become', say: 'If you work hard, you will become successful.', why: 'نتیجهٔ شرط با will بیان می‌شود.' },
+
+        {
+            type: 'teach', title: 'ترتیب دو بخش جمله',
+            body: 'بخش if می‌تواند اول یا آخر جمله بیاید. اگر اول بیاید، بعد از آن کاما می‌گذاریم؛ اگر آخر بیاید، کاما لازم نیست.',
+            rule: 'If …, … . · … if … .',
+            examples: [
+                { en: "I'll phone you if I have time.", fa: 'اگر وقت داشته باشم به تو زنگ می‌زنم.' },
+                { en: 'Maryam will get a prize if she answers the question correctly.', fa: 'مریم اگر به سؤال درست پاسخ دهد جایزه می‌گیرد.' },
+                { en: "You'll hurt yourself if you jump into the river.", fa: 'اگر در رودخانه بپری به خودت آسیب می‌زنی.' }
+            ]
+        },
+        { type: 'mini', q: 'We will go out _____ the weather is good.', fa: 'اگر هوا خوب باشد بیرون می‌رویم.', options: ['if', 'if will', 'will if'], answer: 'if', say: 'We will go out if the weather is good.', why: 'بخش شرط با if شروع می‌شود.' },
+        { type: 'mini', q: '_____ you study hard, you will pass.', fa: 'اگر سخت درس بخوانی، قبول می‌شوی.', options: ['If', 'Will', 'Do'], answer: 'If', say: 'If you study hard, you will pass.', why: 'جملهٔ شرطی با If شروع می‌شود.' },
+
+        {
+            type: 'teach', title: 'بعد از if هرگز will نمی‌آید',
+            body: 'در بخش شرط (بعد از if) فعل حال ساده می‌آید. will فقط در بخش نتیجه به کار می‌رود.',
+            rule: 'If it rains, we will stay home. (نه: if it will rain)',
+            examples: [
+                { en: 'If she comes, we will start.', fa: 'اگر او بیاید، شروع می‌کنیم.' },
+                { en: 'If they study, they will learn.', fa: 'اگر درس بخوانند، یاد می‌گیرند.' }
+            ]
+        },
+        { type: 'mini', q: 'If he _____ early, he will join us.', fa: 'اگر او زود بیاید، به ما می‌پیوندد.', options: ['comes', 'will come', 'came'], answer: 'comes', say: 'If he comes early, he will join us.', why: 'بعد از if فعل حال ساده می‌آید، نه will.' },
+        { type: 'mini', q: "We will miss the bus if we _____.", fa: 'اگر عجله نکنیم اتوبوس را از دست می‌دهیم.', options: ["don't hurry", "won't hurry", "didn't hurry"], answer: "don't hurry", say: "We will miss the bus if we don't hurry.", why: 'بخش شرط منفی با don’t ساخته می‌شود.' },
+
+        {
+            type: 'teach', title: 'منفی کردن جملهٔ شرطی',
+            body: 'برای منفی کردن بخش شرط از don’t / doesn’t و برای منفی کردن نتیجه از won’t (will not) استفاده می‌کنیم.',
+            rule: "If + don't/doesn't + verb, … won't + verb",
+            examples: [
+                { en: 'If you do not appreciate the value of art, you cannot become a successful artist.', fa: 'اگر ارزش هنر را درک نکنی، نمی‌توانی هنرمند موفقی شوی.' },
+                { en: "If it doesn't rain, we will go to the park.", fa: 'اگر باران نبارد، به پارک می‌رویم.' }
+            ]
+        },
+        { type: 'mini', q: "If you _____ understand the poem, read it again.", fa: 'اگر شعر را نمی‌فهمی، دوباره بخوانش.', options: ["don't", "won't", "aren't"], answer: "don't", say: "If you don't understand the poem, read it again.", why: 'منفی کردن بخش شرط با don’t.' },
+        { type: 'mini', q: "If she doesn't study, she _____ pass the exam.", fa: 'اگر درس نخواند، امتحان را قبول نمی‌شود.', options: ["won't", "doesn't", "isn't"], answer: "won't", say: "If she doesn't study, she won't pass the exam.", why: 'نتیجهٔ منفی با won’t ساخته می‌شود.' },
+
+        {
+            type: 'teach', title: 'can و may در بخش نتیجه',
+            body: 'در بخش نتیجه می‌توان به‌جای will از can (توانایی) یا may (احتمال) هم استفاده کرد.',
+            rule: 'If …, … can / may + base verb',
+            examples: [
+                { en: 'If you practise, you can draw beautiful pictures.', fa: 'اگر تمرین کنی، می‌توانی نقاشی‌های زیبا بکشی.' },
+                { en: 'If we save money, we may buy a carpet.', fa: 'اگر پول پس‌انداز کنیم، شاید فرش بخریم.' }
+            ]
+        },
+        { type: 'mini', q: 'If you read more, you _____ learn new words.', fa: 'اگر بیشتر بخوانی، می‌توانی واژه‌های تازه یاد بگیری.', options: ['can', 'will can', 'are'], answer: 'can', say: 'If you read more, you can learn new words.', why: 'برای توانایی در بخش نتیجه از can استفاده می‌کنیم.' },
+        { type: 'mini', q: 'If it is sunny, we _____ go to the bazaar.', fa: 'اگر آفتابی باشد، شاید به بازار برویم.', options: ['may', 'may to', 'are'], answer: 'may', say: 'If it is sunny, we may go to the bazaar.', why: 'may برای احتمال در نتیجه به کار می‌رود.' },
+
+        {
+            type: 'teach', title: 'در گفت‌وگوهای روزمره',
+            body: 'از این ساختار برای برنامه‌ها و نتایج آیندهٔ ممکن استفاده می‌کنیم؛ مثلاً وقتی دربارهٔ کاری که به شرطی وابسته است صحبت می‌کنیم.',
+            rule: 'If everything goes well, we will open the new store in June.',
+            examples: [
+                { en: 'If everything goes well, we will open the new store in June.', fa: 'اگر همه‌چیز خوب پیش برود، در ژوئن فروشگاه جدید را باز می‌کنیم.' },
+                { en: 'If our plans work, we will sell more pottery.', fa: 'اگر برنامه‌هایمان جواب بدهد، سفال بیشتری می‌فروشیم.' }
+            ]
+        },
+        { type: 'mini', q: 'If all goes well, they _____ the shop next month.', fa: 'اگر همه‌چیز خوب پیش برود، ماه بعد مغازه را باز می‌کنند.', options: ['will open', 'open', 'opened'], answer: 'will open', say: 'If all goes well, they will open the shop next month.', why: 'نتیجهٔ شرط با will + فعل ساده.' },
+        { type: 'mini', q: 'If our plans _____, we will travel to Isfahan.', fa: 'اگر برنامه‌هایمان جواب بدهد، به اصفهان سفر می‌کنیم.', options: ['work', 'will work', 'worked'], answer: 'work', say: 'If our plans work, we will travel to Isfahan.', why: 'بعد از if فعل حال ساده می‌آید.' },
+
+        {
+            type: 'teach', title: 'خلاصهٔ جملهٔ شرطی نوع اول', last: true,
+            body: 'همهٔ نکته‌های این بخش در یک نگاه:',
+            summary: [
+                'ساختار: If + حال ساده، will + شکل سادهٔ فعل',
+                'بخش if می‌تواند اول یا آخر جمله باشد (اگر اول باشد، کاما لازم است)',
+                'بعد از if هرگز will نمی‌آید',
+                'منفی: if + don’t/doesn’t · نتیجه: won’t',
+                'در نتیجه می‌توان از can / may هم استفاده کرد',
+                'برای برنامه‌ها و نتایج آیندهٔ ممکن به کار می‌رود'
+            ]
+        },
+
+        { type: 'test', q: 'If you study hard, you _____ the exams.', fa: 'اگر سخت درس بخوانی، امتحان‌ها را قبول می‌شوی.', options: ['will pass', 'pass', 'passed'], answer: 'will pass', say: 'If you study hard, you will pass the exams.', why: 'نتیجهٔ شرط با will + فعل ساده.' },
+        { type: 'test', q: 'If my friends _____, I will become happy.', fa: 'اگر دوستانم بیایند، خوشحال می‌شوم.', options: ['come', 'will come', 'came'], answer: 'come', say: 'If my friends come, I will become happy.', why: 'بعد از if فعل حال ساده.' },
+        { type: 'test', q: 'I will phone you _____ I have time.', fa: 'اگر وقت داشته باشم به تو زنگ می‌زنم.', options: ['if', 'if will', 'will'], answer: 'if', say: 'I will phone you if I have time.', why: 'بخش شرط با if شروع می‌شود.' },
+        { type: 'test', q: 'If it _____, we will stay at home.', fa: 'اگر باران ببارد، خانه می‌مانیم.', options: ['rains', 'will rain', 'rained'], answer: 'rains', say: 'If it rains, we will stay at home.', why: 'بعد از if فعل حال ساده.' },
+        { type: 'test', q: 'Maryam will get a prize if she _____ the question correctly.', fa: 'مریم اگر به سؤال درست پاسخ دهد جایزه می‌گیرد.', options: ['answers', 'will answer', 'answered'], answer: 'answers', say: 'Maryam will get a prize if she answers the question correctly.', why: 'در بخش شرط فعل حال ساده می‌آید.' },
+        { type: 'test', q: "If you don't study, you _____ pass the test.", fa: 'اگر درس نخوانی، امتحان را قبول نمی‌شوی.', options: ["won't", "don't", "aren't"], answer: "won't", say: "If you don't study, you won't pass the test.", why: 'نتیجهٔ منفی با won’t.' },
+        { type: 'test', q: 'If we save money, we _____ buy a carpet.', fa: 'اگر پول پس‌انداز کنیم، می‌توانیم فرش بخریم.', options: ['can', 'will can', 'are'], answer: 'can', say: 'If we save money, we can buy a carpet.', why: 'برای توانایی در نتیجه از can.' },
+        { type: 'test', q: 'If everything _____ well, we will open the store.', fa: 'اگر همه‌چیز خوب پیش برود، فروشگاه را باز می‌کنیم.', options: ['goes', 'will go', 'went'], answer: 'goes', say: 'If everything goes well, we will open the store.', why: 'بعد از if فعل حال ساده (goes).' },
+        { type: 'test', q: "You'll hurt yourself if you _____ into the river.", fa: 'اگر در رودخانه بپری به خودت آسیب می‌زنی.', options: ['jump', 'will jump', 'jumped'], answer: 'jump', say: "You'll hurt yourself if you jump into the river.", why: 'بخش شرط با فعل حال ساده.' },
+        { type: 'test', q: 'If our plans work, we _____ more pottery.', fa: 'اگر برنامه‌هایمان جواب بدهد، سفال بیشتری می‌فروشیم.', options: ['will sell', 'sell', 'sold'], answer: 'will sell', say: 'If our plans work, we will sell more pottery.', why: 'نتیجهٔ شرط با will + فعل ساده.' }
+    ];
+
+    // --- SECTIONS_L3: the chunks of Lesson 3, in the order of the book
+    const SECTIONS_L3 = [
+        {
+            id: 'l3-getready', icon: '🗺️', title: 'Get Ready', pages: 'Pages 81-84',
+            faDesc: 'آشنایی با هنرها و صنایع دستی ایران', ready: false
+        },
+        {
+            id: 'l3-conv1', icon: '💬', title: 'Conversation - Iranian Handicrafts', pages: 'Pages 85-86',
+            faDesc: 'گفت‌وگوی رضا و یک گردشگر در مغازهٔ صنایع دستی', ready: true,
+            reading: l3Conversation, easySequence: l3ConversationSeq, listeningData: l3ConversationListening
+        },
+        {
+            id: 'l3-newwords', icon: '📖', title: 'New Words & Expressions', pages: 'Pages 87-89',
+            faDesc: 'واژگان هنر، صنایع دستی و هویت فرهنگی', ready: true,
+            reading: l3NewWords, easySequence: l3NewWordsSeq, listeningData: l3NewWordsListening
+        },
+        {
+            id: 'l3-reading', icon: '📑', title: 'Reading - Art, Culture and Society', pages: 'Pages 90-92',
+            faDesc: 'متن هنر، فرهنگ و جامعه و صنایع دستی ایران', ready: true,
+            reading: l3Reading, easySequence: l3ReadingSeq, listeningData: l3ReadingListening
+        },
+        {
+            id: 'l3-vocabdev', icon: '🔁', title: 'Vocabulary Development - Antonyms', pages: 'Pages 93-94',
+            faDesc: 'واژه‌های متضاد و گسترش دامنهٔ واژگان', ready: false
+        },
+        {
+            id: 'l3-grammar', icon: '🔤', title: 'Grammar - Conditional Type I', pages: 'Pages 95-98',
+            faDesc: 'آموزش قدم‌به‌قدم جملهٔ شرطی نوع اول با مثال، آزمون‌های کوچک و آزمون ۱۰ سؤالی', ready: true, grammar: GRAMMAR_L3_STEPS
+        },
+        {
+            id: 'l3-conv2', icon: '🎧', title: 'Listening & Speaking - Conditions & Future', pages: 'Pages 99-100',
+            faDesc: 'صحبت کردن دربارهٔ شرایط و نتایج آینده', ready: true,
+            reading: l3Speaking, easySequence: l3SpeakingSeq, listeningData: l3SpeakingListening
+        },
+        {
+            id: 'l3-pron', icon: '🎙️', title: 'Pronunciation - Intonation of Conditionals', pages: 'Page 101',
+            faDesc: 'آهنگ جمله‌های شرطی (صعودی و نزولی)', ready: false
+        },
+        {
+            id: 'l3-writing', icon: '✍️', title: 'Writing - Infinitives', pages: 'Pages 102-105',
+            faDesc: 'مصدر با to و کاربرد آن در جمله', ready: false
+        },
+        {
+            id: 'l3-whatlearned', icon: '🏁', title: 'What You Learned', pages: 'Page 107',
+            faDesc: 'مرور پایانی درس ۳', ready: false
+        }
+    ];
+
     LESSONS[0].sections = SECTIONS;
     LESSONS[1].sections = SECTIONS_L2;
+    LESSONS[2].sections = SECTIONS_L3;
 
     // ============================================================
     // --- STATE

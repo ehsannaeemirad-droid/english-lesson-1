@@ -44,6 +44,21 @@ Opening a lesson shows its chunks as a numbered path, ordered exactly like the t
 | 9 | ✍️ Writing - Gerunds | Pages 72-76 | به‌زودی |
 | 10 | 🏁 What You Learned | Page 79 | به‌زودی |
 
+### Lesson 3 chunks (Pages 81-107)
+
+| # | Chunk | Book pages | Status |
+|---|---|---|---|
+| 1 | 🗺️ Get Ready | Pages 81-84 | به‌زودی |
+| 2 | 💬 Conversation - Iranian Handicrafts | Pages 85-86 | ✅ آماده |
+| 3 | 📖 New Words & Expressions | Pages 87-89 | ✅ آماده |
+| 4 | 📑 Reading - Art, Culture and Society | Pages 90-92 | ✅ آماده |
+| 5 | 🔁 Vocabulary Development - Antonyms | Pages 93-94 | به‌زودی |
+| 6 | 🔤 Grammar - Conditional Type I | Pages 95-98 | ✅ آماده (آموزش + آزمون) |
+| 7 | 🎧 Listening & Speaking - Conditions & Future | Pages 99-100 | ✅ آماده |
+| 8 | 🎙️ Pronunciation - Intonation of Conditionals | Page 101 | به‌زودی |
+| 9 | ✍️ Writing - Infinitives | Pages 102-105 | به‌زودی |
+| 10 | 🏁 What You Learned | Page 107 | به‌زودی |
+
 Each lesson keeps its own path, so the home screen switches between them and the progress path always shows the chosen lesson's chunks.
 
 Ready chunks open a sub-menu with two modes (listening is part of practice, not a separate mode):
