@@ -1296,8 +1296,108 @@
         "etc": "و غیره", "reflecting": "بازتاب دادن (reflect)", "artworks": "آثار هنری"
     };
 
+    // Words used by the Get Ready, Vocabulary, Writing and review chunks
+    const dictNew = {
+        "facts": "دانستنی‌ها", "holy": "مقدس", "quran": "قرآن", "available": "در دسترس", "fourteen": "چهارده",
+        "deaf": "ناشنوا", "map": "نقشه", "choose": "انتخاب کردن", "six": "شش", "write": "نوشتن",
+        "georgia": "گرجستان", "armenia": "ارمنستان", "turkey": "ترکیه", "azerbaijan": "آذربایجان",
+        "tajikistan": "تاجیکستان", "bhutan": "بوتان", "bangladesh": "بنگلادش", "united": "متحد", "arab": "عرب",
+        "emirates": "امارات", "myanmar": "میانمار", "match": "جور کردن، تطبیق دادن", "signs": "تابلوها، نشانه‌ها",
+        "meanings": "معانی", "meaning": "معنی", "extra": "اضافه", "sentence": "جمله", "sentences": "جمله‌ها",
+        "parking": "پارک کردن", "turn": "چرخاندن (turn off = خاموش کردن)", "off": "خاموش، دور", "quiet": "ساکت",
+        "keep": "نگه داشتن (keep off = دور ماندن)", "grass": "چمن", "near": "نزدیک", "restaurant": "رستوران",
+        "swim": "شنا کردن", "activities": "فعالیت‌ها", "according": "بر اساس (according to)",
+        "frequently": "به‌طور مکرر", "watching": "تماشا کردن", "reading": "خواندن", "news": "اخبار",
+        "talking": "صحبت کردن", "foreigners": "خارجی‌ها", "letters": "نامه‌ها، حروف", "emails": "ایمیل‌ها",
+
+        "synonyms": "مترادف‌ها", "similar": "مشابه", "difficult": "سخت", "begin": "شروع کردن",
+        "develop": "گسترش دادن", "vocabulary": "دایرهٔ واژگان", "same": "یکسان، همان", "under": "زیر",
+        "picture": "تصویر", "belong": "تعلق داشتن", "powerful": "قدرتمند", "quick": "سریع", "strong": "نیرومند",
+        "tiny": "ریز", "easy": "آسان", "probable": "محتمل", "wonderful": "شگفت‌انگیز", "seek": "جست‌وجو کردن",
+        "search": "جست‌وجو", "fortunately": "خوشبختانه", "luckily": "خوشبختانه", "largely": "تا حد زیادی",
+
+        "least": "کمترین (at least = دست‌کم)", "subject": "فاعل", "verb": "فعل", "mahan": "ماهان (نام)",
+        "sleeping": "در خواب", "bird": "پرنده", "sing": "آواز خواندن", "apple": "سیب", "fell": "افتاد",
+        "noun": "اسم", "pronoun": "ضمیر", "object": "مفعول، شیء", "receives": "دریافت می‌کند", "action": "عمل",
+        "students": "دانش‌آموزان", "drinking": "نوشیدن", "milk": "شیر", "mahdi": "مهدی (نام)",
+        "visited": "سر زد، بازدید کرد", "additional": "اضافی", "mostly": "بیشتر، عمدتاً", "adverbs": "قیدها",
+        "place": "مکان", "studying": "درس خواندن", "library": "کتابخانه", "laughed": "خندید", "lion": "شیر (حیوان)",
+        "died": "مرد", "lake": "دریاچه", "forest": "جنگل", "rearrange": "مرتب کردن", "borrowed": "قرض گرفت",
+        "book": "کتاب", "listen": "گوش دادن", "story": "داستان", "fill": "پر کردن", "blanks": "جاهای خالی",
+        "went": "رفت", "cheese": "پنیر", "list": "فهرست کردن", "bags": "بسته‌ها", "woman": "زن",
+
+        "higher": "بالاتر", "education": "تحصیلات", "improves": "بهتر می‌شود", "sitting": "نشستن", "risks": "خطرها",
+        "laughter": "خنده", "medicine": "دارو", "doing": "انجام دادن", "worked": "کار کرد", "jog": "دویدن آرام",
+        "hangs": "وقت می‌گذراند (hang out)", "climbed": "بالا رفت", "likes": "دوست دارد", "tv": "تلویزیون",
+        "morning": "صبح", "mount": "کوه", "damavand": "دماوند", "year": "سال", "pyramid": "هرم",
+        "circle": "دور زدن، دایره", "candy": "شیرینی", "egg": "تخم‌مرغ", "icecream": "بستنی", "fish": "ماهی",
+        "chicken": "مرغ", "tomato": "گوجه‌فرنگی", "carrot": "هویج", "orange": "پرتقال", "onion": "پیاز",
+        "banana": "موز", "quince": "به", "spaghetti": "ماکارونی", "frequency": "تکرار", "sometimes": "بعضی وقت‌ها",
+        "always": "همیشه", "afternoon": "بعدازظهر", "walk": "راه رفتن",
+
+        "prefixes": "پیشوندها", "suffixes": "پسوندها", "prefix": "پیشوند", "suffix": "پسوند", "letter": "حرف",
+        "re": "پیشوند «دوباره»", "rewrite": "دوباره نوشتن", "un": "پیشوند «نه»", "unimportant": "غیرمهم",
+        "im": "پیشوند «نه» (پیش از p و b)", "incorrect": "نادرست", "dis": "پیشوند «نه / مخالف»", "dislike": "دوست نداشتن",
+        "mid": "پیشوند «میانه»", "middle": "میانه", "midday": "میانهٔ روز", "added": "افزوده", "end": "پایان",
+        "makers": "سازنده‌ها", "maker": "سازنده", "er": "پسوند اسم‌ساز (شخص یا ابزار)", "writer": "نویسنده",
+        "ness": "پسوند اسم‌ساز (کیفیت)", "happiness": "خوشبختی", "ion": "پسوند اسم‌ساز", "tion": "پسوند اسم‌ساز",
+        "sion": "پسوند اسم‌ساز", "creation": "آفرینش", "adjective": "صفت", "adjectives": "صفت‌ها",
+        "ful": "پسوند صفت‌ساز «پر از»", "useful": "مفید", "ous": "پسوند صفت‌ساز", "rainy": "بارانی",
+        "al": "پسوند صفت‌ساز", "adverb": "قید", "ly": "پسوند قیدساز", "slowly": "به‌آرامی",
+        "disagree": "مخالفت کردن", "midterm": "میان‌ترم", "unsafe": "ناامن", "disorder": "اختلال",
+        "reality": "واقعیت", "incomplete": "ناقص", "homeless": "بی‌خانمان", "unfortunately": "متأسفانه",
+        "scanner": "پویشگر", "paper": "کاغذ", "replay": "دوباره پخش کردن", "danger": "خطر",
+
+        "gerunds": "فعل‌اسم‌ها", "gerund": "فعل‌اسم (فعل + ing)", "ing": "پسوند ing (فعل‌اسم یا استمراری)",
+        "cycling": "دوچرخه‌سواری", "vahid": "وحید (نام)", "enjoys": "لذت می‌برد", "singular": "مفرد",
+        "plural": "جمع", "sports": "ورزش‌ها", "follows": "دنبال می‌آید", "fun": "سرگرمی، تفریح", "photos": "عکس‌ها",
+        "hobby": "سرگرمی", "notices": "تابلوهای هشدار", "before": "پیش از", "forbidden": "ممنوع",
+        "fishing": "ماهیگیری", "verbs": "فعل‌ها", "finish": "تمام کردن", "practice": "تمرین کردن",
+        "skiing": "اسکی", "confuse": "اشتباه گرفتن", "present": "حال", "progressive": "استمراری",
+        "maryam": "مریم (نام)", "email": "ایمیل", "poems": "شعرها",
+
+        "report": "گزارش", "complete": "کامل (کردن)", "changes": "تغییرها", "perfect": "کامل (present perfect)",
+        "tenses": "زمان‌ها", "created": "ساخته، ایجاد کرده", "problems": "مشکلات", "rushing": "شتافتن",
+        "physically": "از نظر جسمی", "active": "فعال", "cook": "پختن", "prepare": "آماده کردن",
+        "unhealthy": "ناسالم", "snacks": "تنقلات", "changed": "تغییر داد", "taste": "ذائقه، طعم",
+        "homemade": "خانگی", "dishes": "غذاها، بشقاب‌ها", "risked": "به خطر انداخت", "sleep": "خواب",
+        "disorders": "اختلال‌ها", "seem": "به نظر رسیدن", "cause": "ایجاد کردن", "serious": "جدی",
+        "change": "تغییر (دادن)",
+
+        "brain's": "مغز (ملکی)", "activity": "فعالیت", "science": "علوم", "creative": "خلاق", "sociable": "اجتماعی",
+        "mark": "علامت زدن", "crafts": "صنایع دستی", "meibod": "میبد", "little": "کوچک", "soft": "نرم",
+        "warm": "گرم", "nezami's": "نظامی (ملکی)", "collection": "مجموعه", "farshchian's": "فرشچیان (ملکی)",
+        "astan": "آستان", "ghods": "قدس", "museum": "موزه", "sheikh": "شیخ", "lotfollah": "لطف‌الله",
+        "mosque": "مسجد", "artwork": "اثر هنری", "cheerful": "سرحال", "bored": "بی‌حوصله", "tired": "خسته",
+        "uncertain": "مردد", "worried": "نگران", "proud": "سرافراز", "hopeful": "امیدوار",
+
+        "writing": "نوشتن", "down": "پایین (fell down = افتاد)", "y": "پسوند صفت‌ساز",
+        "maryam's": "مریم (ملکی)",
+        "antonyms": "متضادها", "antonym": "متضاد", "synonym": "مترادف", "opposite": "مخالف", "true": "درست",
+        "false": "نادرست", "hot": "گرم", "cold": "سرد", "times": "بارها، دفعات", "adding": "افزودن",
+        "changing": "تغییر دادن", "careless": "بی‌دقت", "blank": "جای خالی", "left": "چپ", "column": "ستون",
+        "decrease": "کاهش دادن", "quickly": "به‌سرعت", "rise": "بالا رفتن", "fall": "پایین آمدن", "cheap": "ارزان",
+        "paragraph": "پاراگراف", "wellknown": "مشهور (well-known)", "ugly": "زشت",
+
+        "infinitives": "مصدرها", "infinitive": "مصدر (to + فعل)", "hamed": "حامد (نام)", "wants": "می‌خواهد",
+        "smoke": "سیگار کشیدن، دود", "common": "رایج", "ones": "آن‌هایی که", "decide": "تصمیم گرفتن",
+        "decided": "تصمیم گرفت", "promise": "قول دادن", "forget": "فراموش کردن", "wait": "صبر کردن",
+        "expect": "انتظار داشتن", "remember": "به یاد آوردن", "try": "تلاش کردن", "attempt": "تلاش کردن",
+        "agree": "موافقت کردن", "negative": "منفی", "children": "کودکان", "noise": "سر و صدا", "dad": "پدر",
+        "tries": "تلاش می‌کند", "numbers": "شماره‌ها", "became": "شد", "classmate": "هم‌کلاسی", "ten": "ده",
+        "years": "سال‌ها", "sad": "غمگین", "leave": "ترک کردن", "soon": "به‌زودی", "amazed": "شگفت‌زده",
+        "ashamed": "شرمنده", "fortunate": "خوشبخت", "glad": "خوشحال", "surprised": "متعجب", "shocked": "شوکه",
+        "sorry": "متأسف", "catch": "گرفتن", "cannot": "نمی‌تواند", "mistakes": "اشتباه‌ها", "mahboobeh": "محبوبه (نام)",
+        "flowers": "گل‌ها", "lights": "چراغ‌ها", "ran": "دوید",
+
+        "helpful": "مفید", "note": "یادداشت کردن", "clauses": "جمله‌واره‌ها", "wellness": "سلامتی", "skills": "مهارت‌ها",
+        "able": "قادر", "illnesses": "بیماری‌ها", "along": "کنار (get along = کنار آمدن)", "pleasure": "لذت",
+        "drawing": "کشیدن (نقاشی)", "objects": "اشیا", "line": "خط", "refer": "اشاره داشتن",
+        "underline": "زیر خط کشیدن", "conditional": "شرطی", "gallery": "گالری"
+    };
+
     // One merged word bank for tooltips across the whole book
-    const DICT = Object.assign({}, dict1, dict2, dict3, dictL2, dictL2b, dictL3, dictL3b, dictExtra);
+    const DICT = Object.assign({}, dict1, dict2, dict3, dictL2, dictL2b, dictL3, dictL3b, dictNew, dictExtra);
 
     // --- SECTION: Warm-up & Vocabulary (Pages 21-23)
     const warmupReading = [
@@ -2389,6 +2489,374 @@
         }
     ];
 
+    // ============================================================
+    // --- LESSON 1: the rest of the book (Get Ready 15-18,
+    //     Synonyms 27-28, Writing 37-45, What You Learned 47)
+    // ============================================================
+    const g1Reading = [
+        { speaker: '__story__', text: 'Interesting facts: There are about 7000 languages in the world. Most languages of the world have no written form.', fa: 'دانستنی‌ها: حدود ۷۰۰۰ زبان در جهان وجود دارد. بیشتر زبان‌های جهان شکل نوشتاری ندارند.' },
+        { speaker: '__story__', text: 'The Holy Quran is available in more than 100 languages. One language dies about every fourteen days.', fa: 'قرآن کریم به بیش از ۱۰۰ زبان در دسترس است. تقریباً هر چهارده روز یک زبان از بین می‌رود.' },
+        { speaker: '__story__', text: 'Deaf people use sign language to communicate.', fa: 'ناشنوایان برای ارتباط از زبان اشاره استفاده می‌کنند.' },
+        { speaker: 'تمرین A', text: 'Look at the map. Choose six countries and write their languages. Georgia, Armenia, Turkey, Azerbaijan, Tajikistan, Bhutan, Bangladesh, the United Arab Emirates, Myanmar.', fa: 'به نقشه نگاه کن. شش کشور انتخاب کن و زبان‌هایشان را بنویس: گرجستان، ارمنستان، ترکیه، آذربایجان، تاجیکستان، بوتان، بنگلادش، امارات متحدهٔ عربی، میانمار.' },
+        { speaker: 'تمرین B', text: 'Match the signs with their meanings. There is one extra sentence: There is a parking lot around. Turn off your mobile phone. Please be quiet. Keep off the grass. You are near a restaurant. Do not swim here.', fa: 'تابلوها را با معنی‌هایشان جور کن. یک جمله اضافه است: نزدیک اینجا پارکینگ هست. تلفن همراهت را خاموش کن. لطفاً ساکت باش. روی چمن راه نرو. نزدیک رستوران هستی. اینجا شنا نکن.' },
+        { speaker: 'تمرین C', text: 'Number these activities from 1 to 6 according to how frequently you do them when you learn a foreign language: watching movies, reading storybooks, listening to the news, surfing the net, talking to foreigners, writing letters or emails.', fa: 'این فعالیت‌ها را از ۱ تا ۶ شماره‌گذاری کن، بر اساس اینکه هنگام یادگیری یک زبان خارجی چند وقت یک بار انجامشان می‌دهی: تماشای فیلم، خواندن کتاب داستان، گوش دادن به اخبار، گشتن در اینترنت، صحبت با خارجی‌ها، نوشتن نامه یا ایمیل.' }
+    ];
+
+    const g1Seq = [
+        { type: 'word', text: 'written form', meaning: 'شکل نوشتاری' },
+        { type: 'choice', q: 'How many languages are there in the world?', fa: 'چند زبان در جهان وجود دارد؟', options: ['About 7000', 'About 700', 'About 70'], answer: 'About 7000', why: 'صفحهٔ ۱۵ کتاب: حدود ۷۰۰۰ زبان در جهان است.', say: 'There are about 7000 languages in the world.' },
+        { type: 'choice', q: 'What do deaf people use to communicate?', fa: 'ناشنوایان برای ارتباط از چه چیزی استفاده می‌کنند؟', options: ['Sign language', 'Written form', 'The news'], answer: 'Sign language', why: 'در کتاب آمده: ناشنوایان از زبان اشاره استفاده می‌کنند.', say: 'Deaf people use sign language to communicate.' },
+        { type: 'build', target: 'There are about 7000 languages in the world', fa: 'حدود ۷۰۰۰ زبان در جهان وجود دارد', bank: ['There', 'are', 'about', '7000', 'languages', 'in', 'the', 'world'] },
+        { type: 'build', target: 'Deaf people use sign language to communicate', fa: 'ناشنوایان برای ارتباط از زبان اشاره استفاده می‌کنند', bank: ['Deaf', 'people', 'use', 'sign', 'language', 'to', 'communicate'] },
+        { type: 'choice', q: 'Which sign tells you not to walk on the grass?', fa: 'کدام تابلو می‌گوید روی چمن راه نرو؟', options: ['Keep off the grass.', 'Please be quiet.', 'Do not swim here.'], answer: 'Keep off the grass.', why: 'keep off یعنی از آن دور بمان؛ پس یعنی روی چمن راه نرو.', say: 'Keep off the grass.' },
+        { type: 'choice', q: 'Which sign asks people to be silent?', fa: 'کدام تابلو از مردم می‌خواهد سکوت کنند؟', options: ['Please be quiet.', 'There is a parking lot around.', 'You are near a restaurant.'], answer: 'Please be quiet.', why: 'quiet یعنی ساکت؛ پس این تابلو درخواست سکوت است.', say: 'Please be quiet.' },
+        { type: 'build', target: 'Please be quiet', fa: 'لطفاً ساکت باش', bank: ['Please', 'be', 'quiet'] },
+        { type: 'choice', q: 'How often does one language die?', fa: 'هر چند وقت یک بار یک زبان از بین می‌رود؟', options: ['About every fourteen days', 'Every four days', 'Every forty days'], answer: 'About every fourteen days', why: 'در صفحهٔ ۱۵ آمده: تقریباً هر چهارده روز یک زبان می‌میرد.', say: 'One language dies about every fourteen days.' },
+        { type: 'build', target: 'I learn English by watching movies', fa: 'من انگلیسی را با تماشای فیلم یاد می‌گیرم', bank: ['I', 'learn', 'English', 'by', 'watching', 'movies'] }
+    ];
+
+    const g1Listen = [
+        { audioText: 'There are about 7000 languages in the world.', display: 'There are about _____ languages in the world.', missing: '7000', options: ['7000', '700', '70', '17'] },
+        { audioText: 'Deaf people use sign language to communicate.', display: 'Deaf people use _____ to communicate.', missing: 'sign language', options: ['sign language', 'written form', 'the news', 'a dictionary'] },
+        { audioText: 'Please be quiet.', display: 'Please be _____.', missing: 'quiet', options: ['quiet', 'quick', 'quite', 'quit'] }
+    ];
+
+    const v1Reading = [
+        { speaker: '__story__', text: 'Synonyms are words with similar meanings. For example, hard and difficult are synonyms, and begin and start are synonyms. Learning synonyms is a good way to develop our vocabulary.', fa: 'مترادف‌ها واژه‌هایی با معنی نزدیک به هم هستند. مثلاً hard و difficult مترادف‌اند و begin و start هم مترادف‌اند. یادگیری مترادف‌ها راه خوبی برای گسترش دایرهٔ واژگان است.' },
+        { speaker: 'تمرین A', text: 'Write the words that mean the same under the picture where they belong: small, powerful, quick, strong, fast, tiny, simple, easy.', fa: 'واژه‌هایی را که هم‌معنی هستند زیر تصویر مربوط به خودشان بنویس: کوچک، قدرتمند، سریع، نیرومند، تند، ریز، ساده، آسان. جفت‌ها: small/tiny، powerful/strong، quick/fast، simple/easy.' },
+        { speaker: 'تمرین B', text: 'Two of the words in each group are synonyms. Find them: amazing / probable / wonderful; seek / search for / exercise; quit / live / give up; fortunately / luckily / really.', fa: 'در هر گروه دو واژه مترادف‌اند؛ آن‌ها را پیدا کن: amazing/wonderful، seek/search for، quit/give up، fortunately/luckily.' },
+        { speaker: 'تمرین C', text: 'Look back at the Reading to find synonyms for these words: largely, nearly, to form, to think of.', fa: 'به متن ریدینگ برگرد و برای این واژه‌ها مترادف پیدا کن: largely، nearly، to form، to think of.' },
+        { speaker: '__story__', text: 'An endangered language is a language that has very few speakers. Many languages are losing their native speakers, and when a language dies, the knowledge and culture disappear with it.', fa: 'زبان در خطر انقراض زبانی است که گویشوران بسیار کمی دارد. بسیاری از زبان‌ها گویشوران بومی خود را از دست می‌دهند و وقتی زبانی می‌میرد، دانش و فرهنگ هم با آن از بین می‌رود.' }
+    ];
+
+    const v1Seq = [
+        { type: 'word', text: 'synonym', meaning: 'مترادف' },
+        { type: 'choice', q: 'A synonym for hard is _____.', fa: 'مترادف hard کدام است؟', options: ['difficult', 'easy', 'strong'], answer: 'difficult', why: 'hard به معنی سخت است و difficult هم سخت؛ پس مترادف‌اند.', say: 'Hard and difficult are synonyms.' },
+        { type: 'choice', q: 'Which pair are synonyms?', fa: 'کدام جفت مترادف است؟', options: ['small and tiny', 'small and big', 'fast and slow'], answer: 'small and tiny', why: 'small یعنی کوچک و tiny یعنی ریز؛ هر دو یک معنی را می‌رسانند.', say: 'Small and tiny are synonyms.' },
+        { type: 'build', target: 'Learning synonyms develops our vocabulary', fa: 'یادگیری مترادف‌ها دایرهٔ واژگان ما را گسترش می‌دهد', bank: ['Learning', 'synonyms', 'develops', 'our', 'vocabulary'] },
+        { type: 'choice', q: 'Begin and _____ are synonyms.', fa: 'begin و کدام واژه مترادف‌اند؟', options: ['start', 'stop', 'finish'], answer: 'start', why: 'begin یعنی شروع کردن و start هم یعنی شروع کردن.', say: 'Begin and start are synonyms.' },
+        { type: 'choice', q: 'Which word means the same as quit?', fa: 'کدام واژه هم‌معنی quit است؟', options: ['give up', 'live', 'exercise'], answer: 'give up', why: 'quit و give up هر دو یعنی رها کردن و کنار گذاشتن.', say: 'Quit means the same as give up.' },
+        { type: 'choice', q: 'Fortunately means the same as _____.', fa: 'fortunately هم‌معنی کدام است؟', options: ['luckily', 'really', 'probably'], answer: 'luckily', why: 'fortunately و luckily هر دو یعنی خوشبختانه.', say: 'Fortunately and luckily are synonyms.' },
+        { type: 'build', target: 'Amazing and wonderful are synonyms', fa: 'amazing و wonderful مترادف‌اند', bank: ['Amazing', 'and', 'wonderful', 'are', 'synonyms'] },
+        { type: 'choice', q: 'Which word is a synonym for seek?', fa: 'کدام واژه مترادف seek است؟', options: ['search for', 'exercise', 'find'], answer: 'search for', why: 'seek یعنی جست‌وجو کردن؛ search for هم همین معنی را دارد.', say: 'Seek means search for.' },
+        { type: 'choice', q: 'Quick means the same as _____.', fa: 'quick هم‌معنی کدام است؟', options: ['fast', 'slow', 'easy'], answer: 'fast', why: 'quick و fast هر دو یعنی سریع.', say: 'Quick and fast are synonyms.' }
+    ];
+
+    const v1Listen = [
+        { audioText: 'Hard and difficult are synonyms.', display: 'Hard and _____ are synonyms.', missing: 'difficult', options: ['difficult', 'easy', 'simple', 'strong'] },
+        { audioText: 'Learning synonyms is a good way to develop our vocabulary.', display: 'Learning synonyms is a good way to develop our _____.', missing: 'vocabulary', options: ['vocabulary', 'language', 'reading', 'grammar'] },
+        { audioText: 'Quit means the same as give up.', display: 'Quit means the same as _____.', missing: 'give up', options: ['give up', 'live', 'exercise', 'start'] }
+    ];
+
+    const w1Reading = [
+        { speaker: '__story__', text: 'In English, every simple sentence must have at least a subject and a verb. Who or what the sentence speaks about is called the subject. What the sentence says about the subject is called the verb.', fa: 'در انگلیسی هر جملهٔ ساده باید دست‌کم یک فاعل و یک فعل داشته باشد. کسی یا چیزی که جمله دربارهٔ اوست «فاعل» نام دارد و آنچه دربارهٔ فاعل گفته می‌شود «فعل» است.' },
+        { speaker: '__story__', text: 'Mahan is sleeping. The bird does not sing. The apple fell down. The teacher is hard-working.', fa: 'ماهان در خواب است. پرنده آواز نمی‌خواند. سیب افتاد. معلم سخت‌کوش است.' },
+        { speaker: '__story__', text: 'To find the subject, ask who or what the sentence is about. The subject is a noun or a pronoun (I, we, he, she, it, you, they). To find the verb, ask what the sentence says about the subject.', fa: 'برای یافتن فاعل بپرس جمله دربارهٔ چه کسی یا چه چیزی است. فاعل یک اسم یا ضمیر است (I, we, he, she, it, you, they). برای یافتن فعل بپرس جمله دربارهٔ فاعل چه می‌گوید.' },
+        { speaker: '__story__', text: 'A simple sentence can also have an object. An object is a noun that receives an action. The students are drinking milk. Mahdi visited his doctor.', fa: 'جملهٔ ساده می‌تواند مفعول هم داشته باشد. مفعول اسمی است که عمل را دریافت می‌کند: دانش‌آموزان شیر می‌نوشند. مهدی به دکترش سر زد.' },
+        { speaker: '__story__', text: 'A simple sentence can also have additional information, mostly adverbs of place, time and manner: Ali will have an exam next week. Zahra studies English at school. Yesterday, I saw my teacher in the street. My brother can speak French fluently.', fa: 'جملهٔ ساده می‌تواند اطلاعات اضافی هم داشته باشد، بیشتر قید مکان، زمان و حالت: علی هفتهٔ آینده امتحان دارد. زهرا در مدرسه انگلیسی می‌خواند. دیروز معلمم را در خیابان دیدم. برادرم می‌تواند روان فرانسه صحبت کند.' },
+        { speaker: 'تمرین‌های کتاب', text: 'Is it a sentence? studying in the library / she laughed / the lion died / a beautiful lake in the forest. Find the object: The boy runs fast. Mina speaks English. We must respect our neighbors. Rearrange: borrowed / I / that book.', fa: 'آیا جمله است؟ «studying in the library» جمله نیست، «she laughed» جمله است. مفعول را پیدا کن: در «Mina speaks English» مفعول English است. مرتب کن: I borrowed that book.' }
+    ];
+
+    const w1Seq = [
+        { type: 'word', text: 'subject', meaning: 'فاعل' },
+        { type: 'word', text: 'object', meaning: 'مفعول' },
+        { type: 'choice', q: 'What is the subject of "Mahan is sleeping"?', fa: 'فاعل جملهٔ «Mahan is sleeping» چیست؟', options: ['Mahan', 'is', 'sleeping'], answer: 'Mahan', why: 'جمله دربارهٔ ماهان است؛ پس فاعل Mahan است.', say: 'Mahan is sleeping.' },
+        { type: 'choice', q: 'What is the verb of "The apple fell down"?', fa: 'فعل جملهٔ «The apple fell down» چیست؟', options: ['fell', 'apple', 'down'], answer: 'fell', why: 'آنچه دربارهٔ سیب گفته می‌شود «افتاد» است؛ پس فعل fell است.', say: 'The apple fell down.' },
+        { type: 'choice', q: 'Which group of words is a complete sentence?', fa: 'کدام گروه واژه یک جملهٔ کامل است؟', options: ['The lion died.', 'studying in the library', 'a beautiful lake in the forest'], answer: 'The lion died.', why: 'این گروه فاعل (The lion) و فعل (died) دارد؛ بقیه فعل ندارند.', say: 'The lion died.' },
+        { type: 'build', target: 'The students are drinking milk', fa: 'دانش‌آموزان شیر می‌نوشند', bank: ['The', 'students', 'are', 'drinking', 'milk'] },
+        { type: 'choice', q: 'What is the object of "The students learn English"?', fa: 'مفعول جملهٔ «The students learn English» چیست؟', options: ['English', 'students', 'learn'], answer: 'English', why: 'چیزی که یاد گرفته می‌شود English است؛ پس مفعول است.', say: 'The students learn English.' },
+        { type: 'build', target: 'Mahdi visited his doctor', fa: 'مهدی به دکترش سر زد', bank: ['Mahdi', 'visited', 'his', 'doctor'] },
+        { type: 'choice', q: 'In "She studies English at school every week", what is "at school"?', fa: 'در جملهٔ «She studies English at school every week»، عبارت at school چیست؟', options: ['Additional information (place)', 'The object', 'The subject'], answer: 'Additional information (place)', why: 'at school قید مکان است، نه فاعل و نه مفعول.', say: 'She studies English at school every week.' },
+        { type: 'build', target: 'My brother can speak French fluently', fa: 'برادرم می‌تواند روان فرانسه صحبت کند', bank: ['My', 'brother', 'can', 'speak', 'French', 'fluently'] },
+        { type: 'choice', q: 'Which sentence has a subject, a verb and an object?', fa: 'کدام جمله فاعل، فعل و مفعول دارد؟', options: ['Mina speaks English.', 'The boy runs fast.', 'Shadi is working at home.'], answer: 'Mina speaks English.', why: 'Mina فاعل، speaks فعل و English مفعول است.', say: 'Mina speaks English.' }
+    ];
+
+    const w1Listen = [
+        { audioText: 'Mahan is sleeping.', display: 'Mahan is _____.', missing: 'sleeping', options: ['sleeping', 'sleep', 'slept', 'sleeps'] },
+        { audioText: 'The teacher is hard-working.', display: 'The teacher is _____.', missing: 'hard-working', options: ['hard-working', 'hard work', 'work hard', 'hardly'] },
+        { audioText: 'Zahra studies English at school.', display: 'Zahra studies English at _____.', missing: 'school', options: ['school', 'home', 'work', 'street'] }
+    ];
+
+    const y1Reading = [
+        { speaker: 'بخش شنیداری', text: 'Listen to the first part of a story. Fill in the blanks: I went to a _____ . I needed some cheese _____ . Listen again and list all uncountable nouns.', fa: 'به بخش اول یک داستان گوش کن. جای خالی‌ها را پر کن: «به یک _____ رفتم. کمی پنیر _____ لازم داشتم.» دوباره گوش کن و همهٔ اسم‌های غیرقابل شمارش را فهرست کن.' },
+        { speaker: '__story__', text: 'The only thing I was still looking for was a bag of sugar. There were four types of sugar. I picked the bags and read the explanations. Honestly, I did not understand their differences. A young man came to me and asked what I wanted. I told him I needed some sugar for breakfast.', fa: 'تنها چیزی که هنوز دنبالش بودم یک بسته شکر بود. چهار نوع شکر وجود داشت. بسته‌ها را برداشتم و توضیحاتشان را خواندم. راستش تفاوتشان را نفهمیدم. جوانی به سراغم آمد و پرسید چه می‌خواهم. گفتم برای صبحانه کمی شکر لازم دارم.' },
+        { speaker: '__story__', text: 'He gave me some information. Again, I did not understand the differences. I took pictures of the explanations, sat somewhere, and checked the explanations in my mobile dictionary. At last, I understood what type of sugar I needed to buy!', fa: 'او کمی اطلاعات به من داد. باز هم تفاوت‌ها را نفهمیدم. از توضیحات عکس گرفتم، جایی نشستم و توضیحات را در دیکشنری موبایلم بررسی کردم. در پایان فهمیدم چه نوع شکری باید بخرم!' },
+        { speaker: 'پرسش‌های کتاب', text: 'How many bags of sugar did the woman want? Did the woman buy any tea? How did she understand the explanations?', fa: 'زن چند بسته شکر می‌خواست؟ آیا زن چای هم خرید؟ چطور توضیحات را فهمید؟' }
+    ];
+
+    const y1Seq = [
+        { type: 'choice', q: 'Where did the woman go shopping?', fa: 'زن کجا خرید کرد؟', options: ['To a supermarket', 'To a school', 'To a library'], answer: 'To a supermarket', why: 'او برای خرید شکر و پنیر به فروشگاه رفته بود.', say: 'I went to a supermarket.' },
+        { type: 'choice', q: 'What did she need for breakfast?', fa: 'برای صبحانه چه می‌خواست؟', options: ['Some sugar', 'Some tea', 'Some bread'], answer: 'Some sugar', why: 'خودش می‌گوید: برای صبحانه کمی شکر لازم دارم.', say: 'I needed some sugar for breakfast.' },
+        { type: 'build', target: 'I needed some sugar for breakfast', fa: 'من برای صبحانه کمی شکر لازم داشتم', bank: ['I', 'needed', 'some', 'sugar', 'for', 'breakfast'] },
+        { type: 'choice', q: 'How many types of sugar were there?', fa: 'چند نوع شکر وجود داشت؟', options: ['Four', 'Two', 'Seven'], answer: 'Four', why: 'متن می‌گوید چهار نوع شکر وجود داشت.', say: 'There were four types of sugar.' },
+        { type: 'choice', q: 'How did she understand the explanations?', fa: 'چطور توضیحات را فهمید؟', options: ['She checked her mobile dictionary.', 'She asked her teacher.', 'She read a book.'], answer: 'She checked her mobile dictionary.', why: 'او از توضیحات عکس گرفت و در دیکشنری موبایلش بررسی کرد.', say: 'She checked the explanations in her mobile dictionary.' },
+        { type: 'build', target: 'She took pictures of the explanations', fa: 'او از توضیحات عکس گرفت', bank: ['She', 'took', 'pictures', 'of', 'the', 'explanations'] },
+        { type: 'choice', q: 'Which noun is uncountable?', fa: 'کدام اسم غیرقابل شمارش است؟', options: ['sugar', 'bag', 'type'], answer: 'sugar', why: 'sugar را نمی‌شماریم؛ واحد آن bag است: a bag of sugar.', say: 'Some sugar, please.' },
+        { type: 'build', target: 'I understood what type of sugar I needed', fa: 'فهمیدم چه نوع شکری لازم داشتم', bank: ['I', 'understood', 'what', 'type', 'of', 'sugar', 'I', 'needed'] }
+    ];
+
+    const y1Listen = [
+        { audioText: 'I went to a supermarket.', display: 'I went to a _____.', missing: 'supermarket', options: ['supermarket', 'school', 'library', 'museum'] },
+        { audioText: 'I needed some sugar for breakfast.', display: 'I needed some _____ for breakfast.', missing: 'sugar', options: ['sugar', 'cheese', 'tea', 'bread'] },
+        { audioText: 'She checked the explanations in her mobile dictionary.', display: 'She checked the explanations in her mobile _____.', missing: 'dictionary', options: ['dictionary', 'phone', 'book', 'picture'] }
+    ];
+
+    // ============================================================
+    // --- LESSON 2: the rest of the book (Get Ready 49-52,
+    //     Prefixes & Suffixes 61-63, Gerunds 72-76, What You Learned 79)
+    // ============================================================
+    const g2Reading = [
+        { speaker: '__story__', text: 'Interesting facts: People with higher education usually live longer. Our health improves when we visit our friends and family members. Sitting a lot increases health risks. Laughter is the best medicine for your health.', fa: 'دانستنی‌ها: افراد تحصیل‌کرده معمولاً بیشتر عمر می‌کنند. وقتی به دوستان و اعضای خانواده سر می‌زنیم، سلامتیمان بهتر می‌شود. زیاد نشستن خطرهای سلامتی را افزایش می‌دهد. خنده بهترین دارو برای سلامتی است.' },
+        { speaker: 'تمرین A', text: 'Check if what the people are doing is good for their health. Now match: worked, jog, hangs out, eating, surfing, climbed. Behzad likes eating junk food when he is watching TV. Reza is surfing the net. I go out and jog every morning at 6. Mahdi hangs out with his friends on Fridays. They climbed Mount Damavand last year.', fa: 'بررسی کن آیا کار این افراد برای سلامتی خوب است. سپس جور کن: کار کردن، دویدن آرام، وقت گذراندن، خوردن، گشتن در اینترنت، بالا رفتن. بهزاد دوست دارد وقتی تلویزیون تماشا می‌کند غذای ناسالم بخورد. رضا در اینترنت می‌گردد. من هر صبح ساعت ۶ بیرون می‌روم و می‌دوم. مهدی جمعه‌ها با دوستانش وقت می‌گذراند. آن‌ها سال گذشته دماوند را بالا رفتند.' },
+        { speaker: 'تمرین B', text: 'In the food pyramid, circle the food you eat each day: oil, candy, milk, egg, cheese, meat, ice-cream, fish, chicken, tomato, apple, carrot, orange, onion, banana, quince, rice, bread, spaghetti. Do you think you have a healthy diet?', fa: 'در هرم غذایی، غذایی را که هر روز می‌خوری دور بزن: روغن، شیرینی، شیر، تخم‌مرغ، پنیر، گوشت، بستنی، ماهی، مرغ، گوجه، سیب، هویج، پرتقال، پیاز، موز، به، برنج، نان، ماکارونی. آیا فکر می‌کنی رژیم غذایی سالمی داری؟' },
+        { speaker: 'تمرین C', text: 'Use adverbs of frequency (never, sometimes, often, usually, always) to show how often you do these things: I work on my computer. I watch TV in the afternoon. I go out and play with my friends. I eat fast food. I walk to school.', fa: 'با قیدهای تکرار (هرگز، بعضی وقت‌ها، غالباً، معمولاً، همیشه) نشان بده این کارها را چند وقت یک بار انجام می‌دهی: با رایانه کار می‌کنم. بعدازظهر تلویزیون می‌بینم. بیرون می‌روم و با دوستانم بازی می‌کنم. غذای آماده می‌خورم. پیاده به مدرسه می‌روم.' }
+    ];
+
+    const g2Seq = [
+        { type: 'word', text: 'hang out', meaning: 'وقت گذراندن با دوستان' },
+        { type: 'word', text: 'junk food', meaning: 'غذای ناسالم و آماده' },
+        { type: 'build', target: 'Reza is surfing the net', fa: 'رضا در اینترنت می‌گردد', bank: ['Reza', 'is', 'surfing', 'the', 'net'] },
+        { type: 'build', target: 'I go out and jog every morning', fa: 'من هر صبح بیرون می‌روم و می‌دوم', bank: ['I', 'go', 'out', 'and', 'jog', 'every', 'morning'] },
+        { type: 'choice', q: 'Which foods are at the top of the food pyramid (eat less)?', fa: 'کدام غذاها بالای هرم غذایی هستند (کمتر بخور)؟', options: ['Oil and candy', 'Rice and bread', 'Milk and cheese'], answer: 'Oil and candy', why: 'در هرم غذایی، روغن و شیرینی بالاترند؛ یعنی باید کمتر خورده شوند.', say: 'Oil and candy are at the top of the food pyramid.' },
+        { type: 'choice', q: 'I _____ eat fast food. (100% of the time)', fa: 'من _____ غذای آماده می‌خورم. (۱۰۰٪ مواقع)', options: ['always', 'never', 'sometimes'], answer: 'always', why: 'always یعنی همیشه؛ ۱۰۰٪ مواقع.', say: 'I always eat fast food.' },
+        { type: 'choice', q: 'They _____ Mount Damavand last year.', fa: 'آن‌ها سال گذشته دماوند را _____ .', options: ['climbed', 'climb', 'climbing'], answer: 'climbed', why: 'last year گذشته است؛ پس فعل گذشته: climbed.', say: 'They climbed Mount Damavand last year.' },
+        { type: 'build', target: 'Laughter is the best medicine', fa: 'خنده بهترین دارو است', bank: ['Laughter', 'is', 'the', 'best', 'medicine'] },
+        { type: 'choice', q: 'Sitting a lot increases health risks.', fa: 'زیاد نشستن خطرهای سلامتی را افزایش می‌دهد.', options: ['True', 'False', 'Not in the book'], answer: 'True', why: 'در صفحهٔ ۴۹ کتاب همین جمله آمده است.', say: 'Sitting a lot increases health risks.' },
+        { type: 'build', target: 'I always walk to school', fa: 'من همیشه پیاده به مدرسه می‌روم', bank: ['I', 'always', 'walk', 'to', 'school'] }
+    ];
+
+    const g2Listen = [
+        { audioText: 'Sitting a lot increases health risks.', display: 'Sitting a lot _____ health risks.', missing: 'increases', options: ['increases', 'decreases', 'improves', 'changes'] },
+        { audioText: 'Laughter is the best medicine for your health.', display: 'Laughter is the best _____ for your health.', missing: 'medicine', options: ['medicine', 'exercise', 'food', 'habit'] },
+        { audioText: 'They climbed Mount Damavand last year.', display: 'They _____ Mount Damavand last year.', missing: 'climbed', options: ['climbed', 'climb', 'climbing', 'climbs'] }
+    ];
+
+    const v2Reading = [
+        { speaker: '__story__', text: 'Prefixes and Suffixes. A prefix is a letter or a group of letters that comes at the beginning of a word. Each prefix has a meaning: re- means again (rewrite: write again), un- means not (unimportant: not important), im- and in- mean not (impossible, incorrect), dis- means not (dislike: not like), mid- means middle (midday: the middle of the day).', fa: 'پیشوند و پسوند. پیشوند حرف یا گروهی از حروف است که به آغاز واژه می‌آید و هر پیشوند معنی خودش را دارد: re- یعنی دوباره (rewrite: دوباره نوشتن)، un- یعنی نه (unimportant: غیرمهم)، im- و in- یعنی نه (impossible، incorrect)، dis- یعنی نه (dislike: دوست نداشتن)، mid- یعنی میانه (midday: میانهٔ روز).' },
+        { speaker: '__story__', text: 'A suffix is a letter or a group of letters added to the end of a word to make a different word. Noun makers: -er / -or (writer, translator), -ness (happiness), -ion / -tion / -sion (creation). Adjective makers: -ful (useful), -ous (dangerous), -y (rainy), -al (natural). Adverb maker: -ly (slowly).', fa: 'پسوند حرف یا گروهی از حروف است که به پایان واژه افزوده می‌شود تا واژهٔ تازه بسازد. اسم‌سازها: -er / -or (نویسنده، مترجم)، -ness (خوشبختی)، -ion (آفرینش). صفت‌سازها: -ful (مفید)، -ous (خطرناک)، -y (بارانی)، -al (طبیعی). قیدساز: -ly (به‌آرامی).' },
+        { speaker: 'تمرین A و B', text: 'Circle the prefixes: disagree, midterm, unsafe, read, disorder, reality, incomplete, homeless, unfortunately, family. Circle the suffixes: scanner, powerful, paper, replay, cultural, famous.', fa: 'پیشوندها را دور بزن: disagree، midterm، unsafe، disorder، incomplete، unfortunately. پسوندها را دور بزن: scanner، powerful، cultural، famous. واژه‌های read، reality، family و paper پیشوند یا پسوند ندارند.' },
+        { speaker: 'تمرین D', text: 'Look at the nouns. Their adjective forms are in the Reading: care, health, danger, emotion.', fa: 'اسم‌ها را ببین؛ شکل صفتی‌شان در متن ریدینگ آمده است: care ← careful، health ← healthy، danger ← dangerous، emotion ← emotional.' }
+    ];
+
+    const v2Seq = [
+        { type: 'word', text: 'prefix', meaning: 'پیشوند' },
+        { type: 'word', text: 'suffix', meaning: 'پسوند' },
+        { type: 'choice', q: 'Which word has the prefix un-?', fa: 'کدام واژه پیشوند un- دارد؟', options: ['unsafe', 'useful', 'user'], answer: 'unsafe', why: 'unsafe = un + safe؛ un- یعنی نه.', say: 'Unsafe means not safe.' },
+        { type: 'choice', q: 'Rewrite means _____.', fa: 'rewrite یعنی چه؟', options: ['write again', 'write badly', 'read again'], answer: 'write again', why: 'پیشوند re- یعنی دوباره؛ پس rewrite یعنی دوباره نوشتن.', say: 'Rewrite means write again.' },
+        { type: 'choice', q: 'The suffix in happiness is _____.', fa: 'پسوند در واژهٔ happiness چیست؟', options: ['-ness', '-hap', '-py'], answer: '-ness', why: 'happy + ness = happiness؛ -ness اسم‌ساز است.', say: 'Happy plus ness makes happiness.' },
+        { type: 'choice', q: 'Dangerous is the adjective form of _____.', fa: 'dangerous شکل صفتی کدام واژه است؟', options: ['danger', 'dangerly', 'dangerful'], answer: 'danger', why: 'danger + ous = dangerous؛ -ous صفت‌ساز است.', say: 'Danger plus ous makes dangerous.' },
+        { type: 'build', target: 'An incomplete answer is not complete', fa: 'یک پاسخ ناقص، کامل نیست', bank: ['An', 'incomplete', 'answer', 'is', 'not', 'complete'] },
+        { type: 'choice', q: 'Midday means _____.', fa: 'midday یعنی چه؟', options: ['the middle of the day', 'the end of the day', 'the start of the night'], answer: 'the middle of the day', why: 'پیشوند mid- یعنی میانه؛ پس midday یعنی میانهٔ روز.', say: 'Midday means the middle of the day.' },
+        { type: 'choice', q: 'Which word has a prefix but no suffix?', fa: 'کدام واژه پیشوند دارد اما پسوند ندارد؟', options: ['disagree', 'scanner', 'powerful'], answer: 'disagree', why: 'disagree = dis + agree؛ scanner و powerful پسوند دارند.', say: 'Disagree has the prefix dis.' },
+        { type: 'choice', q: 'Careful comes from _____.', fa: 'careful از کدام واژه می‌آید؟', options: ['care', 'car', 'carely'], answer: 'care', why: 'care + ful = careful؛ -ful صفت‌ساز است.', say: 'Care plus ful makes careful.' }
+    ];
+
+    const v2Listen = [
+        { audioText: 'Rewrite means write again.', display: 'Rewrite means write _____.', missing: 'again', options: ['again', 'badly', 'slowly', 'well'] },
+        { audioText: 'Unimportant means not important.', display: 'Unimportant means _____ important.', missing: 'not', options: ['not', 'very', 'more', 'too'] },
+        { audioText: 'A writer is a person who writes.', display: 'A _____ is a person who writes.', missing: 'writer', options: ['writer', 'write', 'writing', 'wrote'] }
+    ];
+
+    const w2Reading = [
+        { speaker: '__story__', text: 'Gerunds. A gerund is a verb + -ing that works like a noun. Cycling is good exercise. Vahid enjoys cycling.', fa: 'فعل‌اسم‌ها. فعل‌اسم واژه‌ای است از فعل + ing که مثل اسم کار می‌کند. دوچرخه‌سواری ورزش خوبی است. وحید دوچرخه‌سواری را دوست دارد.' },
+        { speaker: '__story__', text: 'A gerund can be a subject or an object: Swimming is useful for everyone. Reading helps us learn English.', fa: 'فعل‌اسم می‌تواند فاعل یا مفعول باشد: شنا برای همه مفید است. خواندن به ما کمک می‌کند انگلیسی یاد بگیریم.' },
+        { speaker: '__story__', text: 'A gerund is always singular, so one gerund takes a singular verb: Walking makes me happy. But when two gerunds form the subject, the verb is plural: Cycling and jogging are my favorite sports.', fa: 'فعل‌اسم همیشه مفرد است، پس یک فعل‌اسم فعل مفرد می‌گیرد: پیاده‌روی مرا خوشحال می‌کند. اما وقتی دو فعل‌اسم فاعل باشند، فعل جمع است: دوچرخه‌سواری و دویدن ورزش‌های مورد علاقهٔ من هستند.' },
+        { speaker: '__story__', text: 'Sometimes a noun follows a gerund: Playing football was his fun. Taking photos is her hobby. Learning a language takes time.', fa: 'گاهی بعد از فعل‌اسم یک اسم می‌آید: فوتبال بازی کردن سرگرمی او بود. عکاسی سرگرمی اوست. یادگیری یک زبان وقت می‌برد.' },
+        { speaker: '__story__', text: 'In notices, NO before an -ing form means it is forbidden here: NO FISHING, NO SMOKING, NO PARKING.', fa: 'در تابلوهای هشدار، NO پیش از شکل ing یعنی این کار اینجا ممنوع است: ماهیگیری ممنوع، سیگار کشیدن ممنوع، پارک کردن ممنوع.' },
+        { speaker: '__story__', text: 'We can use a gerund after these verbs: enjoy, finish, give up, imagine, keep on, practice, quit, love. We use go + a gerund for activities: go shopping, go fishing, go skiing, go jogging.', fa: 'بعد از این فعل‌ها فعل‌اسم می‌آید: enjoy، finish، give up، imagine، keep on، practice، quit، love. برای فعالیت‌ها از go + فعل‌اسم استفاده می‌کنیم: خرید رفتن، ماهیگیری رفتن، اسکی رفتن، دویدن رفتن.' },
+        { speaker: '__story__', text: 'Do not confuse a gerund with the present progressive: Maryam is writing an email now (present progressive), but Maryam\'s favorite hobby is writing poems (gerund).', fa: 'فعل‌اسم را با حال استمراری اشتباه نگیر: «مریم الان ایمیل می‌نویسد» حال استمراری است، اما «سرگرمی محبوب مریم نوشتن شعر است» فعل‌اسم است.' }
+    ];
+
+    const w2Seq = [
+        { type: 'word', text: 'gerund', meaning: 'فعل‌اسم (فعل + ing که نقش اسم دارد)' },
+        { type: 'choice', q: 'In "Swimming is useful", swimming is _____.', fa: 'در جملهٔ «Swimming is useful»، واژهٔ swimming چیست؟', options: ['a gerund used as the subject', 'a verb', 'an object'], answer: 'a gerund used as the subject', why: 'swimming فاعل جمله است و نقش اسم دارد؛ پس فعل‌اسم است.', say: 'Swimming is useful for everyone.' },
+        { type: 'choice', q: 'Cycling and jogging _____ my favorite sports.', fa: 'دوچرخه‌سواری و دویدن _____ ورزش‌های مورد علاقهٔ من.', options: ['are', 'is', 'was'], answer: 'are', why: 'دو فعل‌اسم فاعل‌اند؛ پس فعل جمع (are) می‌آید.', say: 'Cycling and jogging are my favorite sports.' },
+        { type: 'build', target: 'Cycling and jogging are my favorite sports', fa: 'دوچرخه‌سواری و دویدن ورزش‌های مورد علاقهٔ من هستند', bank: ['Cycling', 'and', 'jogging', 'are', 'my', 'favorite', 'sports'] },
+        { type: 'choice', q: 'After enjoy we use _____.', fa: 'بعد از enjoy چه چیزی می‌آید؟', options: ['a gerund', 'an infinitive', 'a past form'], answer: 'a gerund', why: 'enjoy + فعل‌اسم: I enjoy swimming.', say: 'I enjoy swimming.' },
+        { type: 'build', target: 'I enjoy swimming', fa: 'من از شنا کردن لذت می‌برم', bank: ['I', 'enjoy', 'swimming'] },
+        { type: 'choice', q: 'What does NO FISHING mean?', fa: 'تابلوی NO FISHING یعنی چه؟', options: ['Fishing is forbidden here.', 'There are no fish here.', 'Fish are welcome here.'], answer: 'Fishing is forbidden here.', why: 'NO + ing در تابلو یعنی این کار ممنوع است.', say: 'No fishing means fishing is forbidden here.' },
+        { type: 'build', target: 'Taking photos is her hobby', fa: 'عکاسی سرگرمی اوست', bank: ['Taking', 'photos', 'is', 'her', 'hobby'] },
+        { type: 'choice', q: 'Which sentence has a gerund?', fa: 'کدام جمله فعل‌اسم دارد؟', options: ['My favorite sport is hiking.', 'Saeed is cycling in the park right now.', 'They were watching a football match.'], answer: 'My favorite sport is hiking.', why: 'hiking اینجا نقش اسم دارد؛ دو جملهٔ دیگر حال استمراری‌اند.', say: 'My favorite sport is hiking.' },
+        { type: 'build', target: "Let's go shopping", fa: 'بیا خرید برویم', bank: ["Let's", 'go', 'shopping'] }
+    ];
+
+    const w2Listen = [
+        { audioText: 'Reading helps us learn English.', display: 'Reading helps us learn _____.', missing: 'English', options: ['English', 'math', 'music', 'science'] },
+        { audioText: 'Walking makes me happy.', display: 'Walking makes me _____.', missing: 'happy', options: ['happy', 'tired', 'sad', 'hungry'] },
+        { audioText: 'My dad goes fishing on Fridays.', display: 'My dad goes _____ on Fridays.', missing: 'fishing', options: ['fishing', 'fish', 'fished', 'to fish'] }
+    ];
+
+    const y2Reading = [
+        { speaker: 'بخش شنیداری', text: 'Listen to the first part of a report. Complete the sentences: Some people have three bad habits. They are _____ . By making just a few changes in their lifestyle, people _____ . Listen again and list all present perfect tenses.', fa: 'به بخش اول یک گزارش گوش کن. جمله‌ها را کامل کن: «بعضی افراد سه عادت بد دارند. آن‌ها _____ . با چند تغییر کوچک در سبک زندگی‌شان، مردم _____ .» دوباره گوش کن و همهٔ حال کامل‌ها را فهرست کن.' },
+        { speaker: '__story__', text: "People's busy lifestyle in big cities has created many problems for their health. Rushing to and from school and work has made it hard for everyone to be physically active. Many people do not have time to cook or prepare healthy food. They eat unhealthy snacks and junk food.", fa: 'سبک زندگی پرمشغلهٔ مردم در شهرهای بزرگ مشکلات زیادی برای سلامتشان ساخته است. شتافتن به مدرسه و سر کار و برگشتن از آن‌ها، فعال بودن جسمی را برای همه سخت کرده است. بسیاری از مردم وقت ندارند غذا بپزند یا غذای سالم آماده کنند. آن‌ها تنقلات ناسالم و غذای آماده می‌خورند.' },
+        { speaker: '__story__', text: 'This type of diet has changed people\'s taste and many young people now prefer fast food to homemade dishes. Watching TV and working with technology for long hours have also risked people\'s health. They have increased the risk of heart diseases and sleep disorders. So the things that seem so simple now can cause serious problems in the future.', fa: 'این نوع رژیم غذایی ذائقهٔ مردم را تغییر داده است و بسیاری از جوانان اکنون غذای آماده را به غذای خانگی ترجیح می‌دهند. تماشای تلویزیون و کار طولانی با فناوری هم سلامت مردم را به خطر انداخته است. آن‌ها خطر بیماری‌های قلبی و اختلال‌های خواب را افزایش داده‌اند. پس چیزهایی که اکنون ساده به نظر می‌رسند می‌توانند در آینده مشکلات جدی ایجاد کنند.' },
+        { speaker: 'پرسش‌های کتاب', text: 'Name three things people have to change in their lifestyle. Is it really easy to change our lifestyle? Why is too much working with technology dangerous?', fa: 'سه چیزی را نام ببر که مردم باید در سبک زندگی‌شان تغییر دهند. آیا تغییر سبک زندگی واقعاً آسان است؟ چرا کار زیاد با فناوری خطرناک است؟' }
+    ];
+
+    const y2Seq = [
+        { type: 'choice', q: "What has people's busy lifestyle created?", fa: 'سبک زندگی پرمشغلهٔ مردم چه چیزی ساخته است؟', options: ['Many problems for their health', 'More free time', 'Healthy food'], answer: 'Many problems for their health', why: 'متن می‌گوید: مشکلات زیادی برای سلامتی.', say: "People's busy lifestyle has created many problems for their health." },
+        { type: 'choice', q: 'Why is it hard for people to be physically active?', fa: 'چرا فعال بودن جسمی برای مردم سخت است؟', options: ['They rush to and from school and work.', 'They sleep too much.', 'There are no parks.'], answer: 'They rush to and from school and work.', why: 'متن: شتافتن به مدرسه و سر کار و برگشتن، فعال بودن را سخت کرده است.', say: 'Rushing to and from school and work has made it hard to be physically active.' },
+        { type: 'build', target: "People's busy lifestyle has created many problems", fa: 'سبک زندگی پرمشغلهٔ مردم مشکلات زیادی ساخته است', bank: ["People's", 'busy', 'lifestyle', 'has', 'created', 'many', 'problems'] },
+        { type: 'choice', q: 'What has changed young people\'s taste?', fa: 'چه چیزی ذائقهٔ جوانان را تغییر داده است؟', options: ['Junk food and fast food', 'Homemade dishes', 'Fresh vegetables'], answer: 'Junk food and fast food', why: 'این نوع رژیم غذایی (غذای آماده و ناسالم) ذائقه را تغییر داده است.', say: 'This type of diet has changed people\'s taste.' },
+        { type: 'build', target: 'They eat unhealthy snacks and junk food', fa: 'آن‌ها تنقلات ناسالم و غذای آماده می‌خورند', bank: ['They', 'eat', 'unhealthy', 'snacks', 'and', 'junk', 'food'] },
+        { type: 'choice', q: 'Which word is a gerund?', fa: 'کدام واژه فعل‌اسم است؟', options: ['working', 'worked', 'works'], answer: 'working', why: 'working در جمله نقش اسم دارد: Working with technology has risked health.', say: 'Working with technology for long hours has risked people\'s health.' },
+        { type: 'choice', q: 'Working with technology for long hours has _____ the risk of heart diseases.', fa: 'کار طولانی با فناوری خطر بیماری‌های قلبی را _____ .', options: ['increased', 'decreased', 'stopped'], answer: 'increased', why: 'متن می‌گوید خطر بیماری‌های قلبی و اختلال خواب افزایش یافته است.', say: 'It has increased the risk of heart diseases.' },
+        { type: 'build', target: 'Watching TV has risked people\'s health', fa: 'تماشای تلویزیون سلامت مردم را به خطر انداخته است', bank: ['Watching', 'TV', 'has', 'risked', "people's", 'health'] }
+    ];
+
+    const y2Listen = [
+        { audioText: 'People have not exercised for a long time.', display: 'People have not _____ for a long time.', missing: 'exercised', options: ['exercised', 'exercise', 'exercising', 'exercises'] },
+        { audioText: 'Technology has changed our lifestyle.', display: 'Technology has _____ our lifestyle.', missing: 'changed', options: ['changed', 'change', 'changing', 'changes'] },
+        { audioText: 'Many young people have become couch potatoes.', display: 'Many young people have become couch _____.', missing: 'potatoes', options: ['potatoes', 'potato', 'potatos', 'tomatoes'] }
+    ];
+
+    // ============================================================
+    // --- LESSON 3: the rest of the book (Get Ready 81-84,
+    //     Antonyms 93-94, Infinitives 102-105, What You Learned 107)
+    // ============================================================
+    const g3Reading = [
+        { speaker: '__story__', text: "Interesting facts: Art increases the brain's activity. Art helps students learn math and science better. Art makes people more creative and sociable. There are at least 12 different meanings for the word art in English.", fa: 'دانستنی‌ها: هنر فعالیت مغز را افزایش می‌دهد. هنر به دانش‌آموزان کمک می‌کند ریاضی و علوم را بهتر یاد بگیرند. هنر مردم را خلاق‌تر و اجتماعی‌تر می‌کند. واژهٔ art در انگلیسی دست‌کم ۱۲ معنی مختلف دارد.' },
+        { speaker: 'تمرین A', text: 'Look at the pictures. Mark two parts on the map of Iran where these artworks and crafts are made. Now match the pictures with these words: carpet, pottery, tilework, painting, calligraphy.', fa: 'به تصویرها نگاه کن. روی نقشهٔ ایران دو جایی را که این آثار و صنایع دستی ساخته می‌شوند علامت بزن. سپس تصویرها را با این واژه‌ها جور کن: فرش، سفال، کاشی‌کاری، نقاشی، خوشنویسی.' },
+        { speaker: 'تمرین B', text: 'Use the words in part A to complete these sentences: I bought this beautiful _____ cup in Meibod. The little boy was sleeping on the _____. It was soft and warm. Can you read that _____? It seems to be one of Nezami\'s poems. There is a collection of Farshchian\'s _____ in Astan Ghods Museum. There are different types of _____ in Sheikh Lotfollah Mosque.', fa: 'با واژه‌های بخش A این جمله‌ها را کامل کن: «این فنجان _____ زیبا را در میبد خریدم» (سفالی). «پسر کوچک روی _____ خوابیده بود؛ نرم و گرم بود» (فرش). «می‌توانی آن _____ را بخوانی؟ به نظر یکی از شعرهای نظامی است» (خوشنویسی). «مجموعه‌ای از _____ فرشچیان در موزهٔ آستان قدس است» (نقاشی‌ها). «انواع مختلف _____ در مسجد شیخ لطف‌الله هست» (کاشی‌کاری).' },
+        { speaker: 'تمرین C', text: 'How do you feel when you look at an artwork? happy and cheerful / bored and tired / uncertain and worried / proud and hopeful.', fa: 'وقتی به یک اثر هنری نگاه می‌کنی چه حسی داری؟ شاد و سرحال / خسته و بی‌حوصله / مردد و نگران / سرافراز و امیدوار.' }
+    ];
+
+    const g3Seq = [
+        { type: 'word', text: 'pottery', meaning: 'سفال، سفال‌گری' },
+        { type: 'word', text: 'calligraphy', meaning: 'خوشنویسی' },
+        { type: 'choice', q: 'Which craft is used in Sheikh Lotfollah Mosque?', fa: 'در مسجد شیخ لطف‌الله از کدام هنر استفاده شده است؟', options: ['Tilework', 'Pottery', 'Calligraphy'], answer: 'Tilework', why: 'در جملهٔ پنجم کتاب: انواع کاشی‌کاری در مسجد شیخ لطف‌الله هست.', say: 'There are different types of tilework in Sheikh Lotfollah Mosque.' },
+        { type: 'build', target: 'I bought this beautiful pottery cup in Meibod', fa: 'من این فنجان سفالی زیبا را در میبد خریدم', bank: ['I', 'bought', 'this', 'beautiful', 'pottery', 'cup', 'in', 'Meibod'] },
+        { type: 'choice', q: 'Farshchian is famous for his _____.', fa: 'فرشچیان به خاطر _____ معروف است.', options: ['paintings', 'pottery', 'carpets'], answer: 'paintings', why: 'در کتاب از مجموعهٔ نقاشی‌های فرشچیان در موزهٔ آستان قدس یاد شده است.', say: "There is a collection of Farshchian's paintings in Astan Ghods Museum." },
+        { type: 'build', target: 'The carpet was soft and warm', fa: 'فرش نرم و گرم بود', bank: ['The', 'carpet', 'was', 'soft', 'and', 'warm'] },
+        { type: 'choice', q: 'Which word means خوشنویسی?', fa: 'کدام واژه یعنی خوشنویسی؟', options: ['calligraphy', 'tilework', 'pottery'], answer: 'calligraphy', why: 'calligraphy یعنی خوشنویسی؛ tilework کاشی‌کاری و pottery سفال است.', say: 'Calligraphy is the art of beautiful writing.' },
+        { type: 'build', target: 'Can you read that calligraphy', fa: 'می‌توانی آن خوشنویسی را بخوانی', bank: ['Can', 'you', 'read', 'that', 'calligraphy'] },
+        { type: 'choice', q: 'Art helps students learn _____ better.', fa: 'هنر به دانش‌آموزان کمک می‌کند _____ را بهتر یاد بگیرند.', options: ['math and science', 'only history', 'only English'], answer: 'math and science', why: 'صفحهٔ ۸۱ کتاب: هنر کمک می‌کند ریاضی و علوم بهتر یاد گرفته شوند.', say: 'Art helps students learn math and science better.' }
+    ];
+
+    const g3Listen = [
+        { audioText: 'Art increases brain activity.', display: 'Art increases _____ activity.', missing: 'brain', options: ['brain', 'body', 'heart', 'eye'] },
+        { audioText: 'Art makes people more creative and sociable.', display: 'Art makes people more creative and _____.', missing: 'sociable', options: ['sociable', 'socially', 'society', 'social'] },
+        { audioText: 'There are different types of tilework in this mosque.', display: 'There are different types of _____ in this mosque.', missing: 'tilework', options: ['tilework', 'pottery', 'carpet', 'painting'] }
+    ];
+
+    const v3Reading = [
+        { speaker: '__story__', text: "Antonyms are words that have opposite meanings. Sometimes antonyms are very different words, for example true and false or hot and cold. Other times, they are made by adding or changing prefixes or suffixes, for example like and dislike, or careful and careless. Learning antonyms is a good way to develop our vocabulary.", fa: 'متضادها واژه‌هایی با معنی مخالف هستند. گاهی متضادها واژه‌های کاملاً متفاوت‌اند، مثل true و false یا hot و cold. گاهی با افزودن یا تغییر پیشوند و پسوند ساخته می‌شوند، مثل like و dislike یا careful و careless. یادگیری متضادها راه خوبی برای گسترش دایرهٔ واژگان است.' },
+        { speaker: 'تمرین A', text: 'Write a word in each blank that is the opposite of the word in the left column: cold, fast, happy.', fa: 'در هر جای خالی واژه‌ای بنویس که متضاد ستون چپ باشد: cold ← hot، fast ← slow، happy ← sad.' },
+        { speaker: 'تمرین B', text: 'Two of the words in each group are antonyms. Find them: start / finish / decrease / produce; quickly / sadly / greatly / slowly; rise / move / reflect / fall; cheap / famous / expensive / interesting.', fa: 'در هر گروه دو واژه متضادند؛ آن‌ها را پیدا کن: start/finish، quickly/slowly، rise/fall، cheap/expensive.' },
+        { speaker: 'تمرین C', text: 'Look back at the Reading to find synonyms and antonyms: a synonym for reflect in paragraph 1, an antonym for buy in paragraph 3, a synonym for well-known in paragraph 5, an antonym for ugly in paragraph 6.', fa: 'به متن ریدینگ برگرد و مترادف و متضاد پیدا کن: مترادف reflect در پاراگراف ۱ (show)، متضاد buy در پاراگراف ۳ (sell)، مترادف well-known در پاراگراف ۵ (famous)، متضاد ugly در پاراگراف ۶ (beautiful).' }
+    ];
+
+    const v3Seq = [
+        { type: 'word', text: 'antonym', meaning: 'متضاد' },
+        { type: 'choice', q: 'The opposite of hot is _____.', fa: 'متضاد hot کدام است؟', options: ['cold', 'warm', 'dry'], answer: 'cold', why: 'hot (گرم) و cold (سرد) متضادند.', say: 'Hot and cold are antonyms.' },
+        { type: 'choice', q: 'The opposite of fast is _____.', fa: 'متضاد fast کدام است؟', options: ['slow', 'quick', 'strong'], answer: 'slow', why: 'fast یعنی سریع و slow یعنی کند؛ متضادند.', say: 'Fast and slow are antonyms.' },
+        { type: 'build', target: 'True and false are antonyms', fa: 'درست و نادرست متضادند', bank: ['True', 'and', 'false', 'are', 'antonyms'] },
+        { type: 'choice', q: 'Which pair are antonyms?', fa: 'کدام جفت متضادند؟', options: ['rise and fall', 'rise and climb', 'cheap and famous'], answer: 'rise and fall', why: 'rise یعنی بالا رفتن و fall یعنی پایین آمدن؛ پس متضادند.', say: 'Rise and fall are antonyms.' },
+        { type: 'choice', q: 'Careless is the opposite of _____.', fa: 'careless متضاد کدام واژه است؟', options: ['careful', 'care', 'carefully'], answer: 'careful', why: '-less یعنی بدون؛ careless بی‌دقت و careful با دقت است.', say: 'Careful and careless are antonyms.' },
+        { type: 'choice', q: 'The opposite of buy is _____.', fa: 'متضاد buy کدام است؟', options: ['sell', 'pay', 'shop'], answer: 'sell', why: 'buy یعنی خریدن و sell یعنی فروختن.', say: 'Buy and sell are antonyms.' },
+        { type: 'build', target: 'Learning antonyms develops our vocabulary', fa: 'یادگیری متضادها دایرهٔ واژگان ما را گسترش می‌دهد', bank: ['Learning', 'antonyms', 'develops', 'our', 'vocabulary'] },
+        { type: 'choice', q: 'The opposite of ugly is _____.', fa: 'متضاد ugly کدام است؟', options: ['beautiful', 'nice', 'big'], answer: 'beautiful', why: 'mتن کتاب: متضاد ugly در پاراگراف ۶ beautiful است.', say: 'Ugly and beautiful are antonyms.' },
+        { type: 'choice', q: 'Well-known means _____.', fa: 'well-known یعنی چه؟', options: ['famous', 'unknown', 'ugly'], answer: 'famous', why: 'well-known و famous هر دو یعنی مشهور.', say: 'Well-known means famous.' }
+    ];
+
+    const v3Listen = [
+        { audioText: 'True and false are antonyms.', display: 'True and _____ are antonyms.', missing: 'false', options: ['false', 'true', 'wrong', 'bad'] },
+        { audioText: 'Careful and careless are antonyms.', display: 'Careful and _____ are antonyms.', missing: 'careless', options: ['careless', 'carefully', 'care', 'careful'] },
+        { audioText: 'Learning antonyms develops our vocabulary.', display: 'Learning antonyms develops our _____.', missing: 'vocabulary', options: ['vocabulary', 'grammar', 'writing', 'reading'] }
+    ];
+
+    const w3Reading = [
+        { speaker: '__story__', text: 'Infinitives. An infinitive is the to form of a verb: the infinitive of study is to study. To learn a language can be interesting. Hamed wants to learn a language.', fa: 'مصدرها. مصدر شکل «to + فعل» است: مصدر study می‌شود to study. یاد گرفتن یک زبان می‌تواند جالب باشد. حامد می‌خواهد یک زبان یاد بگیرد.' },
+        { speaker: '__story__', text: 'You can use an infinitive as the subject of a sentence: To smoke is very bad for everyone. But its gerund form is more natural: Smoking is very bad for everyone.', fa: 'می‌توان از مصدر به‌عنوان فاعل جمله استفاده کرد: سیگار کشیدن برای همه بسیار بد است. اما شکل فعل‌اسمی آن طبیعی‌تر است: سیگار کشیدن برای همه بسیار بد است.' },
+        { speaker: '__story__', text: 'We can also use infinitives as the object of a sentence: I like to watch this movie. She wanted to buy an Iranian handicraft.', fa: 'می‌توانیم از مصدر به‌عنوان مفعول جمله هم استفاده کنیم: دوست دارم این فیلم را ببینم. او می‌خواست یک صنایع دستی ایرانی بخرد.' },
+        { speaker: '__story__', text: 'After some verbs we use infinitives. The most common ones are: choose, decide, want, promise, forget, wait, expect, remember, try, attempt, agree, learn.', fa: 'بعد از برخی فعل‌ها مصدر می‌آید. رایج‌ترین آن‌ها: choose، decide، want، promise، forget، wait، expect، remember، try، attempt، agree، learn.' },
+        { speaker: '__story__', text: 'We make negative infinitives with not + to + verb: I told the children not to make so much noise. My dad tries not to forget the phone numbers.', fa: 'مصدر منفی با not + to + فعل ساخته می‌شود: به بچه‌ها گفتم این‌قدر سر و صدا نکنند. پدرم سعی می‌کند شماره تلفن‌ها را فراموش نکند.' },
+        { speaker: '__story__', text: 'We can use infinitives after some adjectives: She became happy to see her classmate after ten years. Ali was really sad to leave us soon. Common adjectives: amazed, ashamed, careful, certain, fortunate, lucky, glad, surprised, shocked, sorry.', fa: 'بعد از برخی صفت‌ها هم مصدر می‌آید: او از دیدن هم‌کلاسی‌اش بعد از ده سال خوشحال شد. علی واقعاً غمگین بود که به‌زودی ما را ترک می‌کند. صفت‌های رایج: amazed، ashamed، careful، certain، fortunate، lucky، glad، surprised، shocked، sorry.' },
+        { speaker: 'تمرین A', text: 'Complete the sentences with the gerunds or infinitives of these verbs: learn, leave, make, give, catch, turn off. I went home after _____ the school. I have decided _____ Spanish. We cannot learn English without _____ mistakes. Mahboobeh bought some flowers _____ to her mother. Remember _____ the lights. I ran fast _____ the bus.', fa: 'جمله‌ها را با فعل‌اسم یا مصدر این فعل‌ها کامل کن: learn، leave، make، give، catch، turn off. بعد از finishing (فعل‌اسم)، to learn (مصدر)، making (بعد از without)، to give، to turn off، to catch.' }
+    ];
+
+    const w3Seq = [
+        { type: 'word', text: 'infinitive', meaning: 'مصدر (to + فعل)' },
+        { type: 'choice', q: 'The infinitive of study is _____.', fa: 'مصدر study چیست؟', options: ['to study', 'studying', 'studied'], answer: 'to study', why: 'مصدر همان «to + فعل» است.', say: 'The infinitive of study is to study.' },
+        { type: 'choice', q: 'After decided we use _____.', fa: 'بعد از decided چه می‌آید؟', options: ['an infinitive', 'a gerund', 'a past form'], answer: 'an infinitive', why: 'decide یکی از فعل‌هایی است که بعدش مصدر می‌آید: decided to learn.', say: 'I have decided to learn Spanish.' },
+        { type: 'build', target: 'Hamed wants to learn a language', fa: 'حامد می‌خواهد یک زبان یاد بگیرد', bank: ['Hamed', 'wants', 'to', 'learn', 'a', 'language'] },
+        { type: 'choice', q: 'The negative infinitive is _____.', fa: 'مصدر منفی چگونه ساخته می‌شود؟', options: ['not to make', 'to not make', 'no to make'], answer: 'not to make', why: 'ساختار کتاب: not + to + فعل.', say: 'I told the children not to make so much noise.' },
+        { type: 'build', target: 'I told the children not to make noise', fa: 'به بچه‌ها گفتم سر و صدا نکنند', bank: ['I', 'told', 'the', 'children', 'not', 'to', 'make', 'noise'] },
+        { type: 'choice', q: 'She became happy _____ her classmate.', fa: 'او از دیدن هم‌کلاسی‌اش خوشحال شد.', options: ['to see', 'seeing', 'see'], answer: 'to see', why: 'بعد از صفت happy مصدر می‌آید.', say: 'She became happy to see her classmate.' },
+        { type: 'build', target: 'I like to watch this movie', fa: 'دوست دارم این فیلم را ببینم', bank: ['I', 'like', 'to', 'watch', 'this', 'movie'] },
+        { type: 'choice', q: 'Which verb is followed by an infinitive?', fa: 'بعد از کدام فعل مصدر می‌آید؟', options: ['decide', 'enjoy', 'finish'], answer: 'decide', why: 'decide + to؛ اما enjoy و finish فعل‌اسم می‌گیرند.', say: 'I decided to stay at home.' },
+        { type: 'choice', q: 'In "Ali was sad to leave us", the infinitive is _____.', fa: 'در جملهٔ «Ali was sad to leave us» مصدر کدام است؟', options: ['to leave', 'sad', 'us'], answer: 'to leave', why: 'to + leave مصدر است و بعد از صفت sad آمده.', say: 'Ali was sad to leave us.' }
+    ];
+
+    const w3Listen = [
+        { audioText: 'Hamed wants to learn a language.', display: 'Hamed wants to _____ a language.', missing: 'learn', options: ['learn', 'learns', 'learning', 'learned'] },
+        { audioText: 'She wanted to buy an Iranian handicraft.', display: 'She wanted to buy an Iranian _____.', missing: 'handicraft', options: ['handicraft', 'handicrafts', 'handmade', 'handwork'] },
+        { audioText: 'My dad tries not to forget the phone numbers.', display: 'My dad tries not to _____ the phone numbers.', missing: 'forget', options: ['forget', 'forgot', 'forgetting', 'forgets'] }
+    ];
+
+    const y3Reading = [
+        { speaker: 'بخش شنیداری', text: 'Listen to the first part of a report. Fill in the blanks: Art is helpful _____ . People can make _____ . Listen again and take note of all if clauses.', fa: 'به بخش اول یک گزارش گوش کن. جای خالی‌ها را پر کن: «هنر _____ مفید است. مردم می‌توانند _____ .» دوباره گوش کن و همهٔ جمله‌های if را یادداشت کن.' },
+        { speaker: '__story__', text: "Art can improve people's physical, mental, and emotional wellness. If people use their art skills in a right way, they will be able to communicate their feelings. They will understand their family and friends better. Art can help people have better relationship with each other.", fa: 'هنر می‌تواند سلامت جسمی، روانی و عاطفی مردم را بهبود بخشد. اگر مردم از مهارت‌های هنری خود درست استفاده کنند، می‌توانند احساساتشان را بیان کنند. آن‌ها خانواده و دوستانشان را بهتر درک می‌کنند. هنر به مردم کمک می‌کند رابطهٔ بهتری با هم داشته باشند.' },
+        { speaker: '__story__', text: 'The power of art decreases the risk of many illnesses such as heart attack. If people practice art, they will get along with their stress and enjoy the pleasure of making artwork. You can try this by drawing simple things or making simple objects. You will see its power!', fa: 'نیروی هنر خطر بسیاری از بیماری‌ها مثل سکتهٔ قلبی را کاهش می‌دهد. اگر مردم هنر را تمرین کنند، با استرس خود کنار می‌آیند و از لذت ساختن اثر هنری بهره‌مند می‌شوند. می‌توانی این را با کشیدن چیزهای ساده یا ساختن اشیای ساده امتحان کنی. نیروی آن را خواهی دید!' },
+        { speaker: 'پرسش‌های کتاب', text: 'What does their in line 2 refer to? What does its in the last line refer to? Underline all conditional sentences. Can everyone make artwork? How does art help us understand our family? Have you ever visited an art gallery?', fa: 'ضمیر their در خط ۲ به چه چیزی اشاره دارد؟ its در خط آخر به چه چیزی؟ همهٔ جمله‌های شرطی را زیر خط بکش. آیا همه می‌توانند اثر هنری بسازند؟ هنر چگونه به ما کمک می‌کند خانواده‌مان را بهتر بفهمیم؟ آیا تا حالا به گالری هنری رفته‌ای؟' }
+    ];
+
+    const y3Seq = [
+        { type: 'choice', q: "Art can improve people's _____ wellness.", fa: 'هنر می‌تواند سلامت _____ مردم را بهبود بخشد.', options: ['physical, mental and emotional', 'only physical', 'only mental'], answer: 'physical, mental and emotional', why: 'متن: سلامت جسمی، روانی و عاطفی.', say: "Art can improve people's physical, mental, and emotional wellness." },
+        { type: 'choice', q: 'If people use their art skills in a right way, they will be able to _____.', fa: 'اگر مردم از مهارت‌های هنری‌شان درست استفاده کنند، می‌توانند _____ .', options: ['communicate their feelings', 'become famous', 'sell their artworks'], answer: 'communicate their feelings', why: 'متن: می‌توانند احساساتشان را بیان کنند.', say: 'They will be able to communicate their feelings.' },
+        { type: 'build', target: 'If people practice art, they will get along with their stress', fa: 'اگر مردم هنر را تمرین کنند، با استرس خود کنار می‌آیند', bank: ['If', 'people', 'practice', 'art,', 'they', 'will', 'get', 'along', 'with', 'their', 'stress'] },
+        { type: 'choice', q: 'What does their in line 2 refer to?', fa: 'ضمیر their در خط ۲ به چه چیزی اشاره دارد؟', options: ['people', 'illnesses', 'feelings'], answer: 'people', why: 'their feelings یعنی احساسات همان مردم.', say: 'Their refers to people.' },
+        { type: 'choice', q: 'What does its in the last line refer to?', fa: 'ضمیر its در خط آخر به چه چیزی اشاره دارد؟', options: ["art's power", 'the stress', 'the illness'], answer: "art's power", why: 'its power یعنی نیروی هنر.', say: 'Its refers to the power of art.' },
+        { type: 'build', target: "Art can improve people's emotional wellness", fa: 'هنر می‌تواند سلامت عاطفی مردم را بهبود بخشد', bank: ['Art', 'can', 'improve', "people's", 'emotional', 'wellness'] },
+        { type: 'choice', q: 'Which sentence is conditional?', fa: 'کدام جمله شرطی است؟', options: ['If people practice art, they will enjoy making artwork.', 'People practice art every day.', 'Art improves wellness.'], answer: 'If people practice art, they will enjoy making artwork.', why: 'جملهٔ شرطی با if و نتیجهٔ will ساخته می‌شود.', say: 'If people practice art, they will enjoy making artwork.' },
+        { type: 'build', target: 'You will see its power', fa: 'نیروی آن را خواهی دید', bank: ['You', 'will', 'see', 'its', 'power'] }
+    ];
+
+    const y3Listen = [
+        { audioText: 'Art can decrease the risk of many illnesses.', display: 'Art can _____ the risk of many illnesses.', missing: 'decrease', options: ['decrease', 'increase', 'improve', 'change'] },
+        { audioText: 'If people practice art, they will enjoy making artwork.', display: 'If people practice art, they will enjoy _____ artwork.', missing: 'making', options: ['making', 'make', 'made', 'makes'] },
+        { audioText: 'You can try this by drawing simple things.', display: 'You can try this by _____ simple things.', missing: 'drawing', options: ['drawing', 'draw', 'drew', 'draws'] }
+    ];
+
+    // Attach the finished chunks to their places on each lesson's path
+    function readyChunk(list, id, content) {
+        const s = (list || []).find(x => x.id === id);
+        if (!s) return;
+        s.ready = true;
+        s.reading = content.reading;
+        s.easySequence = content.seq;
+        s.listeningData = content.listen;
+    }
+
+    readyChunk(SECTIONS, 'getready', { reading: g1Reading, seq: g1Seq, listen: g1Listen });
+    readyChunk(SECTIONS, 'vocabdev', { reading: v1Reading, seq: v1Seq, listen: v1Listen });
+    readyChunk(SECTIONS, 'writing', { reading: w1Reading, seq: w1Seq, listen: w1Listen });
+    readyChunk(SECTIONS, 'whatlearned', { reading: y1Reading, seq: y1Seq, listen: y1Listen });
+
+    readyChunk(SECTIONS_L2, 'l2-getready', { reading: g2Reading, seq: g2Seq, listen: g2Listen });
+    readyChunk(SECTIONS_L2, 'l2-vocabdev', { reading: v2Reading, seq: v2Seq, listen: v2Listen });
+    readyChunk(SECTIONS_L2, 'l2-writing', { reading: w2Reading, seq: w2Seq, listen: w2Listen });
+    readyChunk(SECTIONS_L2, 'l2-whatlearned', { reading: y2Reading, seq: y2Seq, listen: y2Listen });
+
+    readyChunk(SECTIONS_L3, 'l3-getready', { reading: g3Reading, seq: g3Seq, listen: g3Listen });
+    readyChunk(SECTIONS_L3, 'l3-vocabdev', { reading: v3Reading, seq: v3Seq, listen: v3Listen });
+    readyChunk(SECTIONS_L3, 'l3-writing', { reading: w3Reading, seq: w3Seq, listen: w3Listen });
+    readyChunk(SECTIONS_L3, 'l3-whatlearned', { reading: y3Reading, seq: y3Seq, listen: y3Listen });
+
+    // Chunk descriptions now describe the real content
+    SECTIONS[0].faDesc = 'دانستنی‌های زبان‌های جهان، تابلوها و نقشهٔ زبان‌ها';
+    SECTIONS[4].faDesc = 'مترادف‌ها: جفت‌های هم‌معنی و تمرین تشخیص مترادف';
+    SECTIONS[8].faDesc = 'فاعل، فعل، مفعول و اطلاعات اضافی در جملهٔ ساده';
+    SECTIONS[9].faDesc = 'مرور پایانی درس ۱ با داستان خرید و اسم‌های غیرقابل شمارش';
+    SECTIONS_L2[0].faDesc = 'دانستنی‌های سلامت، هرم غذایی و قیدهای تکرار';
+    SECTIONS_L2[4].faDesc = 'پیشوندها و پسوندها و ساختن واژه‌های تازه';
+    SECTIONS_L2[8].faDesc = 'فعل‌اسم (gerund) به‌عنوان فاعل و مفعول';
+    SECTIONS_L2[9].faDesc = 'مرور پایانی درس ۲ با گزارش سبک زندگی سالم';
+    SECTIONS_L3[0].faDesc = 'دانستنی‌های هنر، صنایع دستی ایران و احساس دربارهٔ اثر هنری';
+    SECTIONS_L3[4].faDesc = 'متضادها و تمرین تشخیص متضاد';
+    SECTIONS_L3[8].faDesc = 'مصدر با to، مصدر منفی و مصدر بعد از صفت';
+    SECTIONS_L3[9].faDesc = 'مرور پایانی درس ۳ با گزارش هنر و سلامت';
+
     LESSONS[0].sections = SECTIONS;
     LESSONS[1].sections = SECTIONS_L2;
     LESSONS[2].sections = SECTIONS_L3;
@@ -2449,6 +2917,7 @@
 
         const head = document.createElement('div');
         head.className = 'section-page-title';
+        document.title = 'Vision 2 · ' + lesson.title;
         const h = document.createElement('h2');
         h.innerText = `${lesson.icon} ${lesson.title} · ${lesson.pages}`;
         const p = document.createElement('p');
@@ -2529,6 +2998,7 @@
     // ============================================================
     function renderPath() {
         const l = LESSONS[curLesson];
+        document.title = 'Vision 2 · ' + l.title;
         const head = document.getElementById('lessonHead');
         head.innerHTML = '';
         const h = document.createElement('h2');
@@ -2628,6 +3098,7 @@
 
     function goHome() {
         window.speechSynthesis && window.speechSynthesis.cancel();
+        document.title = 'Vision 2 · کتاب زبان انگلیسی';
         showScreen('menuScreen');
         updateFCBadge();
     }
@@ -2650,8 +3121,8 @@
 
     // The practice phase = teach/build steps, then the listening questions
     function easySteps() {
-        const listenSteps = LT().listeningData.map(d => ({ type: 'listen', data: d }));
-        return LT().easySequence.concat(listenSteps);
+        const listenSteps = (LT().listeningData || []).map(d => ({ type: 'listen', data: d }));
+        return (LT().easySequence || []).concat(listenSteps);
     }
 
     function renderEasyStep() {
@@ -2734,6 +3205,9 @@
         }
         else if (step.type === 'build') {
             renderBuildUI(step);
+        }
+        else if (step.type === 'choice') {
+            renderChoiceUI(step);
         }
         else if (step.type === 'listen') {
             renderListenUI(step.data);
@@ -2895,6 +3369,69 @@
         container.appendChild(box);
         nextBtn.classList.add('hidden');
         setTimeout(() => speak(data.audioText), 400);
+    }
+
+    // Multiple-choice questions in the practice phase (vocabulary, writing, review)
+    function renderChoiceUI(step) {
+        const container = document.getElementById('easyContent');
+        const nextBtn = document.getElementById('easyNextBtn');
+
+        container.innerHTML = '';
+        const box = document.createElement('div');
+        box.className = 'listening-box';
+
+        const kicker = document.createElement('p');
+        kicker.style.color = '#666';
+        kicker.innerText = '✅ سؤال چندگزینه‌ای';
+        box.appendChild(kicker);
+
+        const q = document.createElement('h2');
+        q.style.cssText = 'font-size:1.3rem; direction:ltr; margin-bottom:10px; font-weight:900;';
+        q.innerText = step.q;
+        box.appendChild(q);
+
+        if (step.fa) {
+            const qfa = document.createElement('p');
+            qfa.style.cssText = 'color:#64748b; margin-bottom:16px; line-height:1.9;';
+            qfa.innerText = step.fa;
+            box.appendChild(qfa);
+        }
+
+        const grid = document.createElement('div');
+        grid.className = 'options-grid';
+        const buttons = [];
+        [...step.options].sort(() => Math.random() - 0.5).forEach(opt => {
+            const b = document.createElement('button');
+            b.className = 'option-btn';
+            b.innerText = opt;
+            b.onclick = () => {
+                buttons.forEach(x => {
+                    x.disabled = true;
+                    if (x.innerText === step.answer) x.classList.add('correct');
+                });
+                if (opt === step.answer) {
+                    playSound('correct');
+                } else {
+                    b.classList.add('wrong');
+                    playSound('wrong');
+                }
+                speak(step.say || step.q);
+
+                const why = document.createElement('div');
+                why.className = 'gram-why';
+                why.innerText = 'چرا؟ ' + step.why;
+                box.appendChild(why);
+
+                nextBtn.classList.remove('hidden');
+                nextBtn.innerText = 'ادامه ➡️';
+                nextBtn.onclick = nextEasyStep;
+            };
+            buttons.push(b);
+            grid.appendChild(b);
+        });
+        box.appendChild(grid);
+        container.appendChild(box);
+        nextBtn.classList.add('hidden');
     }
 
     function checkListenAnswer(btn, selected, data, grid) {
