@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Vision 2 · Lesson 1</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap');
@@ -24,7 +24,7 @@
 
         * {
             box-sizing: border-box;
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
@@ -210,7 +210,7 @@
         .path-list { display: flex; flex-direction: column; gap: 12px; }
         .path-node { display: flex; align-items: flex-start; gap: 12px; position: relative; }
         .path-node:not(:last-child)::after {
-            content: ''; position: absolute; left: 21px; top: 52px; bottom: -16px; width: 4px;
+            content: ''; position: absolute; inset-inline-start: 21px; top: 52px; bottom: -16px; width: 4px;
             border-radius: 2px; background: repeating-linear-gradient(#cbd5e1 0 6px, transparent 6px 12px);
         }
         .path-dot {
@@ -363,7 +363,7 @@
             cursor: pointer;
             box-shadow: 0 3px 0 var(--border);
             transition: all 0.1s;
-            touch-action: none;
+            touch-action: manipulation;
             direction: ltr;
             user-select: none;
         }
@@ -412,7 +412,7 @@
         #tooltip {
             position: fixed; background: #1a1a1a; color: white; padding: 10px 15px; border-radius: 8px; font-size: 1rem; font-weight: 700;
             pointer-events: none; opacity: 0; transition: opacity 0.2s, transform 0.2s; transform: translate(-50%, 10px); z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            white-space: nowrap; direction: rtl;
+            max-width: calc(100vw - 24px); line-height: 1.8; text-align: center; direction: rtl;
         }
         #tooltip.show { opacity: 1; transform: translate(-50%, 0); }
 
@@ -444,6 +444,11 @@
 
         .finish-box { text-align: center; margin-top: 60px; }
         .finish-box h2 { color: var(--primary); }
+
+        /* Long lesson titles must wrap instead of pushing the page badge off-screen */
+        .lesson-card .mode-text { min-width: 0; }
+        .lesson-card .mode-text h2 { overflow-wrap: anywhere; }
+        .lesson-card .toc-page-badge { flex: 0 0 auto; }
     </style>
 </head>
 <body>
@@ -579,7 +584,7 @@
         { type: 'word', text: 'began', meaning: 'شروع کرد' },
         { type: 'build', target: 'I began learning English', fa: 'من شروع به یادگیری انگلیسی کردم', bank: ['learning', 'I', 'English', 'began'] },
         { type: 'word', text: 'thirteen', meaning: 'سیزده' },
-        { type: 'build', target: 'I began learning English at school when I was thirteen', fa: 'در حالی که سیزده سالم بود، در مدرسه شروع به یادگیری انگلیسی کردم', bank: ['I', 'when', 'thirteen', 'school', 'English', 'at', 'began', 'was', 'learning'] },
+        { type: 'build', target: 'I began learning English at school when I was thirteen', fa: 'در حالی که سیزده سالم بود، در مدرسه شروع به یادگیری انگلیسی کردم', bank: ['I', 'when', 'thirteen', 'school', 'English', 'at', 'began', 'was', 'learning', 'I'] },
 
         { type: 'build', target: 'Then I began learning French in a language institute', fa: 'سپس در آموزشگاه زبان شروع به یادگیری فرانسوی کردم', bank: ['I', 'Then', 'in', 'a', 'language', 'began', 'learning', 'institute', 'French'] },
 
@@ -1113,7 +1118,22 @@
         "largest": "بزرگ‌ترین", "rice": "برنج", "native": "بومی",
         "native language": "زبان بومی", "wind": "باد", "power": "انرژی / قدرت",
         "farming": "کشاورزی", "water": "آب", "mars": "مریخ (سیاره)",
-        "dictionary prices": "قیمت واژه‌نامه‌ها"
+        "dictionary prices": "قیمت واژه‌نامه‌ها",
+
+        "that's": "آن … است", "i'm": "من … هستم (I am)", "please": "لطفاً",
+        "yes": "بله", "amount": "مقدار / میزان", "any": "هیچ / هر",
+        "bad": "بد", "by": "با / به‌وسیلهٔ", "cities": "شهرها",
+        "diego's": "دیگو (نام) — مالِ دیگو", "dollars": "دلار",
+        "form": "تشکیل دادن / شکل", "group": "گروه", "human's": "انسان (ملکی)",
+        "iran": "ایران", "living": "زندگی کردن / در حال زندگی", "new": "جدید / نو",
+        "notice": "توجه کردن", "regions": "مناطق / ناحیه‌ها", "say": "می‌گویند / گفتن",
+        "something": "چیزی", "taking": "گرفتن / توجه کردن (taking notice)",
+        "together": "با هم", "traveling": "سفر کردن",
+        "twentyfirst": "بیست‌ویکم", "twenty-first": "بیست‌ویکم",
+        "up": "بالا / (make up = تشکیل دادن)", "weather": "هوا / آب‌وهوا",
+        "word": "واژه / کلمه", "communicate": "ارتباط برقرار کردن",
+        "cup": "فنجان", "few": "کم / چند (a few = چند تا)",
+        "happens": "اتفاق می‌افتد", "nouns": "اسم‌ها", "now": "اکنون / حالا"
     };
 
     // One merged word bank for tooltips across the whole book
@@ -1293,7 +1313,7 @@
         { type: 'build', target: 'English has about one billion learners', fa: 'انگلیسی حدود یک میلیارد زبان‌آموز دارد', bank: ['about', 'English', 'has', 'learners', 'one', 'billion'] },
 
         { type: 'word', text: 'fifty', meaning: 'پنجاه' },
-        { type: 'build', target: "fifty percent of the world's languages", fa: 'حدود ۵۰ درصد زبان‌های جهان', bank: ["world's", 'of', 'percent', 'the', 'fifty'] },
+        { type: 'build', target: "fifty percent of the world's languages", fa: 'حدود ۵۰ درصد زبان‌های جهان', bank: ["world's", 'of', 'percent', 'the', 'fifty', 'languages'] },
 
         { type: 'word', text: 'call', meaning: 'نامیدن / می‌گوییم' },
         { type: 'word', text: 'endangered', meaning: 'در خطر انقراض / رو به نابودی' },
@@ -1489,7 +1509,12 @@
     function LT() { return lesson; }
 
     function loadFlashcards() {
-        flashcards = JSON.parse(localStorage.getItem('companion_flashcards')) || migrateFlashcards();
+        try {
+            flashcards = JSON.parse(localStorage.getItem('companion_flashcards')) || migrateFlashcards();
+        } catch (e) {
+            flashcards = [];
+        }
+        if (!Array.isArray(flashcards)) flashcards = [];
         updateFCBadge();
     }
 
@@ -1644,6 +1669,7 @@
     let audioCtx;
     function playSound(type) {
         if (!audioCtx) audioCtx = new AudioCtx();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.connect(gain); gain.connect(audioCtx.destination);
@@ -1663,6 +1689,9 @@
             gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
             osc.start(); osc.stop(audioCtx.currentTime + 0.2);
         }
+
+        // Short buzz on a wrong answer for phones that support it
+        if (type !== 'correct' && navigator.vibrate) navigator.vibrate(120);
     }
 
     // Global TTS: plays `repeat` times (default 2) at `rate` (default 0.65).
@@ -1689,6 +1718,8 @@
     function showScreen(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
+        // Each screen starts at the top, never at the previous screen's scroll position
+        window.scrollTo(0, 0);
     }
 
     function goHome() {
@@ -1728,8 +1759,8 @@
         if (!step) {
             container.innerHTML = `<div class="finish-box"><h2>🎉 عالی بود!</h2><p>کلمات، جملات و تمرین شنیداری این بخش را کامل یاد گرفتی.</p></div>`;
             nextBtn.classList.remove('hidden');
-            nextBtn.innerText = "🏠 بازگشت به منو";
-            nextBtn.onclick = goHome;
+            nextBtn.innerText = "↩️ بازگشت به مسیر درس";
+            nextBtn.onclick = () => { renderPath(); showScreen('lessonScreen'); };
             return;
         }
 
@@ -1776,7 +1807,9 @@
                 saveBtn.innerText = '➕ افزودن به فلش‌کارت';
                 saveBtn.onclick = () => {
                     flashcards.push({ word: step.text, meaning: step.meaning });
-                    localStorage.setItem('companion_flashcards', JSON.stringify(flashcards));
+                    try {
+                        localStorage.setItem('companion_flashcards', JSON.stringify(flashcards));
+                    } catch (e) { /* storage full or blocked: keep the in-memory card */ }
                     updateFCBadge();
                     playSound('correct');
                     ttsBtn.disabled = true;
@@ -2015,6 +2048,11 @@
 
             const textDiv = document.createElement('div');
             item.text.split(' ').forEach(tok => {
+                // Punctuation-only tokens are not tappable
+                if (!/[A-Za-z]/.test(tok)) {
+                    textDiv.appendChild(document.createTextNode(tok + ' '));
+                    return;
+                }
                 const span = document.createElement('span');
                 span.className = 'clickable-word';
                 span.innerText = tok;
@@ -2064,7 +2102,8 @@
         let left = rect.left + rect.width / 2;
         left = Math.max(tooltipW / 2 + 8, Math.min(left, window.innerWidth - tooltipW / 2 - 8));
         tooltip.style.left = left + 'px';
-        tooltip.style.top = Math.max(4, rect.top - 46) + 'px';
+        const tooltipH = tooltip.offsetHeight || 40;
+        tooltip.style.top = Math.max(4, rect.top - tooltipH - 10) + 'px';
         tooltip.classList.add('show');
 
         clearTimeout(window.tooltipTimeout);
