@@ -23,7 +23,7 @@ Opening a lesson shows its chunks as a numbered path, ordered exactly like the t
 | 3 | 📖 New Words & Expressions | Pages 21-23 | ✅ آماده |
 | 4 | 📑 Reading - Languages of the World | Pages 24-26 | ✅ آماده |
 | 5 | 🔁 Vocabulary Development - Synonyms | Pages 27-28 | به‌زودی |
-| 6 | 🔤 Grammar - Countable & Uncountable Nouns | Pages 28-31 | به‌زودی |
+| 6 | 🔤 Grammar - Countable & Uncountable Nouns | Pages 28-31 | ✅ آماده (آموزش + آزمون) |
 | 7 | 🛒 Listening & Speaking - Shopping | Pages 34-35 | ✅ آماده |
 | 8 | 🎙️ Pronunciation - Ten/Teen Numbers | Page 36 | به‌زودی |
 | 9 | ✍️ Writing - Simple Sentences | Pages 37-45 | به‌زودی |
@@ -33,6 +33,7 @@ Ready chunks open a sub-menu with two modes (listening is part of practice, not 
 
 - **🔵 Normal Mode (Read)** — the text exactly as in the book; every word is a tappable `<span>` showing a floating Persian tooltip (from the book's Word Banks) and speaking the word at 0.65× speed. Under every paragraph the **full Persian translation** is shown, and a 🔊 button reads the whole paragraph (twice, 0.65×).
 - **🟢 Easy Mode (Practice)** — scaffolded learning: learn each new word once (auto TTS, add to flashcards), then build phrases → full sentences from a shuffled word bank with tap *and* drag-and-drop, instant per-word validation (green = right position, red + shake + buzz = wrong) and a 💡 Hint button that reads the target sentence. When the build steps finish, the **listening fill-in-the-blank questions of the chunk run at the end of the same flow** (4 options, auto audio, instant green/red feedback). No word is taught twice.
+- **📚 Grammar Mode** — 8 teaching cards (rule + English examples with 🔊 and Persian translation) covering countable/uncountable nouns, *much/many*, *a lot of*, *How much/How many*, partitives (*a bag of*, *two slices of*…) and *some/any*; every card is followed by **2 mini-tests** with instant correction and a “why?” explanation, and the unit ends with a **10-question test** that scores the student and offers retry/review.
 - **↩️ Back to the path** — a button under the mode cards returns to the lesson path.
 - **🗂️ Flashcards** — one shared 3D-flip review deck for all saved words (reachable from the header and the homepage).
 

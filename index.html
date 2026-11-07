@@ -445,6 +445,23 @@
         .finish-box { text-align: center; margin-top: 60px; }
         .finish-box h2 { color: var(--primary); }
 
+        /* Grammar mode */
+        .gram-back { align-self: flex-start; background: #f1f5f9; border: none; color: #64748b; padding: 7px 13px; border-radius: 9px; font-size: 0.85rem; font-weight: 700; cursor: pointer; margin-bottom: 10px; }
+        .gram-back:active { transform: scale(0.95); }
+        .gram-kicker { font-size: 0.78rem; color: #64748b; font-weight: 700; }
+        .gram-title { font-size: 1.22rem; font-weight: 900; margin: 6px 0 10px; line-height: 1.7; }
+        .gram-body { font-size: 0.98rem; line-height: 2; color: #334155; margin: 0 0 12px; }
+        .gram-rule { background: #e0f2fe; border: 2px solid #bae6fd; border-radius: 12px; padding: 10px 12px; margin: 12px 0; font-weight: 700; color: #0c4a6e; font-size: 0.92rem; line-height: 1.9; }
+        .gram-example { background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; margin-bottom: 10px; }
+        .gram-example .en { direction: ltr; text-align: left; font-weight: 700; font-size: 1.03rem; display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+        .gram-example .fa { color: #475569; font-size: 0.9rem; margin-top: 6px; text-align: right; }
+        .gram-q { font-size: 1.15rem; direction: ltr; text-align: left; font-weight: 800; margin: 10px 0; line-height: 1.8; }
+        .gram-q-fa { color: #64748b; font-size: 0.9rem; text-align: right; margin-bottom: 6px; }
+        .gram-why { background: #f0fdf4; border-right: 4px solid var(--primary); padding: 10px 12px; border-radius: 10px; margin-top: 14px; font-size: 0.92rem; line-height: 1.95; color: #14532d; }
+        .gram-progress { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #64748b; font-weight: 700; margin-bottom: 10px; }
+        .gram-score { text-align: center; margin-top: 24px; }
+        .gram-score h2 { color: var(--primary-dark); }
+
         /* Long lesson titles must wrap instead of pushing the page badge off-screen */
         .lesson-card .mode-text { min-width: 0; }
         .lesson-card .mode-text h2 { overflow-wrap: anywhere; }
@@ -495,6 +512,12 @@
     <div id="easyScreen" class="screen">
         <div id="easyContent" style="display:flex; flex-direction:column; flex-grow:1;"></div>
         <button id="easyNextBtn" class="btn mt-20 hidden"></button>
+    </div>
+
+    <!-- GRAMMAR SCREEN -->
+    <div id="grammarScreen" class="screen">
+        <div id="grammarContent" style="display:flex; flex-direction:column; flex-grow:1;"></div>
+        <button id="grammarNextBtn" class="btn mt-20 hidden"></button>
     </div>
 
     <!-- NORMAL MODE SCREEN -->
@@ -1426,6 +1449,129 @@
         }
     ];
 
+    // --- GRAMMAR: Lesson 1, pages 28-31 (countable/uncountable, much/many, a lot of, How much/many, partitives, some/any)
+    // Teaching cards first, each followed by two mini-tests, then a 10-question final test.
+    const GRAMMAR_STEPS = [
+        {
+            type: 'teach', title: 'اسم‌های قابل شمارش (Countable Nouns)',
+            body: 'اسم‌هایی که می‌توان آن‌ها را یکی‌یکی شمرد. این اسم‌ها شکل مفرد و جمع دارند و با فعل مناسب خودشان می‌آیند: a book، two books.',
+            rule: 'a book → two books · a language → many languages',
+            examples: [
+                { en: 'I have two books.', fa: 'من دو کتاب دارم.' },
+                { en: 'She knows three languages.', fa: 'او سه زبان می‌داند.' },
+                { en: 'There are many students in the class.', fa: 'دانش‌آموزان زیادی در کلاس هستند.' }
+            ]
+        },
+        { type: 'mini', q: 'There _____ two apples on the table.', fa: 'دو سیب روی میز است.', options: ['are', 'is', 'much'], answer: 'are', say: 'There are two apples on the table.', why: 'apples جمع است، پس فعل are می‌آید.' },
+        { type: 'mini', q: 'How _____ students are in your class?', fa: 'چند دانش‌آموز در کلاس شما هستند؟', options: ['many', 'much', 'a lot'], answer: 'many', say: 'How many students are in your class?', why: 'students قابل شمارش و جمع است؛ تعداد را با How many می‌پرسیم.' },
+
+        {
+            type: 'teach', title: 'اسم‌های غیرقابل شمارش (Uncountable Nouns)',
+            body: 'اسم‌هایی که نمی‌توان شمرد: آب، نان، برنج، شکر، گوشت، شیر، پول، موسیقی، اطلاعات، تکلیف. این اسم‌ها جمع بسته نمی‌شوند (نه waters) و با فعل مفرد می‌آیند.',
+            rule: 'water · bread · rice · sugar · meat · milk · money · music · information · homework',
+            examples: [
+                { en: 'Water is very important for us.', fa: 'آب برای ما بسیار مهم است.' },
+                { en: 'We need some information about the project.', fa: 'ما به اطلاعاتی دربارهٔ پروژه نیاز داریم.' },
+                { en: 'There is much sugar in the tea.', fa: 'شکر زیادی در چای است.' }
+            ]
+        },
+        { type: 'mini', q: 'I need some _____ about your school.', fa: 'من اطلاعاتی دربارهٔ مدرسهٔ شما لازم دارم.', options: ['information', 'informations', 'an information'], answer: 'information', say: 'I need some information about your school.', why: 'information غیرقابل شمارش است: نه جمع می‌شود، نه a/an می‌گیرد.' },
+        { type: 'mini', q: 'Water _____ important for life.', fa: 'آب برای زندگی مهم است.', options: ['is', 'are', 'many'], answer: 'is', say: 'Water is important for life.', why: 'اسم غیرقابل شمارش با فعل مفرد (is) می‌آید.' },
+
+        {
+            type: 'teach', title: 'much و many',
+            body: 'many با اسم‌های قابل شمارشِ جمع می‌آید و much با اسم‌های غیرقابل شمارش. هر دو بیشتر در جمله‌های سؤال و منفی به کار می‌روند؛ در جملهٔ مثبت معمولاً a lot of می‌آید.',
+            rule: 'How many + جمع قابل شمارش · How much + غیرقابل شمارش',
+            examples: [
+                { en: 'How many languages do you know?', fa: 'چند زبان می‌دانی؟' },
+                { en: 'How much water do you drink every day?', fa: 'هر روز چقدر آب می‌نوشی؟' },
+                { en: "I don't have much time.", fa: 'وقت زیادی ندارم.' },
+                { en: "There aren't many students today.", fa: 'امروز دانش‌آموز زیادی نیست.' }
+            ]
+        },
+        { type: 'mini', q: "I don't have _____ money.", fa: 'من پول زیادی ندارم.', options: ['much', 'many', 'a lot'], answer: 'much', say: "I don't have much money.", why: 'money غیرقابل شمارش است و جمله منفی؛ پس much.' },
+        { type: 'mini', q: 'How _____ candles do you need?', fa: 'چند شمع لازم داری؟', options: ['many', 'much', 'old'], answer: 'many', say: 'How many candles do you need?', why: 'candles قابل شمارش جمع است؛ با How many می‌پرسیم.' },
+
+        {
+            type: 'teach', title: 'a lot of (و lots of)',
+            body: 'در جمله‌های مثبت معمولاً به‌جای much و many از a lot of استفاده می‌کنیم. a lot of با هر دو نوع اسم می‌آید: قابل شمارش و غیرقابل شمارش.',
+            rule: 'a lot of books · a lot of water',
+            examples: [
+                { en: 'I have a lot of books.', fa: 'کتاب‌های زیادی دارم.' },
+                { en: 'She drinks a lot of water.', fa: 'او آب زیادی می‌نوشد.' },
+                { en: 'There are a lot of shops in this street.', fa: 'در این خیابان مغازه‌های زیادی هست.' }
+            ]
+        },
+        { type: 'mini', q: 'We have _____ homework today.', fa: 'امروز تکلیف زیادی داریم.', options: ['a lot of', 'many', 'a lot'], answer: 'a lot of', say: 'We have a lot of homework today.', why: 'homework غیرقابل شمارش است و جمله مثبت؛ پس a lot of.' },
+        { type: 'mini', q: 'There are _____ people in the park.', fa: 'افراد زیادی در پارک هستند.', options: ['a lot of', 'much', 'a lot'], answer: 'a lot of', say: 'There are a lot of people in the park.', why: 'people جمع است و جمله مثبت؛ پس a lot of.' },
+
+        {
+            type: 'teach', title: 'How much و How many',
+            body: 'برای پرسیدن مقدار از How much و برای پرسیدن تعداد از How many استفاده می‌کنیم. How much برای پرسیدن قیمت هم به کار می‌رود.',
+            rule: 'How much is/are …? = قیمت · How much water? = مقدار · How many books? = تعداد',
+            examples: [
+                { en: 'How much are those candles?', fa: 'آن شمع‌ها چند است؟' },
+                { en: 'How many birthday candles do you need?', fa: 'چند شمع تولد لازم داری؟' },
+                { en: 'How much sugar do you want?', fa: 'چقدر شکر می‌خواهی؟' }
+            ]
+        },
+        { type: 'mini', q: '_____ is this dictionary?', fa: 'این واژه‌نامه چند است؟', options: ['How much', 'How many', 'How long'], answer: 'How much', say: 'How much is this dictionary?', why: 'برای پرسیدن قیمت از How much استفاده می‌شود.' },
+        { type: 'mini', q: '_____ languages are there in the world?', fa: 'چند زبان در جهان وجود دارد؟', options: ['How many', 'How much', 'How old'], answer: 'How many', say: 'How many languages are there in the world?', why: 'languages قابل شمارش است؛ پس How many.' },
+
+        {
+            type: 'teach', title: 'واحدهای شمارش (a bag of, two slices of …)',
+            body: 'برای شمردن اسم‌های غیرقابل شمارش از واژه‌های مقدار استفاده می‌کنیم: a bag of، a piece of، two slices of، a loaf of، two kilos of، a bottle of، a cup of، a glass of.',
+            rule: 'a bag of sugar · two slices of bread · a piece of cake · a loaf of bread · two kilos of meat · two bottles of water · a cup of tea · a glass of juice',
+            examples: [
+                { en: 'two bottles of water', fa: 'دو بطری آب' },
+                { en: 'a bag of sugar', fa: 'یک بسته شکر' },
+                { en: 'a loaf of bread', fa: 'یک قرص نان' },
+                { en: 'two kilos of meat', fa: 'دو کیلو گوشت' },
+                { en: 'a piece of cake', fa: 'یک تکه کیک' },
+                { en: 'a glass of juice', fa: 'یک لیوان آب‌میوه' }
+            ]
+        },
+        { type: 'mini', q: "I'd like two _____ of water.", fa: 'دو بطری آب می‌خواهم.', options: ['bottles', 'bottle', 'a bottle'], answer: 'bottles', say: "I'd like two bottles of water.", why: 'بعد از two اسم مقدار جمع می‌آید: two bottles of water.' },
+        { type: 'mini', q: 'She bought a _____ of bread.', fa: 'او یک قرص نان خرید.', options: ['loaf', 'piece', 'cup'], answer: 'loaf', say: 'She bought a loaf of bread.', why: 'برای نان از a loaf of bread استفاده می‌کنیم.' },
+
+        {
+            type: 'teach', title: 'some و any',
+            body: 'some در جمله‌های مثبت و any در سؤال و منفی به کار می‌رود. هر دو با اسم جمعِ قابل شمارش و با اسم غیرقابل شمارش می‌آیند.',
+            rule: 'some + جملهٔ مثبت · any + سؤال و منفی',
+            examples: [
+                { en: "I'm looking for some birthday candles.", fa: 'دنبال چند شمع تولد می‌گردم.' },
+                { en: 'Do you have any sugar?', fa: 'شکر داری؟' },
+                { en: "There isn't any milk in the fridge.", fa: 'شیری در یخچال نیست.' }
+            ]
+        },
+        { type: 'mini', q: 'I need _____ milk for the cake.', fa: 'برای کیک شیر لازم دارم.', options: ['some', 'any', 'many'], answer: 'some', say: 'I need some milk for the cake.', why: 'جملهٔ مثبت است و milk غیرقابل شمارش: some milk.' },
+        { type: 'mini', q: 'Is there _____ juice in the glass?', fa: 'آب‌میوه در لیوان هست؟', options: ['any', 'some', 'many'], answer: 'any', say: 'Is there any juice in the glass?', why: 'در جملهٔ سؤالی از any استفاده می‌کنیم.' },
+
+        {
+            type: 'teach', title: 'خلاصهٔ گرامر درس ۱', last: true,
+            body: 'همهٔ نکته‌های این بخش در یک نگاه:',
+            summary: [
+                'قابل شمارش: a book → two books · با many و How many',
+                'غیرقابل شمارش: water, bread, information · با much و How much',
+                'جملهٔ مثبت: a lot of books / a lot of water',
+                'قیمت: How much is it? · تعداد: How many books?',
+                'واحد مقدار: a bag of, two slices of, a piece of, two kilos of',
+                'some در جملهٔ مثبت · any در سؤال و منفی'
+            ]
+        },
+
+        { type: 'test', q: 'How _____ languages do you know?', fa: 'چند زبان می‌دانی؟', options: ['many', 'much', 'a lot'], answer: 'many', say: 'How many languages do you know?', why: 'languages قابل شمارش جمع است؛ پس many.' },
+        { type: 'test', q: "I don't have _____ time today.", fa: 'امروز وقت زیادی ندارم.', options: ['much', 'many', 'a lot of'], answer: 'much', say: "I don't have much time today.", why: 'time غیرقابل شمارش است و جمله منفی؛ پس much.' },
+        { type: 'test', q: 'There are _____ students in the yard.', fa: 'دانش‌آموزان زیادی در حیاط هستند.', options: ['a lot of', 'much', 'a lot'], answer: 'a lot of', say: 'There are a lot of students in the yard.', why: 'جملهٔ مثبت با اسم جمع: a lot of.' },
+        { type: 'test', q: 'She drinks _____ water every day.', fa: 'او هر روز آب زیادی می‌نوشد.', options: ['a lot of', 'many', 'a lot'], answer: 'a lot of', say: 'She drinks a lot of water every day.', why: 'water غیرقابل شمارش و جمله مثبت است: a lot of.' },
+        { type: 'test', q: 'How _____ is this bag?', fa: 'این کیف چند است؟', options: ['much', 'many', 'old'], answer: 'much', say: 'How much is this bag?', why: 'برای پرسیدن قیمت How much به کار می‌رود.' },
+        { type: 'test', q: "I'd like two _____ of tea.", fa: 'دو فنجان چای می‌خواهم.', options: ['cups', 'cup', 'a cup'], answer: 'cups', say: "I'd like two cups of tea.", why: 'بعد از two واژهٔ مقدار جمع می‌آید: two cups of tea.' },
+        { type: 'test', q: 'Water _____ important for life.', fa: 'آب برای زندگی مهم است.', options: ['is', 'are', 'many'], answer: 'is', say: 'Water is important for life.', why: 'اسم غیرقابل شمارش با فعل مفرد (is) می‌آید.' },
+        { type: 'test', q: 'Can you give me some _____?', fa: 'می‌توانی کمی اطلاعات به من بدهی؟', options: ['information', 'informations', 'an information'], answer: 'information', say: 'Can you give me some information?', why: 'information غیرقابل شمارش است: نه جمع، نه a/an.' },
+        { type: 'test', q: "There isn't _____ bread in the house.", fa: 'نان زیادی در خانه نیست.', options: ['much', 'many', 'a lot of'], answer: 'much', say: "There isn't much bread in the house.", why: 'bread غیرقابل شمارش و جمله منفی است؛ پس much.' },
+        { type: 'test', q: 'How _____ candles do you need?', fa: 'چند شمع لازم داری؟', options: ['many', 'much', 'old'], answer: 'many', say: 'How many candles do you need?', why: 'candles قابل شمارش است؛ پس many.' }
+    ];
+
     // --- LESSONS: Vision 2 has three lessons; only Lesson 1 is built so far
     const LESSONS = [
         {
@@ -1475,7 +1621,7 @@
         },
         {
             id: 'grammar', icon: '🔤', title: 'Grammar - Countable & Uncountable Nouns', pages: 'Pages 28-31',
-            faDesc: 'much / many / a lot of و اسم‌های قابل شمارش و غیرقابل شمارش', ready: false
+            faDesc: 'آموزش قدم‌به‌قدم با مثال، آزمون‌های کوچک و آزمون ۱۰ سؤالی', ready: true, grammar: GRAMMAR_STEPS
         },
         {
             id: 'conv2', icon: '🛒', title: 'Listening & Speaking - Shopping', pages: 'Pages 34-35',
@@ -1559,10 +1705,15 @@
         head.appendChild(p);
         c.appendChild(head);
 
-        const modes = [
-            { icon: '🔵', title: 'حالت عادی (خواندن)', desc: 'متن را با ترجمهٔ کامل و معنی تپ‌پذیرِ هر واژه بخوان.', fn: startNormalMode },
-            { icon: '🟢', title: 'حالت آسان (تمرین)', desc: 'کلمه به کلمه یاد بگیر، جمله بساز و تمرین شنیداری را انجام بده.', fn: startEasyMode }
-        ];
+        const modes = [];
+        if (lesson.grammar) {
+            modes.push({ icon: '📚', title: 'آموزش گرامر', desc: 'قاعده‌ها را قدم‌به‌قدم با مثال یاد بگیر، آزمون‌های کوچک بده و در پایان آزمون ۱۰ سؤالی شرکت کن.', fn: startGrammarMode });
+            modes.push({ icon: '📝', title: 'آزمون گرامر (۱۰ سؤال)', desc: 'فقط آزمون پایانی با تصحیح فوری و توضیح هر پاسخ.', fn: startGrammarTest });
+        }
+        if (lesson.reading) {
+            modes.push({ icon: '🔵', title: 'حالت عادی (خواندن)', desc: 'متن را با ترجمهٔ کامل و معنی تپ‌پذیرِ هر واژه بخوان.', fn: startNormalMode });
+            modes.push({ icon: '🟢', title: 'حالت آسان (تمرین)', desc: 'کلمه به کلمه یاد بگیر، جمله بساز و تمرین شنیداری را انجام بده.', fn: startEasyMode });
+        }
         modes.forEach(m => {
             const card = document.createElement('div');
             card.className = 'mode-card';
@@ -2015,6 +2166,237 @@
         nextBtn.classList.remove('hidden');
         nextBtn.innerText = isLast ? '🎉 پایان تمرین ➡️' : 'سوال بعدی ➡️';
         nextBtn.onclick = nextEasyStep;
+    }
+
+    // ============================================================
+    // --- GRAMMAR MODE: teaching cards, mini tests, 10-question test
+    // ============================================================
+    let gramIdx = 0;
+    let gramScore = 0;
+    let gramAnswered = false;
+
+    const TEST_TOTAL = GRAMMAR_STEPS.filter(s => s.type === 'test').length;
+
+    function startGrammarMode() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        gramIdx = 0;
+        gramScore = 0;
+        showScreen('grammarScreen');
+        renderGrammarStep();
+    }
+
+    function startGrammarTest() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        const first = GRAMMAR_STEPS.findIndex(s => s.type === 'test');
+        gramIdx = first < 0 ? 0 : first;
+        gramScore = 0;
+        showScreen('grammarScreen');
+        renderGrammarStep();
+    }
+
+    function grammarBackToSection() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        renderSectionMenu();
+        showScreen('sectionScreen');
+    }
+
+    function grammarBackToPath() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        renderPath();
+        showScreen('lessonScreen');
+    }
+
+    function renderGrammarStep() {
+        const c = document.getElementById('grammarContent');
+        const next = document.getElementById('grammarNextBtn');
+        const step = GRAMMAR_STEPS[gramIdx];
+        c.innerHTML = '';
+        next.classList.add('hidden');
+        gramAnswered = false;
+
+        if (!step) return renderGrammarResult();
+
+        const back = document.createElement('button');
+        back.className = 'gram-back';
+        back.innerText = '↩️ بازگشت به بخش';
+        back.onclick = grammarBackToSection;
+        c.appendChild(back);
+
+        if (step.type === 'teach') {
+            const teachTotal = GRAMMAR_STEPS.filter(s => s.type === 'teach').length;
+            const teachNo = GRAMMAR_STEPS.slice(0, gramIdx + 1).filter(s => s.type === 'teach').length;
+
+            const kicker = document.createElement('div');
+            kicker.className = 'gram-kicker';
+            kicker.innerText = `📚 آموزش گرامر · بخش ${teachNo} از ${teachTotal}`;
+            c.appendChild(kicker);
+
+            const h = document.createElement('h2');
+            h.className = 'gram-title';
+            h.innerText = step.title;
+            c.appendChild(h);
+
+            const body = document.createElement('p');
+            body.className = 'gram-body';
+            body.innerText = step.body;
+            c.appendChild(body);
+
+            if (step.rule) {
+                const rule = document.createElement('div');
+                rule.className = 'gram-rule';
+                rule.innerText = step.rule;
+                c.appendChild(rule);
+            }
+
+            (step.summary || []).forEach(line => {
+                const row = document.createElement('div');
+                row.className = 'gram-rule';
+                row.style.cssText = 'background:#f8fafc;border-color:#e2e8f0;color:#334155;';
+                row.innerText = line;
+                c.appendChild(row);
+            });
+
+            (step.examples || []).forEach(ex => {
+                const box = document.createElement('div');
+                box.className = 'gram-example';
+
+                const en = document.createElement('div');
+                en.className = 'en';
+                const enText = document.createElement('span');
+                enText.innerText = ex.en;
+                en.appendChild(enText);
+
+                const spk = document.createElement('button');
+                spk.className = 'tts-btn';
+                spk.style.cssText = 'width:34px;height:34px;font-size:0.95rem;';
+                spk.innerText = '🔊';
+                spk.onclick = () => speak(ex.en);
+                en.appendChild(spk);
+                box.appendChild(en);
+
+                const fa = document.createElement('div');
+                fa.className = 'fa';
+                fa.innerText = ex.fa;
+                box.appendChild(fa);
+
+                c.appendChild(box);
+            });
+
+            next.classList.remove('hidden');
+            next.innerText = step.last ? '📝 شروع آزمون ۱۰ سؤالی' : 'ادامه ➡️';
+            next.onclick = () => { gramIdx++; renderGrammarStep(); };
+            return;
+        }
+
+        // Mini test or final-test question
+        const qIndex = GRAMMAR_STEPS.slice(0, gramIdx + 1).filter(s => s.type === 'test').length;
+
+        const prog = document.createElement('div');
+        prog.className = 'gram-progress';
+        const left = document.createElement('span');
+        left.innerText = step.type === 'test' ? `📝 آزمون پایانی · سؤال ${qIndex} از ${TEST_TOTAL}` : '✅ آزمون کوچک';
+        const right = document.createElement('span');
+        right.innerText = step.type === 'test' ? `امتیاز: ${gramScore}` : 'پس از هر بخش';
+        prog.appendChild(right);
+        prog.appendChild(left);
+        c.appendChild(prog);
+
+        const q = document.createElement('div');
+        q.className = 'gram-q';
+        q.innerText = step.q;
+        c.appendChild(q);
+
+        if (step.fa) {
+            const qfa = document.createElement('div');
+            qfa.className = 'gram-q-fa';
+            qfa.innerText = step.fa;
+            c.appendChild(qfa);
+        }
+
+        const grid = document.createElement('div');
+        grid.className = 'options-grid';
+        c.appendChild(grid);
+
+        const buttons = [];
+        step.options.forEach(opt => {
+            const b = document.createElement('button');
+            b.className = 'option-btn';
+            b.innerText = opt;
+            b.onclick = () => {
+                if (gramAnswered) return;
+                gramAnswered = true;
+                buttons.forEach(x => {
+                    x.disabled = true;
+                    if (x.innerText === step.answer) x.classList.add('correct');
+                });
+
+                if (opt === step.answer) {
+                    if (step.type === 'test') gramScore++;
+                    playSound('correct');
+                } else {
+                    b.classList.add('wrong');
+                    playSound('wrong');
+                }
+                if (step.type === 'test') right.innerText = `امتیاز: ${gramScore}`;
+
+                speak(step.say || step.answer);
+
+                const why = document.createElement('div');
+                why.className = 'gram-why';
+                why.innerText = 'چرا؟ ' + step.why;
+                c.appendChild(why);
+
+                next.classList.remove('hidden');
+                next.innerText = (step.type === 'test' && qIndex === TEST_TOTAL) ? 'دیدن نتیجه 🎉' : 'ادامه ➡️';
+                next.onclick = () => { gramIdx++; renderGrammarStep(); };
+            };
+            buttons.push(b);
+            grid.appendChild(b);
+        });
+    }
+
+    function renderGrammarResult() {
+        const c = document.getElementById('grammarContent');
+        const next = document.getElementById('grammarNextBtn');
+        next.classList.add('hidden');
+        c.innerHTML = '';
+
+        const box = document.createElement('div');
+        box.className = 'gram-score';
+
+        const h = document.createElement('h2');
+        h.innerText = gramScore === TEST_TOTAL ? '🎉 بی‌نقص!' : (gramScore >= 7 ? '👏 خیلی خوب!' : '📚 یک بار دیگر مرور کن');
+        const score = document.createElement('p');
+        score.style.cssText = 'font-size:1.35rem;font-weight:900;margin:12px 0;';
+        score.innerText = `نتیجهٔ آزمون: ${gramScore} از ${TEST_TOTAL}`;
+        const tip = document.createElement('p');
+        tip.style.cssText = 'color:#64748b;line-height:2;margin-bottom:10px;';
+        tip.innerText = gramScore >= 8
+            ? 'گرامر درس ۱ را خوب یاد گرفته‌ای. حالا می‌توانی به بخش بعدی مسیر بروی.'
+            : 'قاعده‌ها را یک بار دیگر با مثال‌ها مرور کن و بعد آزمون را دوباره بده.';
+        box.appendChild(h);
+        box.appendChild(score);
+        box.appendChild(tip);
+
+        const retry = document.createElement('button');
+        retry.className = 'btn mt-20';
+        retry.innerText = '🔁 آزمون مجدد';
+        retry.onclick = startGrammarTest;
+
+        const review = document.createElement('button');
+        review.className = 'btn secondary mt-20';
+        review.innerText = '📚 مرور درس';
+        review.onclick = startGrammarMode;
+
+        const back = document.createElement('button');
+        back.className = 'btn secondary mt-20';
+        back.innerText = '↩️ بازگشت به مسیر درس';
+        back.onclick = grammarBackToPath;
+
+        box.appendChild(retry);
+        box.appendChild(review);
+        box.appendChild(back);
+        c.appendChild(box);
     }
 
     // ============================================================
