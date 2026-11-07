@@ -9,7 +9,7 @@ The homepage lists the three lessons of the book; the student picks the lesson t
 | Lesson | Book pages | Status |
 |---|---|---|
 | 1️⃣ Lesson 1 - Understanding People | Pages 15-47 | ✅ built |
-| 2️⃣ Lesson 2 - A Healthy Lifestyle | Pages 49-79 | به‌زودی |
+| 2️⃣ Lesson 2 - A Healthy Lifestyle | Pages 49-79 | ✅ built |
 | 3️⃣ Lesson 3 - Art and Culture | Pages 81-107 | به‌زودی |
 
 ## Lesson path: Duolingo-style chunks in book order
@@ -28,6 +28,23 @@ Opening a lesson shows its chunks as a numbered path, ordered exactly like the t
 | 8 | 🎙️ Pronunciation - Ten/Teen Numbers | Page 36 | به‌زودی |
 | 9 | ✍️ Writing - Simple Sentences | Pages 37-45 | به‌زودی |
 | 10 | 🏁 What You Learned | Page 47 | به‌زودی |
+
+### Lesson 2 chunks (Pages 49-79)
+
+| # | Chunk | Book pages | Status |
+|---|---|---|---|
+| 1 | 🗺️ Get Ready | Pages 49-52 | به‌زودی |
+| 2 | 💬 Conversation - A Couch Potato | Pages 53-54 | ✅ آماده |
+| 3 | 📖 New Words & Expressions | Pages 55-57 | ✅ آماده |
+| 4 | 📑 Reading - Having a Healthier and Longer Life | Pages 58-60 | ✅ آماده |
+| 5 | 🔁 Vocabulary Development - Prefixes & Suffixes | Pages 61-63 | به‌زودی |
+| 6 | 🔤 Grammar - Present Perfect | Pages 64-67 | ✅ آماده (آموزش + آزمون) |
+| 7 | 🎧 Listening & Speaking - Past Experiences | Pages 69-70 | ✅ آماده |
+| 8 | 🎙️ Pronunciation - (Emergencies) Phrasal Verbs | Page 71 | به‌زودی |
+| 9 | ✍️ Writing - Gerunds | Pages 72-76 | به‌زودی |
+| 10 | 🏁 What You Learned | Page 79 | به‌زودی |
+
+Each lesson keeps its own path, so the home screen switches between them and the progress path always shows the chosen lesson's chunks.
 
 Ready chunks open a sub-menu with two modes (listening is part of practice, not a separate mode):
 
